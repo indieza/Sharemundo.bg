@@ -8,7 +8,7 @@ using SharemundoBulgaria.Constraints;
 namespace SharemundoBulgaria.Areas.Administration.Controllers
 {
     [Area(Constants.AdministrationArea)]
-    public class DashboardController : Controller
+    public class AdministratorProfile : Controller
     {
         public IActionResult Index()
         {
