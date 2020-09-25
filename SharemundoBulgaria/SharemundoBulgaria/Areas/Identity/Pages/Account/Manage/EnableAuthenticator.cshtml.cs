@@ -1,31 +1,34 @@
-﻿namespace SharemundoBulgaria.Areas.Identity.Pages.Account.Manage
-{
-    using System.ComponentModel.DataAnnotations;
-    using System.Linq;
-    using System.Text;
-    using System.Text.Encodings.Web;
-    using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.RazorPages;
-    using Microsoft.Extensions.Logging;
+﻿using System;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+using System.Text;
+using System.Text.Encodings.Web;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
 
+namespace SharemundoBulgaria.Areas.Identity.Pages.Account.Manage
+{
     public class EnableAuthenticatorModel : PageModel
     {
-        private const string AuthenticatorUriFormat = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}&digits=6";
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly ILogger<EnableAuthenticatorModel> _logger;
+        private readonly UrlEncoder _urlEncoder;
 
-        private readonly UserManager<IdentityUser> userManager;
-        private readonly ILogger<EnableAuthenticatorModel> logger;
-        private readonly UrlEncoder urlEncoder;
+        private const string AuthenticatorUriFormat = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}&digits=6";
 
         public EnableAuthenticatorModel(
             UserManager<IdentityUser> userManager,
             ILogger<EnableAuthenticatorModel> logger,
             UrlEncoder urlEncoder)
         {
-            this.userManager = userManager;
-            this.logger = logger;
-            this.urlEncoder = urlEncoder;
+            _userManager = userManager;
+            _logger = logger;
+            _urlEncoder = urlEncoder;
         }
 
         public string SharedKey { get; set; }
@@ -52,76 +55,76 @@
 
         public async Task<IActionResult> OnGetAsync()
         {
-            var user = await this.userManager.GetUserAsync(this.User);
+            var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return this.NotFound($"Unable to load user with ID '{this.userManager.GetUserId(this.User)}'.");
+                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
-            await this.LoadSharedKeyAndQrCodeUriAsync(user);
+            await LoadSharedKeyAndQrCodeUriAsync(user);
 
-            return this.Page();
+            return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var user = await this.userManager.GetUserAsync(this.User);
+            var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return this.NotFound($"Unable to load user with ID '{this.userManager.GetUserId(this.User)}'.");
+                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
-            if (!this.ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                await this.LoadSharedKeyAndQrCodeUriAsync(user);
-                return this.Page();
+                await LoadSharedKeyAndQrCodeUriAsync(user);
+                return Page();
             }
 
             // Strip spaces and hypens
-            var verificationCode = this.Input.Code.Replace(" ", string.Empty).Replace("-", string.Empty);
+            var verificationCode = Input.Code.Replace(" ", string.Empty).Replace("-", string.Empty);
 
-            var is2faTokenValid = await this.userManager.VerifyTwoFactorTokenAsync(
-                user, this.userManager.Options.Tokens.AuthenticatorTokenProvider, verificationCode);
+            var is2faTokenValid = await _userManager.VerifyTwoFactorTokenAsync(
+                user, _userManager.Options.Tokens.AuthenticatorTokenProvider, verificationCode);
 
             if (!is2faTokenValid)
             {
-                this.ModelState.AddModelError("Input.Code", "Verification code is invalid.");
-                await this.LoadSharedKeyAndQrCodeUriAsync(user);
-                return this.Page();
+                ModelState.AddModelError("Input.Code", "Verification code is invalid.");
+                await LoadSharedKeyAndQrCodeUriAsync(user);
+                return Page();
             }
 
-            await this.userManager.SetTwoFactorEnabledAsync(user, true);
-            var userId = await this.userManager.GetUserIdAsync(user);
-            this.logger.LogInformation("User with ID '{UserId}' has enabled 2FA with an authenticator app.", userId);
+            await _userManager.SetTwoFactorEnabledAsync(user, true);
+            var userId = await _userManager.GetUserIdAsync(user);
+            _logger.LogInformation("User with ID '{UserId}' has enabled 2FA with an authenticator app.", userId);
 
-            this.StatusMessage = "Your authenticator app has been verified.";
+            StatusMessage = "Your authenticator app has been verified.";
 
-            if (await this.userManager.CountRecoveryCodesAsync(user) == 0)
+            if (await _userManager.CountRecoveryCodesAsync(user) == 0)
             {
-                var recoveryCodes = await this.userManager.GenerateNewTwoFactorRecoveryCodesAsync(user, 10);
-                this.RecoveryCodes = recoveryCodes.ToArray();
-                return this.RedirectToPage("./ShowRecoveryCodes");
+                var recoveryCodes = await _userManager.GenerateNewTwoFactorRecoveryCodesAsync(user, 10);
+                RecoveryCodes = recoveryCodes.ToArray();
+                return RedirectToPage("./ShowRecoveryCodes");
             }
             else
             {
-                return this.RedirectToPage("./TwoFactorAuthentication");
+                return RedirectToPage("./TwoFactorAuthentication");
             }
         }
 
         private async Task LoadSharedKeyAndQrCodeUriAsync(IdentityUser user)
         {
             // Load the authenticator key & QR code URI to display on the form
-            var unformattedKey = await this.userManager.GetAuthenticatorKeyAsync(user);
+            var unformattedKey = await _userManager.GetAuthenticatorKeyAsync(user);
             if (string.IsNullOrEmpty(unformattedKey))
             {
-                await this.userManager.ResetAuthenticatorKeyAsync(user);
-                unformattedKey = await this.userManager.GetAuthenticatorKeyAsync(user);
+                await _userManager.ResetAuthenticatorKeyAsync(user);
+                unformattedKey = await _userManager.GetAuthenticatorKeyAsync(user);
             }
 
-            this.SharedKey = this.FormatKey(unformattedKey);
+            SharedKey = FormatKey(unformattedKey);
 
-            var email = await this.userManager.GetEmailAsync(user);
-            this.AuthenticatorUri = this.GenerateQrCodeUri(email, unformattedKey);
+            var email = await _userManager.GetEmailAsync(user);
+            AuthenticatorUri = GenerateQrCodeUri(email, unformattedKey);
         }
 
         private string FormatKey(string unformattedKey)
@@ -133,7 +136,6 @@
                 result.Append(unformattedKey.Substring(currentPosition, 4)).Append(" ");
                 currentPosition += 4;
             }
-
             if (currentPosition < unformattedKey.Length)
             {
                 result.Append(unformattedKey.Substring(currentPosition));
@@ -146,8 +148,8 @@
         {
             return string.Format(
                 AuthenticatorUriFormat,
-                this.urlEncoder.Encode("SharemundoBulgaria"),
-                this.urlEncoder.Encode(email),
+                _urlEncoder.Encode("SharemundoBulgaria"),
+                _urlEncoder.Encode(email),
                 unformattedKey);
         }
     }

@@ -1,29 +1,32 @@
-﻿namespace SharemundoBulgaria.Areas.Identity.Pages.Account.Manage
-{
-    using System.ComponentModel.DataAnnotations;
-    using System.Text;
-    using System.Text.Encodings.Web;
-    using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.AspNetCore.Identity.UI.Services;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.RazorPages;
-    using Microsoft.AspNetCore.WebUtilities;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
+using System.Text.Encodings.Web;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.WebUtilities;
 
+namespace SharemundoBulgaria.Areas.Identity.Pages.Account.Manage
+{
     public partial class EmailModel : PageModel
     {
-        private readonly UserManager<IdentityUser> userManager;
-        private readonly SignInManager<IdentityUser> signInManager;
-        private readonly IEmailSender emailSender;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly IEmailSender _emailSender;
 
         public EmailModel(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
             IEmailSender emailSender)
         {
-            this.userManager = userManager;
-            this.signInManager = signInManager;
-            this.emailSender = emailSender;
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _emailSender = emailSender;
         }
 
         public string Username { get; set; }
@@ -48,96 +51,96 @@
 
         private async Task LoadAsync(IdentityUser user)
         {
-            var email = await this.userManager.GetEmailAsync(user);
-            this.Email = email;
+            var email = await _userManager.GetEmailAsync(user);
+            Email = email;
 
-            this.Input = new InputModel
+            Input = new InputModel
             {
                 NewEmail = email,
             };
 
-            this.IsEmailConfirmed = await this.userManager.IsEmailConfirmedAsync(user);
+            IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
         }
 
         public async Task<IActionResult> OnGetAsync()
         {
-            var user = await this.userManager.GetUserAsync(this.User);
+            var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return this.NotFound($"Unable to load user with ID '{this.userManager.GetUserId(this.User)}'.");
+                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
-            await this.LoadAsync(user);
-            return this.Page();
+            await LoadAsync(user);
+            return Page();
         }
 
         public async Task<IActionResult> OnPostChangeEmailAsync()
         {
-            var user = await this.userManager.GetUserAsync(this.User);
+            var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return this.NotFound($"Unable to load user with ID '{this.userManager.GetUserId(this.User)}'.");
+                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
-            if (!this.ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                await this.LoadAsync(user);
-                return this.Page();
+                await LoadAsync(user);
+                return Page();
             }
 
-            var email = await this.userManager.GetEmailAsync(user);
-            if (this.Input.NewEmail != email)
+            var email = await _userManager.GetEmailAsync(user);
+            if (Input.NewEmail != email)
             {
-                var userId = await this.userManager.GetUserIdAsync(user);
-                var code = await this.userManager.GenerateChangeEmailTokenAsync(user, this.Input.NewEmail);
-                var callbackUrl = this.Url.Page(
+                var userId = await _userManager.GetUserIdAsync(user);
+                var code = await _userManager.GenerateChangeEmailTokenAsync(user, Input.NewEmail);
+                var callbackUrl = Url.Page(
                     "/Account/ConfirmEmailChange",
                     pageHandler: null,
-                    values: new { userId = userId, email = this.Input.NewEmail, code = code },
-                    protocol: this.Request.Scheme);
-                await this.emailSender.SendEmailAsync(
-                    this.Input.NewEmail,
+                    values: new { userId = userId, email = Input.NewEmail, code = code },
+                    protocol: Request.Scheme);
+                await _emailSender.SendEmailAsync(
+                    Input.NewEmail,
                     "Confirm your email",
                     $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-                this.StatusMessage = "Confirmation link to change email sent. Please check your email.";
-                return this.RedirectToPage();
+                StatusMessage = "Confirmation link to change email sent. Please check your email.";
+                return RedirectToPage();
             }
 
-            this.StatusMessage = "Your email is unchanged.";
-            return this.RedirectToPage();
+            StatusMessage = "Your email is unchanged.";
+            return RedirectToPage();
         }
 
         public async Task<IActionResult> OnPostSendVerificationEmailAsync()
         {
-            var user = await this.userManager.GetUserAsync(this.User);
+            var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return this.NotFound($"Unable to load user with ID '{this.userManager.GetUserId(this.User)}'.");
+                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
-            if (!this.ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                await this.LoadAsync(user);
-                return this.Page();
+                await LoadAsync(user);
+                return Page();
             }
 
-            var userId = await this.userManager.GetUserIdAsync(user);
-            var email = await this.userManager.GetEmailAsync(user);
-            var code = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
+            var userId = await _userManager.GetUserIdAsync(user);
+            var email = await _userManager.GetEmailAsync(user);
+            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-            var callbackUrl = this.Url.Page(
+            var callbackUrl = Url.Page(
                 "/Account/ConfirmEmail",
                 pageHandler: null,
                 values: new { area = "Identity", userId = userId, code = code },
-                protocol: this.Request.Scheme);
-            await this.emailSender.SendEmailAsync(
+                protocol: Request.Scheme);
+            await _emailSender.SendEmailAsync(
                 email,
                 "Confirm your email",
                 $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-            this.StatusMessage = "Verification email sent. Please check your email.";
-            return this.RedirectToPage();
+            StatusMessage = "Verification email sent. Please check your email.";
+            return RedirectToPage();
         }
     }
 }
