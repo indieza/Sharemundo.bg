@@ -1,24 +1,24 @@
-﻿namespace SharemundoBulgaria.Areas.Identity.Pages.Account
-{
-    using System.Text;
-    using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.AspNetCore.Identity.UI.Services;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.RazorPages;
-    using Microsoft.AspNetCore.WebUtilities;
+﻿using Microsoft.AspNetCore.Authorization;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.WebUtilities;
 
+namespace SharemundoBulgaria.Areas.Identity.Pages.Account
+{
     [AllowAnonymous]
     public class RegisterConfirmationModel : PageModel
     {
-        private readonly UserManager<IdentityUser> userManager;
-        private readonly IEmailSender sender;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly IEmailSender _sender;
 
         public RegisterConfirmationModel(UserManager<IdentityUser> userManager, IEmailSender sender)
         {
-            this.userManager = userManager;
-            this.sender = sender;
+            _userManager = userManager;
+            _sender = sender;
         }
 
         public string Email { get; set; }
@@ -31,32 +31,31 @@
         {
             if (email == null)
             {
-                return this.RedirectToPage("/Index");
+                return RedirectToPage("/Index");
             }
 
-            var user = await this.userManager.FindByEmailAsync(email);
+            var user = await _userManager.FindByEmailAsync(email);
             if (user == null)
             {
-                return this.NotFound($"Unable to load user with email '{email}'.");
+                return NotFound($"Unable to load user with email '{email}'.");
             }
 
-            this.Email = email;
-
+            Email = email;
             // Once you add a real email sender, you should remove this code that lets you confirm the account
-            this.DisplayConfirmAccountLink = true;
-            if (this.DisplayConfirmAccountLink)
+            DisplayConfirmAccountLink = true;
+            if (DisplayConfirmAccountLink)
             {
-                var userId = await this.userManager.GetUserIdAsync(user);
-                var code = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
+                var userId = await _userManager.GetUserIdAsync(user);
+                var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                 code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                this.EmailConfirmationUrl = this.Url.Page(
+                EmailConfirmationUrl = Url.Page(
                     "/Account/ConfirmEmail",
                     pageHandler: null,
                     values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
-                    protocol: this.Request.Scheme);
+                    protocol: Request.Scheme);
             }
 
-            return this.Page();
+            return Page();
         }
     }
 }

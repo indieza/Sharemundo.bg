@@ -1,22 +1,25 @@
-﻿namespace SharemundoBulgaria.Areas.Identity.Pages.Account
-{
-    using System.ComponentModel.DataAnnotations;
-    using System.Text;
-    using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.RazorPages;
-    using Microsoft.AspNetCore.WebUtilities;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.WebUtilities;
 
+namespace SharemundoBulgaria.Areas.Identity.Pages.Account
+{
     [AllowAnonymous]
     public class ResetPasswordModel : PageModel
     {
-        private readonly UserManager<IdentityUser> userManager;
+        private readonly UserManager<IdentityUser> _userManager;
 
         public ResetPasswordModel(UserManager<IdentityUser> userManager)
         {
-            this.userManager = userManager;
+            _userManager = userManager;
         }
 
         [BindProperty]
@@ -45,44 +48,43 @@
         {
             if (code == null)
             {
-                return this.BadRequest("A code must be supplied for password reset.");
+                return BadRequest("A code must be supplied for password reset.");
             }
             else
             {
-                this.Input = new InputModel
+                Input = new InputModel
                 {
-                    Code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code)),
+                    Code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code))
                 };
-                return this.Page();
+                return Page();
             }
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!this.ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                return this.Page();
+                return Page();
             }
 
-            var user = await this.userManager.FindByEmailAsync(this.Input.Email);
+            var user = await _userManager.FindByEmailAsync(Input.Email);
             if (user == null)
             {
                 // Don't reveal that the user does not exist
-                return this.RedirectToPage("./ResetPasswordConfirmation");
+                return RedirectToPage("./ResetPasswordConfirmation");
             }
 
-            var result = await this.userManager.ResetPasswordAsync(user, this.Input.Code, this.Input.Password);
+            var result = await _userManager.ResetPasswordAsync(user, Input.Code, Input.Password);
             if (result.Succeeded)
             {
-                return this.RedirectToPage("./ResetPasswordConfirmation");
+                return RedirectToPage("./ResetPasswordConfirmation");
             }
 
             foreach (var error in result.Errors)
             {
-                this.ModelState.AddModelError(string.Empty, error.Description);
+                ModelState.AddModelError(string.Empty, error.Description);
             }
-
-            return this.Page();
+            return Page();
         }
     }
 }
