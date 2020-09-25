@@ -1,5 +1,6 @@
 namespace SharemundoBulgaria
 {
+    using System;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
@@ -7,7 +8,9 @@ namespace SharemundoBulgaria
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using SharemundoBulgaria.Constraints;
     using SharemundoBulgaria.Data;
+    using SharemundoBulgaria.Models.User;
 
     public class Startup
     {
@@ -24,8 +27,37 @@ namespace SharemundoBulgaria
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     this.Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = true;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = Constants.PasswordRequiredLength;
+                options.Password.RequiredUniqueChars = 0;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireLowercase = false;
+            })
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+                options.Cookie.HttpOnly = true;
+                options.LoginPath = "/Identity/Account/Login";
+                options.SlidingExpiration = true;
+            });
+
+            services.AddAntiforgery(options =>
+            {
+                options.HeaderName = "X-CSRF-TOKEN";
+            });
+
+            // Configuration for update cookies when user is added in Role!!!
+            services.Configure<SecurityStampValidatorOptions>(options =>
+            {
+                options.ValidationInterval = TimeSpan.FromMinutes(0);
+            });
+
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
@@ -46,10 +78,12 @@ namespace SharemundoBulgaria
                 app.UseHsts();
             }
 
+            app.UseStatusCodePagesWithRedirects("/Error/{0}");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseCookiePolicy();
 
             app.UseAuthentication();
             app.UseAuthorization();
