@@ -10,8 +10,8 @@ using SharemundoBulgaria.Data;
 namespace SharemundoBulgaria.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200923114851_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20200925092457_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
