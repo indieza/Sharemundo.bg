@@ -37,7 +37,7 @@ namespace SharemundoBulgaria
                 options.Password.RequireLowercase = false;
             })
             .AddEntityFrameworkStores<ApplicationDbContext>()
-            .AddDefaultTokenProviders();
+            .AddDefaultTokenProviders().AddDefaultUI();
 
             services.ConfigureApplicationCookie(options =>
             {
