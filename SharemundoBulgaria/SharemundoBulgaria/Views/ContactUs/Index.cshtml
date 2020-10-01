@@ -74,21 +74,25 @@
                             <div class="col-lg-4 col-md-12 col-sm-12">
                                 <fieldset>
                                     <input asp-for="Name" name="name" type="text" class="form-control" id="name" placeholder="Full Name" required="">
+                                    <span asp-validation-for="Name" class="text-danger"></span>
                                 </fieldset>
                             </div>
                             <div class="col-lg-4 col-md-12 col-sm-12">
                                 <fieldset>
                                     <input asp-for="Email" name="email" type="text" class="form-control" id="email" placeholder="E-Mail Address" required="">
+                                    <span asp-validation-for="Email" class="text-danger"></span>
                                 </fieldset>
                             </div>
                             <div class="col-lg-4 col-md-12 col-sm-12">
                                 <fieldset>
                                     <input asp-for="Subject" name="subject" type="text" class="form-control" id="subject" placeholder="Subject" required="">
+                                    <span asp-validation-for="Subject" class="text-danger"></span>
                                 </fieldset>
                             </div>
                             <div class="col-lg-12">
                                 <fieldset>
                                     <textarea asp-for="Message" name="message" rows="6" class="form-control" id="message" placeholder="Your Message" required=""></textarea>
+                                    <span asp-validation-for="Message" class="text-danger"></span>
                                 </fieldset>
                             </div>
                             <div class="col-lg-12">
