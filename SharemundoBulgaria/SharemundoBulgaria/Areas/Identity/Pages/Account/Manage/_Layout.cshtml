@@ -9,17 +9,26 @@
     }
 }
 
-<h2>Manage your account</h2>
-
-<div>
-    <h4>Change your account settings</h4>
-    <hr />
-    <div class="row">
-        <div class="col-md-3">
-            <partial name="_ManageNav" />
+<div class="page-heading header-text">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Change your account settings</h1>
+                <span>We have over 20 years of experience</span>
+            </div>
         </div>
-        <div class="col-md-9">
-            @RenderBody()
+    </div>
+</div>
+<div class="services">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <partial name="_ManageNav" />
+            </div>
+            <div class="col-md-9">
+                @RenderBody()
+                <br />
+            </div>
         </div>
     </div>
 </div>
