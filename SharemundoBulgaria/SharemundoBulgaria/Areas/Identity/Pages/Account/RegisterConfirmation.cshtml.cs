@@ -28,7 +28,7 @@
 
         public string EmailConfirmationUrl { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(string email, string returnUrl = null)
+        public async Task<IActionResult> OnGetAsync(string email)
         {
             if (email == null)
             {
@@ -44,19 +44,18 @@
             this.Email = email;
 
             // Once you add a real email sender, you should remove this code that lets you confirm the account
-            this.DisplayConfirmAccountLink = true;
-            if (this.DisplayConfirmAccountLink)
-            {
-                var userId = await this.userManager.GetUserIdAsync(user);
-                var code = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
-                code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                this.EmailConfirmationUrl = this.Url.Page(
-                    "/Account/ConfirmEmail",
-                    pageHandler: null,
-                    values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
-                    protocol: this.Request.Scheme);
-            }
-
+            // this.DisplayConfirmAccountLink = true;
+            // if (this.DisplayConfirmAccountLink)
+            // {
+            //    var userId = await this.userManager.GetUserIdAsync(user);
+            //    var code = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
+            //    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+            //    this.EmailConfirmationUrl = this.Url.Page(
+            //        "/Account/ConfirmEmail",
+            //        pageHandler: null,
+            //        values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
+            //        protocol: this.Request.Scheme);
+            // }
             return this.Page();
         }
     }

@@ -1,14 +1,11 @@
 ﻿namespace SharemundoBulgaria.Constraints
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-
     public class Constants
     {
         public const string AdministrationArea = "Administration";
 
         public const int PasswordRequiredLength = 7;
+
+        public const string UserRole = "User";
     }
 }

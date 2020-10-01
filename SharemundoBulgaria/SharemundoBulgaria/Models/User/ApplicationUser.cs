@@ -1,5 +1,6 @@
 ﻿namespace SharemundoBulgaria.Models.User
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
     using Microsoft.AspNetCore.Identity;
 
@@ -34,5 +35,7 @@
         public bool IsBlocked { get; set; }
 
         public string ImageUrl { get; set; }
+
+        public DateTime RegisteredOn { get; set; }
     }
 }

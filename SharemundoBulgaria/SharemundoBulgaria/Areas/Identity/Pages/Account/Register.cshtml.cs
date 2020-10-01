@@ -16,6 +16,8 @@
     using Microsoft.AspNetCore.WebUtilities;
     using Microsoft.Extensions.Logging;
     using SharemundoBulgaria.Constraints;
+    using SharemundoBulgaria.Data;
+    using SharemundoBulgaria.Models.Enums;
     using SharemundoBulgaria.Models.User;
 
     [AllowAnonymous]
@@ -25,17 +27,23 @@
         private readonly UserManager<ApplicationUser> userManager;
         private readonly ILogger<RegisterModel> logger;
         private readonly IEmailSender emailSender;
+        private readonly RoleManager<ApplicationRole> roleManager;
+        private readonly ApplicationDbContext db;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            RoleManager<ApplicationRole> roleManager,
+            ApplicationDbContext db)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.logger = logger;
             this.emailSender = emailSender;
+            this.roleManager = roleManager;
+            this.db = db;
         }
 
         [BindProperty]
@@ -61,8 +69,10 @@
                 {
                     UserName = this.Input.UserName,
                     Email = this.Input.Email,
+                    RegisteredOn = DateTime.UtcNow,
                     CompanyName = this.Input.CompanyName,
                 };
+
                 var result = await this.userManager.CreateAsync(user, this.Input.Password);
                 if (result.Succeeded)
                 {
@@ -73,7 +83,7 @@
                     var callbackUrl = this.Url.Page(
                         "/Account/ConfirmEmail",
                         pageHandler: null,
-                        values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
+                        values: new { area = "Identity", userId = user.Id, code = code },
                         protocol: this.Request.Scheme);
 
                     await this.emailSender.SendEmailAsync(
@@ -81,9 +91,34 @@
                         "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
+                    ApplicationRole role = await this.roleManager.FindByNameAsync(Constants.UserRole);
+
+                    if (role == null)
+                    {
+                        IdentityResult resultRole = await this.CreateRole(Constants.UserRole);
+
+                        if (resultRole.Succeeded)
+                        {
+                            role = await this.roleManager.FindByNameAsync(Constants.UserRole);
+                        }
+                    }
+
+                    var isExist = this.db.UserRoles.Any(x => x.UserId == user.Id && x.RoleId == role.Id);
+
+                    if (!isExist)
+                    {
+                        this.db.UserRoles.Add(new IdentityUserRole<string>
+                        {
+                            RoleId = role.Id,
+                            UserId = user.Id,
+                        });
+
+                        await this.db.SaveChangesAsync();
+                    }
+
                     if (this.userManager.Options.SignIn.RequireConfirmedAccount)
                     {
-                        return this.RedirectToPage("RegisterConfirmation", new { email = this.Input.Email, returnUrl = returnUrl });
+                        return this.RedirectToPage("RegisterConfirmation", new { email = this.Input.Email });
                     }
                     else
                     {
@@ -100,6 +135,19 @@
 
             // If we got this far, something failed, redisplay form
             return this.Page();
+        }
+
+        public async Task<IdentityResult> CreateRole(string role)
+        {
+            Roles roleValue = (Roles)Enum.Parse(typeof(Roles), role);
+            ApplicationRole identityRole = new ApplicationRole
+            {
+                Name = role,
+                RoleLevel = (int)roleValue,
+            };
+
+            IdentityResult result = await this.roleManager.CreateAsync(identityRole);
+            return result;
         }
 
         public class InputModel

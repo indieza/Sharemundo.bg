@@ -28,7 +28,7 @@
             var client = new SendGridClient(apiKey);
             var message = new SendGridMessage()
             {
-                From = new EmailAddress("b.gerginchev@gmail.com", "Sharemundo Bulgaria Administration"),
+                From = new EmailAddress("simeonvalev00@gmail.com", "Sharemundo Bulgaria Administration"),
                 Subject = subject,
                 PlainTextContent = htmlMessage,
                 HtmlContent = htmlMessage,
