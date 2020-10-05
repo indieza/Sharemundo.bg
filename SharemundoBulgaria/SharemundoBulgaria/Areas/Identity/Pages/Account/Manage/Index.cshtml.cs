@@ -68,6 +68,52 @@
                 }
             }
 
+            if (this.Input.FirstName != user.FirstName)
+            {
+                user.FirstName = this.Input.FirstName;
+            }
+
+            if (this.Input.LastName != user.LastName)
+            {
+                user.LastName = this.Input.LastName;
+            }
+
+            if (this.Input.CompanyName != user.CompanyName)
+            {
+                user.CompanyName = this.Input.CompanyName;
+            }
+
+            if (this.Input.PositionInCompany != user.PositionInCompany)
+            {
+                user.PositionInCompany = this.Input.PositionInCompany;
+            }
+
+            if (this.Input.Country != user.Country)
+            {
+                user.Country = this.Input.Country;
+            }
+
+            if (this.Input.City != user.City)
+            {
+                user.City = this.Input.City;
+            }
+
+            if (this.Input.Address != user.Address)
+            {
+                user.Address = this.Input.Address;
+            }
+
+            if (this.Input.PostCode != user.PostCode)
+            {
+                user.PostCode = this.Input.PostCode;
+            }
+
+            if (this.Input.AboutMe != user.AboutMe)
+            {
+                user.AboutMe = this.Input.AboutMe;
+            }
+
+            await this.userManager.UpdateAsync(user);
             await this.signInManager.RefreshSignInAsync(user);
             this.StatusMessage = "Your profile has been updated";
             return this.RedirectToPage();
@@ -77,12 +123,23 @@
         {
             var userName = await this.userManager.GetUserNameAsync(user);
             var phoneNumber = await this.userManager.GetPhoneNumberAsync(user);
+            var currentUser = await this.userManager.GetUserAsync(this.User);
 
             this.Username = userName;
 
             this.Input = new InputModel
             {
                 PhoneNumber = phoneNumber,
+                AboutMe = currentUser.AboutMe,
+                Address = currentUser.Address,
+                City = currentUser.City,
+                CompanyName = currentUser.CompanyName,
+                Country = currentUser.Country,
+                FirstName = currentUser.FirstName,
+                LastName = currentUser.LastName,
+                PositionInCompany = currentUser.PositionInCompany,
+                PostCode = currentUser.PostCode,
+                RegisteredOn = DateTime.Parse(currentUser.RegisteredOn.ToString("dd-MMMM-yyyy")).ToLocalTime(),
             };
         }
 
@@ -91,6 +148,41 @@
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
+            [MaxLength(30)]
+            [Display(Name = "Company Name")]
+            public string CompanyName { get; set; }
+
+            [MaxLength(30)]
+            [Display(Name = "Position in company")]
+            public string PositionInCompany { get; set; }
+
+            [MaxLength(15)]
+            [Display(Name = "First Name")]
+            public string FirstName { get; set; }
+
+            [MaxLength(15)]
+            [Display(Name = "Last Name")]
+            public string LastName { get; set; }
+
+            [MaxLength(50)]
+            public string Address { get; set; }
+
+            [MaxLength(20)]
+            public string City { get; set; }
+
+            [MaxLength(20)]
+            public string Country { get; set; }
+
+            [Display(Name = "Post Code")]
+            public int PostCode { get; set; }
+
+            [MaxLength(700)]
+            [Display(Name = "About Me")]
+            public string AboutMe { get; set; }
+
+            [Display(Name = "Registered On")]
+            public DateTime RegisteredOn { get; set; }
         }
     }
 }
