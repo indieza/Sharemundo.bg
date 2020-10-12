@@ -5,12 +5,13 @@
     ViewData["ActivePage"] = ManageNavPages.Index;
 }
 
-<h4>@ViewData["Title"]</h4>
 <partial name="_StatusMessage" model="Model.StatusMessage" />
 <div class="row">
     <div class="col-md-12">
         <form id="profile-form" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <h4>Website Initials</h4>
+            <hr />
             <div class="row">
                 <div class="col-6">
                     <label asp-for="Username"></label>
@@ -27,6 +28,9 @@
                 <input asp-for="Input.RegisteredOn" class="form-control" disabled />
                 <span asp-validation-for="Input.RegisteredOn" class="text-danger"></span>
             </div>
+            <br />
+            <h4>Personal Information</h4>
+            <hr />
             <div class="row">
                 <div class="col-6">
                     <label asp-for="Input.FirstName"></label>
@@ -73,6 +77,9 @@
                     <span asp-validation-for="Input.PostCode" class="text-danger"></span>
                 </div>
             </div>
+            <br />
+            <h4>Tell me more about you...</h4>
+            <hr />
             <div class="row">
                 <div class="col-12">
                     <label asp-for="Input.AboutMe"></label>
