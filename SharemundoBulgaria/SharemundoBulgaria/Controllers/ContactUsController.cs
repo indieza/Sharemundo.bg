@@ -27,7 +27,7 @@
         {
             if (!this.ModelState.IsValid)
             {
-                return this.View();
+                return this.View(model);
             }
 
             this.contactsService.SendEmail(model);
