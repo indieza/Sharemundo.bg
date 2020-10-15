@@ -1,3 +1,8 @@
 ﻿@using SharemundoBulgaria
 @using SharemundoBulgaria.Models
+@using SharemundoBulgaria.Models.User
+@using Microsoft.AspNetCore.Identity
+@using SharemundoBulgaria.Constraints
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@inject UserManager<ApplicationUser> UserManager
+@inject RoleManager<ApplicationRole> RoleManager

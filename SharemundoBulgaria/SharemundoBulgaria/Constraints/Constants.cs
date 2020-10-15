@@ -7,5 +7,7 @@
         public const int PasswordRequiredLength = 7;
 
         public const string UserRole = "User";
+
+        public const string AdministratorRole = "Administrator";
     }
 }

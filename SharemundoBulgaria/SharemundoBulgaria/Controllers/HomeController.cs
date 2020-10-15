@@ -1,17 +1,23 @@
 ﻿namespace SharemundoBulgaria.Controllers
 {
     using System.Diagnostics;
+    using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
     using SharemundoBulgaria.Models;
+    using SharemundoBulgaria.Services.Home;
 
     public class HomeController : Controller
     {
-        public HomeController()
+        private readonly IHomeServices homeServices;
+
+        public HomeController(IHomeServices homeServices)
         {
+            this.homeServices = homeServices;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            await this.homeServices.SubmitAllRoles();
             return this.View();
         }
 

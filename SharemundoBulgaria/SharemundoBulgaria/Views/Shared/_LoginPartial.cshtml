@@ -12,6 +12,12 @@
         <li class="nav-item">
             <a class="nav-link" asp-area="Identity" asp-page="/Account/Logout">Logout</a>
         </li>
+        @if (this.User.IsInRole(Constants.AdministratorRole))
+        {
+            <li class="nav-item">
+                <a class="nav-link" asp-area="Administration" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
+            </li>
+        }
     }
     else
     {
