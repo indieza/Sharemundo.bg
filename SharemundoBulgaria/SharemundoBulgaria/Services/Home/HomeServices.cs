@@ -48,6 +48,11 @@
             return adminsCount != 0;
         }
 
+        public async Task MakeYourselfAdmin(ApplicationUser currentUser)
+        {
+            await this.userManager.AddToRoleAsync(currentUser, Constants.AdministratorRole);
+        }
+
         public async Task SubmitAllRoles()
         {
             var isUserRoleExist = await this.roleManager.FindByNameAsync(Constants.UserRole);

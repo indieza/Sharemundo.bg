@@ -2,6 +2,7 @@
 {
     using System.Diagnostics;
     using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using SharemundoBulgaria.Models;
@@ -22,8 +23,6 @@
 
         public async Task<IActionResult> Index()
         {
-            var currentUser = await this.userManager.GetUserAsync(this.User);
-
             await this.homeServices.SubmitAllRoles();
 
             var model = new HomeViewModel
@@ -34,15 +33,18 @@
             return this.View(model);
         }
 
-        public async Task<IActionResult> MakeYourselfAdmin(string username)
+        [Authorize]
+        public async Task<IActionResult> MakeYourselfAdmin()
         {
             var hasAdmin = await this.homeServices.HasAdministrator();
 
-            if (!hasAdmin)
+            if (hasAdmin)
             {
                 return this.BadRequest();
             }
 
+            var currentUser = await this.userManager.GetUserAsync(this.User);
+            await this.homeServices.MakeYourselfAdmin(currentUser);
             return this.RedirectToAction("Index", "Home");
         }
 

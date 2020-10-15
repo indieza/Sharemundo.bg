@@ -8,5 +8,7 @@
         Task SubmitAllRoles();
 
         Task<bool> HasAdministrator();
+
+        Task MakeYourselfAdmin(ApplicationUser currentUser);
     }
 }
