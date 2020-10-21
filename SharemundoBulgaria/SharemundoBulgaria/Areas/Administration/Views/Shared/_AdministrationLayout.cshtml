@@ -15,7 +15,7 @@ The above copyright notice and this permission notice shall be included in all c
 <head>
     <meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="76x76" href="~/administration/assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="~/administration/assets/img/favicon.png">
+    <link rel="icon" type="image/png" href="~/fav_icon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
         @ViewData["Title"] - Sharemundo Bulgaria
@@ -28,7 +28,7 @@ The above copyright notice and this permission notice shall be included in all c
     <link href="~/administration/assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="~/administration/assets/demo/demo.css" rel="stylesheet" />
-	<script src="https://kit.fontawesome.com/608d9f3754.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/608d9f3754.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="">
@@ -40,8 +40,8 @@ The above copyright notice and this permission notice shall be included in all c
                 Tip 2: you can also add an image using data-image tag
             -->
             <div class="logo">
-                <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-                    Creative Tim
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="simple-text logo-normal">
+                    Admin Panel
                 </a>
             </div>
             <div class="sidebar-wrapper">
@@ -59,45 +59,9 @@ The above copyright notice and this permission notice shall be included in all c
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="./tables.html">
-                            <i class="material-icons">content_paste</i>
-                            <p>Table List</p>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="./typography.html">
-                            <i class="material-icons">library_books</i>
-                            <p>Typography</p>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="./icons.html">
-                            <i class="material-icons">bubble_chart</i>
-                            <p>Icons</p>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="./map.html">
-                            <i class="material-icons">location_ons</i>
-                            <p>Maps</p>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="./notifications.html">
-                            <i class="material-icons">notifications</i>
-                            <p>Notifications</p>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="./rtl.html">
-                            <i class="material-icons">language</i>
-                            <p>RTL Support</p>
-                        </a>
-                    </li>
-                    <li class="nav-item active-pro ">
-                        <a class="nav-link" href="./upgrade.html">
-                            <i class="material-icons">unarchive</i>
-                            <p>Upgrade to PRO</p>
+                        <a class="nav-link" asp-area="Administration" asp-controller="EditHome" asp-action="Index">
+                            <i class="fas fa-home"></i>
+                            <p>Home Page</p>
                         </a>
                     </li>
                 </ul>
@@ -178,31 +142,18 @@ The above copyright notice and this permission notice shall be included in all c
                     <nav class="float-left">
                         <ul>
                             <li>
-                                <a href="https://www.creative-tim.com">
-                                    Creative Tim
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://creative-tim.com/presentation">
-                                    About Us
-                                </a>
-                            </li>
-                            <li>
-                                <a href="http://blog.creative-tim.com">
-                                    Blog
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://www.creative-tim.com/license">
-                                    Licenses
+                                <a asp-area="" asp-controller="Home" asp-action="Index">
+                                    Home
                                 </a>
                             </li>
                         </ul>
                     </nav>
                     <div class="copyright float-right">
                         &copy;
-                        <script>document.write(new Date().getFullYear())</script>, made with <i class="material-icons">favorite</i> by
-                        <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+                        2020 Sharemundo Bulgaria, Ltd., Design and Development:
+                        <a href="https://github.com/indieza" target="_blank">
+                            Simeon Valev(indieza)
+                        </a>
                     </div>
                 </div>
             </footer>
