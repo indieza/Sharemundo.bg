@@ -2,6 +2,7 @@
 {
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
+    using SharemundoBulgaria.Models.Page;
     using SharemundoBulgaria.Models.User;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
@@ -10,6 +11,12 @@
             : base(options)
         {
         }
+
+        public DbSet<Section> Sections { get; set; }
+
+        public DbSet<SectionText> SectionTexts { get; set; }
+
+        public DbSet<SectionImage> SectionImages { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
