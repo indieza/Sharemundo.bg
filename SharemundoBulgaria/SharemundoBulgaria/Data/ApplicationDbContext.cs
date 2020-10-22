@@ -14,9 +14,11 @@
 
         public DbSet<Section> Sections { get; set; }
 
-        public DbSet<SectionText> SectionTexts { get; set; }
+        public DbSet<SectionPart> SectionParts { get; set; }
 
-        public DbSet<SectionImage> SectionImages { get; set; }
+        public DbSet<PartText> PartTexts { get; set; }
+
+        public DbSet<PartImage> PartImages { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

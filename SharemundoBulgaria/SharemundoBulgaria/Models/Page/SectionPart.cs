@@ -7,9 +7,9 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    public class Section
+    public class SectionPart
     {
-        public Section()
+        public SectionPart()
         {
             this.Id = Guid.NewGuid().ToString();
         }
@@ -19,15 +19,16 @@
         public string Id { get; set; }
 
         [Required]
-        [MaxLength(50)]
         public string Name { get; set; }
 
         [Required]
-        [MaxLength(25)]
-        public string PageName { get; set; }
-
-        [Required]
         public int PositionNumber { get; set; }
+
+        [ForeignKey(nameof(Section))]
+        [Required]
+        public string SectionId { get; set; }
+
+        public Section Section { get; set; }
 
         [ForeignKey(nameof(PartText))]
         public string PartTextId { get; set; }
@@ -38,7 +39,5 @@
         public string PartImageId { get; set; }
 
         public PartImage PartImage { get; set; }
-
-        public ICollection<SectionPart> SectionParts { get; set; } = new HashSet<SectionPart>();
     }
 }
