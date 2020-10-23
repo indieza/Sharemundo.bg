@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using SharemundoBulgaria.Areas.Administration.ViewModels.Dashboard.InputModels;
     using SharemundoBulgaria.Models.User;
 
     public class DashboardViewModel
@@ -17,5 +18,7 @@
         public int AllUsersCount { get; set; }
 
         public int AllAdminsCount { get; set; }
+
+        public AddRemoveAdminInputModel AddRemoveAdminInputModel { get; set; }
     }
 }

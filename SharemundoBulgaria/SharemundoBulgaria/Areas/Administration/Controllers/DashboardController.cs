@@ -3,6 +3,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using SharemundoBulgaria.Areas.Administration.Services.Dashboard;
+    using SharemundoBulgaria.Areas.Administration.ViewModels.Dashboard.InputModels;
     using SharemundoBulgaria.Areas.Administration.ViewModels.Dashboard.ViewModels;
     using SharemundoBulgaria.Constraints;
     using System.Threading.Tasks;
@@ -30,6 +31,44 @@
             };
 
             return this.View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RemoveAdministrator(DashboardViewModel model)
+        {
+            if (this.ModelState.IsValid)
+            {
+                await this.dashboardService.RemoveAdministrator(model.AddRemoveAdminInputModel.Username);
+                this.TempData["Success"] = string.Format(
+                    MessageConstants.SuccessfullyRemoveAdministrator,
+                    model.AddRemoveAdminInputModel.Username.ToUpper(),
+                    Constants.AdministratorRole.ToUpper());
+            }
+            else
+            {
+                this.TempData["Error"] = MessageConstants.InvalidInputModel;
+            }
+
+            return this.RedirectToAction("Index", "Dashboard");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddAdministrator(DashboardViewModel model)
+        {
+            if (this.ModelState.IsValid)
+            {
+                await this.dashboardService.AddAdministrator(model.AddRemoveAdminInputModel.Username);
+                this.TempData["Success"] = string.Format(
+                    MessageConstants.SuccessfullyRemoveAdministrator,
+                    model.AddRemoveAdminInputModel.Username.ToUpper(),
+                    Constants.AdministratorRole.ToUpper());
+            }
+            else
+            {
+                this.TempData["Error"] = MessageConstants.InvalidInputModel;
+            }
+
+            return this.RedirectToAction("Index", "Dashboard");
         }
     }
 }

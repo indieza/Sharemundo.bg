@@ -4,6 +4,8 @@
 
 @model DashboardViewModel
 
+<partial name="_TempDataPartial" />
+
 <h1 class="mt-4">Dashboard</h1>
 <ol class="breadcrumb mb-4">
     <li class="breadcrumb-item active">Dashboard</li>
@@ -46,7 +48,7 @@
 <h4>Add administrator</h4>
 <div class="row">
     <div class="col-8">
-        <select class="form-control">
+        <select class="form-control" asp-for="@Model.AddRemoveAdminInputModel.Username">
             <option value="">Choose user...</option>
             @foreach (var username in this.Model.AllNotAdminsNames)
             {
@@ -55,25 +57,31 @@
         </select>
     </div>
     <div class="col-4">
-        <button type="submit" class="btn btn-success">Add administrator</button>
+        <button asp-area="Administration" asp-controller="Dashboard" asp-action="AddAdministrator" class="btn btn-success">
+            Add
+        </button>
     </div>
 </div>
 <hr />
 <h4>Remove administrator</h4>
-<div class="row">
-    <div class="col-8">
-        <select class="form-control">
-            <option value="">Choose user...</option>
-            @foreach (var username in this.Model.AllAdminsNames)
-            {
-                <option value="@username">@username</option>
-            }
-        </select>
+<form method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-8">
+            <select class="form-control" asp-for="@Model.AddRemoveAdminInputModel.Username">
+                <option value="" selected disabled>Choose user...</option>
+                @foreach (var username in this.Model.AllAdminsNames)
+                {
+                    <option value="@username">@username</option>
+                }
+            </select>
+        </div>
+        <div class="col-4">
+            <button asp-area="Administration" asp-controller="Dashboard" asp-action="RemoveAdministrator" class="btn btn-danger">
+                Remove
+            </button>
+        </div>
     </div>
-    <div class="col-4">
-        <button type="submit" class="btn btn-danger">Remove administrator</button>
-    </div>
-</div>
+</form>
 <div class="row">
     <div class="col-xl-6">
         <div class="card mb-4">

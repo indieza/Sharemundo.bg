@@ -27,6 +27,12 @@
             this.userManager = userManager;
         }
 
+        public async Task AddAdministrator(string username)
+        {
+            var user = await this.db.Users.FirstOrDefaultAsync(x => x.UserName == username);
+            await this.userManager.AddToRoleAsync(user, Constants.AdministratorRole);
+        }
+
         public async Task<int> GetAllAdminsCount()
         {
             var role = await this.db.Roles.FirstOrDefaultAsync(x => x.Name == Constants.AdministratorRole);
@@ -80,6 +86,12 @@
         public async Task<int> GetAllUsersCount()
         {
             return await this.db.Users.Where(x => x.EmailConfirmed == true).CountAsync();
+        }
+
+        public async Task RemoveAdministrator(string username)
+        {
+            var user = await this.db.Users.FirstOrDefaultAsync(x => x.UserName == username);
+            await this.userManager.RemoveFromRoleAsync(user, Constants.AdministratorRole);
         }
     }
 }

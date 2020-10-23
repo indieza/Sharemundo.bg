@@ -17,5 +17,9 @@
         Task<ICollection<string>> GetAllAdminsNames();
 
         Task<ICollection<string>> GetAllNotAdminsNames();
+
+        Task RemoveAdministrator(string username);
+
+        Task AddAdministrator(string username);
     }
 }
