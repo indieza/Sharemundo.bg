@@ -21,7 +21,7 @@
         [HttpPost]
         public async Task<IActionResult> AddSectionToPage(AddSectionToPageInputModel model)
         {
-            if (this.ModelState.IsValid && model.PageName != 0 && model.SectionName != 0)
+            if (this.ModelState.IsValid)
             {
             }
             else

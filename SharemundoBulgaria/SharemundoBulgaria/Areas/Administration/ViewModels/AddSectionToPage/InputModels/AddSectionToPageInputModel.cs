@@ -11,10 +11,12 @@
     {
         [Required]
         [Display(Name = "Page Name")]
+        [EnumDataType(typeof(Pages), ErrorMessage = "The page type is invalid")]
         public Pages PageName { get; set; }
 
         [Required]
         [Display(Name = "Section Name")]
+        [EnumDataType(typeof(Sections), ErrorMessage = "The section type is invalid")]
         public Sections SectionName { get; set; }
     }
 }
