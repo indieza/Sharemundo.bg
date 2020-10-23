@@ -1,12 +1,12 @@
 ﻿namespace SharemundoBulgaria.Areas.Administration.Controllers
 {
+    using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using SharemundoBulgaria.Areas.Administration.Services.Dashboard;
     using SharemundoBulgaria.Areas.Administration.ViewModels.Dashboard.InputModels;
     using SharemundoBulgaria.Areas.Administration.ViewModels.Dashboard.ViewModels;
     using SharemundoBulgaria.Constraints;
-    using System.Threading.Tasks;
 
     [Area(Constants.AdministrationArea)]
     [Authorize(Roles = Constants.AdministratorRole)]
@@ -36,7 +36,7 @@
         [HttpPost]
         public async Task<IActionResult> RemoveAdministrator(DashboardViewModel model)
         {
-            if (this.ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
                 await this.dashboardService.RemoveAdministrator(model.AddRemoveAdminInputModel.Username);
                 this.TempData["Success"] = string.Format(

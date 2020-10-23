@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Add section to page";
+}
+
+@model AddSectionToPageInputModel
+
+<h2 class="mt-4 row">
+    <b>
+        Add section to page
+    </b>
+</h2>
+<hr class="row" />
+<div class="mt-4">
+    <partial name="_TempDataPartial" />
+</div>
+<form method="post">
+    <div class="row">
+        <label asp-for="@this.Model.PageName"></label>
+        <select class="form-control" asp-for="@this.Model.PageName" asp-items="@Html.GetEnumSelectList<Pages>()">
+            <option value="" disabled selected>Select page...</option>
+        </select>
+        <span asp-validation-for="@Model.PageName" class="text-danger"></span>
+    </div>
+    <br />
+    <div class="row">
+        <label asp-for="@this.Model.SectionName"></label>
+        <select class="form-control" asp-for="@this.Model.SectionName" asp-items="@Html.GetEnumSelectList<Sections>()">
+            <option value="" disabled selected>Select section type...</option>
+        </select>
+        <span asp-validation-for="@Model.SectionName" class="text-danger"></span>
+    </div>
+    <br />
+    <div class="row">
+        <button class="btn btn-success" asp-area="Administration" asp-controller="AddSectionToPage" asp-action="AddSectionToPage">
+            Create
+        </button>
+    </div>
+</form>
