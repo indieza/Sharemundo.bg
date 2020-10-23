@@ -9,6 +9,7 @@ namespace SharemundoBulgaria
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using SharemundoBulgaria.Areas.Administration.Services.Dashboard;
     using SharemundoBulgaria.Constraints;
     using SharemundoBulgaria.Data;
     using SharemundoBulgaria.Models.User;
@@ -65,6 +66,9 @@ namespace SharemundoBulgaria
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<IContactService, ContactService>();
             services.AddTransient<IHomeServices, HomeServices>();
+
+            // Register Administration Services
+            services.AddTransient<IDashboardService, DashboardService>();
 
             services.AddControllersWithViews();
             services.AddRazorPages();
