@@ -59,7 +59,7 @@
             {
                 await this.dashboardService.AddAdministrator(model.AddRemoveAdminInputModel.Username);
                 this.TempData["Success"] = string.Format(
-                    MessageConstants.SuccessfullyRemoveAdministrator,
+                    MessageConstants.SuccessfullyAddAdministrator,
                     model.AddRemoveAdminInputModel.Username.ToUpper(),
                     Constants.AdministratorRole.ToUpper());
             }

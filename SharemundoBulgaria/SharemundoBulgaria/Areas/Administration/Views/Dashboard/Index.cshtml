@@ -4,12 +4,9 @@
 
 @model DashboardViewModel
 
-<partial name="_TempDataPartial" />
-
 <h1 class="mt-4">Dashboard</h1>
-<ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active">Dashboard</li>
-</ol>
+<hr />
+<partial name="_TempDataPartial" />
 <div class="row">
     <div class="col-xl-3 col-md-6">
         <div class="card bg-primary text-white mb-4">
@@ -46,22 +43,24 @@
 </div>
 <hr />
 <h4>Add administrator</h4>
-<div class="row">
-    <div class="col-8">
-        <select class="form-control" asp-for="@Model.AddRemoveAdminInputModel.Username">
-            <option value="">Choose user...</option>
-            @foreach (var username in this.Model.AllNotAdminsNames)
-            {
-                <option value="@username">@username</option>
-            }
-        </select>
+<form method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-8">
+            <select class="form-control" asp-for="@Model.AddRemoveAdminInputModel.Username">
+                <option value="">Choose user...</option>
+                @foreach (var username in this.Model.AllNotAdminsNames)
+                {
+                    <option value="@username">@username</option>
+                }
+            </select>
+        </div>
+        <div class="col-4">
+            <button asp-area="Administration" asp-controller="Dashboard" asp-action="AddAdministrator" class="btn btn-success">
+                Add
+            </button>
+        </div>
     </div>
-    <div class="col-4">
-        <button asp-area="Administration" asp-controller="Dashboard" asp-action="AddAdministrator" class="btn btn-success">
-            Add
-        </button>
-    </div>
-</div>
+</form>
 <hr />
 <h4>Remove administrator</h4>
 <form method="post" enctype="multipart/form-data">
