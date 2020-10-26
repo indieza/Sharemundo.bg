@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using SharemundoBulgaria.Areas.Administration.Services.AddSectionToPage;
     using SharemundoBulgaria.Areas.Administration.ViewModels.AddSectionToPage.InputModels;
     using SharemundoBulgaria.Constraints;
 
@@ -13,6 +14,13 @@
     [Authorize(Roles = Constants.AdministratorRole)]
     public class AddSectionToPageController : Controller
     {
+        private readonly IAddSectionToPageService addSectionToPageService;
+
+        public AddSectionToPageController(IAddSectionToPageService addSectionToPageService)
+        {
+            this.addSectionToPageService = addSectionToPageService;
+        }
+
         public IActionResult Index()
         {
             return this.View();
@@ -23,6 +31,8 @@
         {
             if (this.ModelState.IsValid)
             {
+                await this.addSectionToPageService.AddSectionToPage(model);
+                this.TempData["Success"] = string.Format(MessageConstants.SuccessfullyAddSectionToPage, model.SectionName.ToString().ToUpper(), model.PageName.ToString().ToUpper());
             }
             else
             {

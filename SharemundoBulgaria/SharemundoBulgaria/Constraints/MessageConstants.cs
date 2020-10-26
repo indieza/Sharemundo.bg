@@ -8,6 +8,10 @@
         public const string SuccessfullyAddAdministrator =
             "You successfully added \"{0}\" to \"{1}\" role.";
 
-        public const string InvalidInputModel = "Your input model is invalid!";
+        public const string InvalidInputModel =
+            "Your input model is invalid!";
+
+        public const string SuccessfullyAddSectionToPage =
+            "Successfully add \"{0}\" section to \"{1}\" page.";
     }
 }
