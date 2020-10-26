@@ -29,12 +29,12 @@
         [Required]
         public int PositionNumber { get; set; }
 
-        [ForeignKey(nameof(PartText))]
+        [ForeignKey(nameof(Models.Page.PartText))]
         public string PartTextId { get; set; }
 
         public PartText PartText { get; set; }
 
-        [ForeignKey(nameof(PartImage))]
+        [ForeignKey(nameof(Models.Page.PartImage))]
         public string PartImageId { get; set; }
 
         public PartImage PartImage { get; set; }

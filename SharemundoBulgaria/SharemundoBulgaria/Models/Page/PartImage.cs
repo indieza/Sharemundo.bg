@@ -22,12 +22,12 @@
 
         public string Name { get; set; }
 
-        [ForeignKey(nameof(Section))]
+        [ForeignKey(nameof(Page.Section))]
         public string SectionId { get; set; }
 
         public Section Section { get; set; }
 
-        [ForeignKey(nameof(SectionPart))]
+        [ForeignKey(nameof(Page.SectionPart))]
         public string SectionPartId { get; set; }
 
         public SectionPart SectionPart { get; set; }

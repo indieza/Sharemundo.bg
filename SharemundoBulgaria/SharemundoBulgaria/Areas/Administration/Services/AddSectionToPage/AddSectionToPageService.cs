@@ -4,18 +4,22 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using CloudinaryDotNet;
     using Microsoft.EntityFrameworkCore;
     using SharemundoBulgaria.Areas.Administration.ViewModels.AddSectionToPage.InputModels;
     using SharemundoBulgaria.Data;
     using SharemundoBulgaria.Models.Page;
+    using SharemundoBulgaria.Services.Cloud;
 
     public class AddSectionToPageService : IAddSectionToPageService
     {
         private readonly ApplicationDbContext db;
+        private readonly Cloudinary cloudinary;
 
-        public AddSectionToPageService(ApplicationDbContext db)
+        public AddSectionToPageService(ApplicationDbContext db, Cloudinary cloudinary)
         {
             this.db = db;
+            this.cloudinary = cloudinary;
         }
 
         public async Task AddSectionToPage(AddSectionToPageInputModel model)
@@ -31,6 +35,32 @@
                 Page = model.PageName,
                 PositionNumber = lastSectionPositionNumber == null ? 0 : (int)lastSectionPositionNumber + 1,
             };
+
+            if (model.Heading != null || model.Subheading != null || model.Description != null)
+            {
+                section.PartText = new PartText
+                {
+                    Heading = model.Heading,
+                    Subheading = model.Subheading,
+                    Description = model.SanitizeDescription,
+                    SectionId = section.Id,
+                };
+            }
+
+            if (model.Image != null)
+            {
+                var imageUrl = await ApplicationCloudinary.UploadImage(
+                this.cloudinary,
+                model.Image,
+                $"Image-{section.Id}");
+
+                section.PartImage = new PartImage
+                {
+                    Name = $"Image-{section.Id}",
+                    SectionId = section.Id,
+                    Url = imageUrl,
+                };
+            }
 
             this.db.Sections.Add(section);
             await this.db.SaveChangesAsync();

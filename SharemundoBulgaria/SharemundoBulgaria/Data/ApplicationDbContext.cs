@@ -27,6 +27,56 @@
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<PartText>()
+                .HasOne(x => x.Section)
+                .WithOne(x => x.PartText)
+                .HasForeignKey<PartText>(x => x.SectionId);
+
+            builder.Entity<PartText>()
+                .HasOne<SectionPart>(x => x.SectionPart)
+                .WithOne(x => x.PartText)
+                .HasForeignKey<PartText>(x => x.SectionPartId);
+
+            builder.Entity<PartImage>()
+                .HasOne(x => x.Section)
+                .WithOne(x => x.PartImage)
+                .HasForeignKey<PartImage>(x => x.SectionId);
+
+            builder.Entity<PartImage>()
+                .HasOne(x => x.SectionPart)
+                .WithOne(x => x.PartImage)
+                .HasForeignKey<PartImage>(x => x.SectionPartId);
+
+            builder.Entity<Section>()
+                .HasOne(x => x.PartText)
+                .WithOne(x => x.Section)
+                .HasForeignKey<Section>(x => x.PartTextId);
+
+            builder.Entity<Section>()
+                .HasOne(x => x.PartImage)
+                .WithOne(x => x.Section)
+                .HasForeignKey<Section>(x => x.PartImageId);
+
+            builder.Entity<SectionPart>()
+               .HasOne(x => x.PartText)
+               .WithOne(x => x.SectionPart)
+               .HasForeignKey<SectionPart>(x => x.PartTextId);
+
+            builder.Entity<SectionPart>()
+               .HasOne(x => x.PartImage)
+               .WithOne(x => x.SectionPart)
+               .HasForeignKey<SectionPart>(x => x.PartImageId);
+
+            builder.Entity<Section>()
+               .HasMany(x => x.SectionParts)
+               .WithOne(x => x.Section)
+               .HasForeignKey(x => x.SectionId);
+
+            builder.Entity<SectionPart>()
+                .HasOne(x => x.Section)
+                .WithMany(x => x.SectionParts)
+                .HasForeignKey(x => x.SectionId);
+
             base.OnModelCreating(builder);
         }
     }

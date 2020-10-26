@@ -8,6 +8,16 @@
   <ItemGroup>
     <Compile Remove="Data\Migrations\20201023154418_UpdateSectionTable.cs" />
     <Compile Remove="Data\Migrations\20201023154418_UpdateSectionTable.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201026130942_updateTablesColumnsNames.cs" />
+    <Compile Remove="Data\Migrations\20201026130942_updateTablesColumnsNames.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201026143346_Test.cs" />
+    <Compile Remove="Data\Migrations\20201026143346_Test.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201026143911_Test2.cs" />
+    <Compile Remove="Data\Migrations\20201026143911_Test2.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201026144316_Test123.cs" />
+    <Compile Remove="Data\Migrations\20201026144316_Test123.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201026145207_InitialCreate.cs" />
+    <Compile Remove="Data\Migrations\20201026145207_InitialCreate.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

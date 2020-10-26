@@ -13,7 +13,7 @@
 <div class="mt-4">
     <partial name="_TempDataPartial" />
 </div>
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     <div class="row">
         <div class="form-group col-lg-12">
             <label asp-for="@this.Model.PageName"></label>
@@ -35,14 +35,14 @@
     <div class="row">
         <div class="form-group col-lg-12">
             <label asp-for="@this.Model.Heading"></label>
-            <input class="form-control" type="text" asp-for="@this.Model.Heading" />
+            <input class="form-control" type="text" asp-for="@this.Model.Heading" autocomplete="off" />
             <span asp-validation-for="@this.Model.Heading" class="text-danger"></span>
         </div>
     </div>
     <div class="row">
         <div class="form-group col-lg-12">
             <label asp-for="@this.Model.Subheading"></label>
-            <input class="form-control" type="text" asp-for="@this.Model.Subheading" />
+            <input class="form-control" type="text" asp-for="@this.Model.Subheading" autocomplete="off" />
             <span asp-validation-for="@this.Model.Subheading" class="text-danger"></span>
         </div>
     </div>
@@ -51,6 +51,13 @@
             <label asp-for="@Model.Description"></label>
             <textarea asp-for="@Model.Description" class="form-control edit-with-tinymce" style="resize: vertical" rows="30"></textarea>
             <span asp-validation-for="@Model.Description" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-lg-12">
+            <label asp-for="@Model.Image"></label>
+            <input asp-for="@Model.Image" type="file" class="form-control-file">
+            <span asp-validation-for="@Model.Image" class="text-danger"></span>
         </div>
     </div>
     <div class="row">

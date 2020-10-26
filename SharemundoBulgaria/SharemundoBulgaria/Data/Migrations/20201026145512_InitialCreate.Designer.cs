@@ -10,8 +10,8 @@ using SharemundoBulgaria.Data;
 namespace SharemundoBulgaria.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201023155306_UpdateSectionTableBaseOnEnum")]
-    partial class UpdateSectionTableBaseOnEnum
+    [Migration("20201026145512_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -134,19 +134,15 @@ namespace SharemundoBulgaria.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SectionId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SectionPartId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Url")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("SectionId");
-
-                    b.HasIndex("SectionPartId");
 
                     b.ToTable("PartImages");
                 });
@@ -163,19 +159,15 @@ namespace SharemundoBulgaria.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SectionId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SectionPartId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Subheading")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("SectionId");
-
-                    b.HasIndex("SectionPartId");
 
                     b.ToTable("PartTexts");
                 });
@@ -203,9 +195,13 @@ namespace SharemundoBulgaria.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PartImageId");
+                    b.HasIndex("PartImageId")
+                        .IsUnique()
+                        .HasFilter("[PartImageId] IS NOT NULL");
 
-                    b.HasIndex("PartTextId");
+                    b.HasIndex("PartTextId")
+                        .IsUnique()
+                        .HasFilter("[PartTextId] IS NOT NULL");
 
                     b.ToTable("Sections");
                 });
@@ -234,9 +230,13 @@ namespace SharemundoBulgaria.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PartImageId");
+                    b.HasIndex("PartImageId")
+                        .IsUnique()
+                        .HasFilter("[PartImageId] IS NOT NULL");
 
-                    b.HasIndex("PartTextId");
+                    b.HasIndex("PartTextId")
+                        .IsUnique()
+                        .HasFilter("[PartTextId] IS NOT NULL");
 
                     b.HasIndex("SectionId");
 
@@ -433,48 +433,26 @@ namespace SharemundoBulgaria.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SharemundoBulgaria.Models.Page.PartImage", b =>
-                {
-                    b.HasOne("SharemundoBulgaria.Models.Page.Section", "Section")
-                        .WithMany()
-                        .HasForeignKey("SectionId");
-
-                    b.HasOne("SharemundoBulgaria.Models.Page.SectionPart", "SectionPart")
-                        .WithMany()
-                        .HasForeignKey("SectionPartId");
-                });
-
-            modelBuilder.Entity("SharemundoBulgaria.Models.Page.PartText", b =>
-                {
-                    b.HasOne("SharemundoBulgaria.Models.Page.Section", "Section")
-                        .WithMany()
-                        .HasForeignKey("SectionId");
-
-                    b.HasOne("SharemundoBulgaria.Models.Page.SectionPart", "SectionPart")
-                        .WithMany()
-                        .HasForeignKey("SectionPartId");
-                });
-
             modelBuilder.Entity("SharemundoBulgaria.Models.Page.Section", b =>
                 {
                     b.HasOne("SharemundoBulgaria.Models.Page.PartImage", "PartImage")
-                        .WithMany()
-                        .HasForeignKey("PartImageId");
+                        .WithOne("Section")
+                        .HasForeignKey("SharemundoBulgaria.Models.Page.Section", "PartImageId");
 
                     b.HasOne("SharemundoBulgaria.Models.Page.PartText", "PartText")
-                        .WithMany()
-                        .HasForeignKey("PartTextId");
+                        .WithOne("Section")
+                        .HasForeignKey("SharemundoBulgaria.Models.Page.Section", "PartTextId");
                 });
 
             modelBuilder.Entity("SharemundoBulgaria.Models.Page.SectionPart", b =>
                 {
                     b.HasOne("SharemundoBulgaria.Models.Page.PartImage", "PartImage")
-                        .WithMany()
-                        .HasForeignKey("PartImageId");
+                        .WithOne("SectionPart")
+                        .HasForeignKey("SharemundoBulgaria.Models.Page.SectionPart", "PartImageId");
 
                     b.HasOne("SharemundoBulgaria.Models.Page.PartText", "PartText")
-                        .WithMany()
-                        .HasForeignKey("PartTextId");
+                        .WithOne("SectionPart")
+                        .HasForeignKey("SharemundoBulgaria.Models.Page.SectionPart", "PartTextId");
 
                     b.HasOne("SharemundoBulgaria.Models.Page.Section", "Section")
                         .WithMany("SectionParts")

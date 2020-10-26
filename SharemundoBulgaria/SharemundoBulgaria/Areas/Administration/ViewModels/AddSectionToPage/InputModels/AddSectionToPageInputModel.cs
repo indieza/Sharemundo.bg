@@ -6,6 +6,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Ganss.XSS;
+    using Microsoft.AspNetCore.Http;
     using SharemundoBulgaria.Models.Enums;
 
     public class AddSectionToPageInputModel
@@ -28,6 +29,9 @@
 
         [Display(Name = "Section Description")]
         public string Description { get; set; }
+
+        [Display(Name = "Section Image")]
+        public IFormFile Image { get; set; }
 
         public string SanitizeDescription => new HtmlSanitizer().Sanitize(this.Description);
     }

@@ -1,6 +1,7 @@
 namespace SharemundoBulgaria
 {
     using System;
+    using CloudinaryDotNet;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
@@ -63,6 +64,14 @@ namespace SharemundoBulgaria
             {
                 options.ValidationInterval = TimeSpan.FromMinutes(0);
             });
+
+            // Cloudinary Authentication
+            var cloudinaryAccount = new Account(
+                this.Configuration["Cloudinary:CloudName"],
+                this.Configuration["Cloudinary:ApiKey"],
+                this.Configuration["Cloudinary:ApiSecret"]);
+            var cloudinary = new Cloudinary(cloudinaryAccount);
+            services.AddSingleton(cloudinary);
 
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<IContactService, ContactService>();

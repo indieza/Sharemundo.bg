@@ -24,18 +24,18 @@
         [Required]
         public int PositionNumber { get; set; }
 
-        [ForeignKey(nameof(Section))]
+        [ForeignKey(nameof(Page.Section))]
         [Required]
         public string SectionId { get; set; }
 
         public Section Section { get; set; }
 
-        [ForeignKey(nameof(PartText))]
+        [ForeignKey(nameof(Page.PartText))]
         public string PartTextId { get; set; }
 
         public PartText PartText { get; set; }
 
-        [ForeignKey(nameof(PartImage))]
+        [ForeignKey(nameof(Page.PartImage))]
         public string PartImageId { get; set; }
 
         public PartImage PartImage { get; set; }
