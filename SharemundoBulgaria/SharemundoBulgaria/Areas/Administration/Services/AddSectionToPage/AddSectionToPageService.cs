@@ -31,8 +31,9 @@
 
             var section = new Section
             {
-                Name = model.SectionName,
-                Page = model.PageName,
+                SectionType = model.SectionType,
+                PageType = model.PageType,
+                Name = model.Name,
                 PositionNumber = lastSectionPositionNumber == null ? 0 : (int)lastSectionPositionNumber + 1,
             };
 

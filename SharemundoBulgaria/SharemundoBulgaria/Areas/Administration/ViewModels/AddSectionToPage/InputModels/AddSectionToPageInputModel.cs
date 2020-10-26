@@ -12,14 +12,19 @@
     public class AddSectionToPageInputModel
     {
         [Required]
-        [Display(Name = "Page Name")]
-        [EnumDataType(typeof(Pages), ErrorMessage = "The page type is invalid")]
-        public Pages PageName { get; set; }
+        [Display(Name = "Page Type")]
+        [EnumDataType(typeof(PageType), ErrorMessage = "The page type is invalid")]
+        public PageType PageType { get; set; }
 
         [Required]
+        [Display(Name = "Section Type")]
+        [EnumDataType(typeof(SectionType), ErrorMessage = "The section type is invalid")]
+        public SectionType SectionType { get; set; }
+
+        [Required]
+        [MaxLength(50)]
         [Display(Name = "Section Name")]
-        [EnumDataType(typeof(Sections), ErrorMessage = "The section type is invalid")]
-        public Sections SectionName { get; set; }
+        public string Name { get; set; }
 
         [Display(Name = "Section Heading")]
         public string Heading { get; set; }

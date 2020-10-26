@@ -1,6 +1,6 @@
 ﻿namespace SharemundoBulgaria.Models.Enums
 {
-    public enum Roles
+    public enum Role
     {
         Administrator = 1,
         User = 2,

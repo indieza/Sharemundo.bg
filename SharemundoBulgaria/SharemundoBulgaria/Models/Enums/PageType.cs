@@ -1,6 +1,6 @@
 ﻿namespace SharemundoBulgaria.Models.Enums
 {
-    public enum Pages
+    public enum PageType
     {
         HOME = 1,
         COMPANY = 2,

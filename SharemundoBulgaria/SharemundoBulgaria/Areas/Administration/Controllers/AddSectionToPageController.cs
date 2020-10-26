@@ -32,7 +32,7 @@
             if (this.ModelState.IsValid)
             {
                 await this.addSectionToPageService.AddSectionToPage(model);
-                this.TempData["Success"] = string.Format(MessageConstants.SuccessfullyAddSectionToPage, model.SectionName.ToString().ToUpper(), model.PageName.ToString().ToUpper());
+                this.TempData["Success"] = string.Format(MessageConstants.SuccessfullyAddSectionToPage, model.SectionType.ToString().ToUpper(), model.PageType.ToString().ToUpper());
             }
             else
             {

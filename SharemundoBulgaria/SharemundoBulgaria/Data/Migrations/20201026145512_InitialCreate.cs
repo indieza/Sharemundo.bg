@@ -1,8 +1,8 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace SharemundoBulgaria.Data.Migrations
+﻿namespace SharemundoBulgaria.Data.Migrations
 {
+    using System;
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -124,7 +124,7 @@ namespace SharemundoBulgaria.Data.Migrations
                     Url = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     SectionId = table.Column<string>(nullable: true),
-                    SectionPartId = table.Column<string>(nullable: true)
+                    SectionPartId = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -140,7 +140,7 @@ namespace SharemundoBulgaria.Data.Migrations
                     Subheading = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     SectionId = table.Column<string>(nullable: true),
-                    SectionPartId = table.Column<string>(nullable: true)
+                    SectionPartId = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -156,7 +156,7 @@ namespace SharemundoBulgaria.Data.Migrations
                     Page = table.Column<int>(nullable: false),
                     PositionNumber = table.Column<int>(nullable: false),
                     PartTextId = table.Column<string>(nullable: true),
-                    PartImageId = table.Column<string>(nullable: true)
+                    PartImageId = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -184,7 +184,7 @@ namespace SharemundoBulgaria.Data.Migrations
                     PositionNumber = table.Column<int>(nullable: false),
                     SectionId = table.Column<string>(nullable: false),
                     PartTextId = table.Column<string>(nullable: true),
-                    PartImageId = table.Column<string>(nullable: true)
+                    PartImageId = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {

@@ -20,21 +20,24 @@
         public string Id { get; set; }
 
         [Required]
-        [MaxLength(50)]
-        public Sections Name { get; set; }
+        public SectionType SectionType { get; set; }
 
         [Required]
-        public Pages Page { get; set; }
+        [MaxLength(50)]
+        public string Name { get; set; }
+
+        [Required]
+        public PageType PageType { get; set; }
 
         [Required]
         public int PositionNumber { get; set; }
 
-        [ForeignKey(nameof(Models.Page.PartText))]
+        [ForeignKey(nameof(Page.PartText))]
         public string PartTextId { get; set; }
 
         public PartText PartText { get; set; }
 
-        [ForeignKey(nameof(Models.Page.PartImage))]
+        [ForeignKey(nameof(Page.PartImage))]
         public string PartImageId { get; set; }
 
         public PartImage PartImage { get; set; }

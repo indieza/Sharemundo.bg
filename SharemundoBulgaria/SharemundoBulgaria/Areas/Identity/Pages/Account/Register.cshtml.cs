@@ -139,7 +139,7 @@
 
         public async Task<IdentityResult> CreateRole(string role)
         {
-            Roles roleValue = (Roles)Enum.Parse(typeof(Roles), role);
+            Role roleValue = (Role)Enum.Parse(typeof(Role), role);
             ApplicationRole identityRole = new ApplicationRole
             {
                 Name = role,

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SharemundoBulgaria.Data;
 
 namespace SharemundoBulgaria.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201026155014_UpdateSectionTable")]
+    partial class UpdateSectionTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -180,6 +182,9 @@ namespace SharemundoBulgaria.Data.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
+                    b.Property<int>("NameType")
+                        .HasColumnType("int");
+
                     b.Property<int>("PageType")
                         .HasColumnType("int");
 
@@ -190,9 +195,6 @@ namespace SharemundoBulgaria.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("PositionNumber")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SectionType")
                         .HasColumnType("int");
 
                     b.HasKey("Id");

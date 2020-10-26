@@ -16,20 +16,27 @@
 <form method="post" enctype="multipart/form-data">
     <div class="row">
         <div class="form-group col-lg-12">
-            <label asp-for="@this.Model.PageName"></label>
-            <select class="form-control" asp-for="@this.Model.PageName" asp-items="@Html.GetEnumSelectList<Pages>()">
+            <label asp-for="@this.Model.PageType"></label>
+            <select class="form-control" asp-for="@this.Model.PageType" asp-items="@Html.GetEnumSelectList<PageType>()">
                 <option value="" disabled selected>Select page...</option>
             </select>
-            <span asp-validation-for="@Model.PageName" class="text-danger"></span>
+            <span asp-validation-for="@this.Model.PageType" class="text-danger"></span>
         </div>
     </div>
     <div class="row">
         <div class="form-group col-lg-12">
-            <label asp-for="@this.Model.SectionName"></label>
-            <select class="form-control" asp-for="@this.Model.SectionName" asp-items="@Html.GetEnumSelectList<Sections>()">
+            <label asp-for="@this.Model.SectionType"></label>
+            <select class="form-control" asp-for="@this.Model.SectionType" asp-items="@Html.GetEnumSelectList<SectionType>()">
                 <option value="" disabled selected>Select section type...</option>
             </select>
-            <span asp-validation-for="@Model.SectionName" class="text-danger"></span>
+            <span asp-validation-for="@Model.SectionType" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-lg-12">
+            <label asp-for="@this.Model.Name"></label>
+            <input class="form-control" type="text" asp-for="@this.Model.Name" autocomplete="off" />
+            <span asp-validation-for="@this.Model.Name" class="text-danger"></span>
         </div>
     </div>
     <div class="row">
@@ -43,12 +50,12 @@
         <div class="form-group col-lg-12">
             <label asp-for="@this.Model.Subheading"></label>
             <input class="form-control" type="text" asp-for="@this.Model.Subheading" autocomplete="off" />
-            <span asp-validation-for="@this.Model.Subheading" class="text-danger"></span>
+            <span asp-validation-for="@Model.Subheading" class="text-danger"></span>
         </div>
     </div>
     <div class="row">
         <div class="form-group col-lg-12">
-            <label asp-for="@Model.Description"></label>
+            <label asp-for="@this.Model.Description"></label>
             <textarea asp-for="@Model.Description" class="form-control edit-with-tinymce" style="resize: vertical" rows="30"></textarea>
             <span asp-validation-for="@Model.Description" class="text-danger"></span>
         </div>
@@ -57,7 +64,7 @@
         <div class="form-group col-lg-12">
             <label asp-for="@Model.Image"></label>
             <input asp-for="@Model.Image" type="file" class="form-control-file">
-            <span asp-validation-for="@Model.Image" class="text-danger"></span>
+            <span asp-validation-for="@this.Model.Image" class="text-danger"></span>
         </div>
     </div>
     <div class="row">
