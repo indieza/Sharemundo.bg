@@ -72,18 +72,18 @@
 }
 
 /* The Close Button */
-.close {
-    position: absolute;
+.closeImage {
+    /*position: absolute;*/
     right: 10px;
     color: red;
-    font-size: 40px;
+    font-size: 15px;
     font-weight: bold;
     transition: 0.3s;
     z-index: 1;
 }
 
-    .close:hover,
-    .close:focus {
+    .closeImage:hover,
+    .closeImage:focus {
         color: blue;
         text-decoration: none;
         cursor: pointer;

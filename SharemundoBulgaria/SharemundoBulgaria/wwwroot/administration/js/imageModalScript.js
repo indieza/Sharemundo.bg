@@ -1,8 +1,8 @@
-﻿function openImage(element, modalElement) {
+﻿function openImage(modalElement) {
     let modal = document.getElementById(`${modalElement}Modal`);
     let captionText = document.getElementById(`${modalElement}caption`);
     modal.style.display = "block";
-    captionText.innerHTML = modalElement;
+    captionText.innerHTML = `${modalElement} <i class="fas fa-window-close closeImage" onclick="closeImage('${modalElement}')"></i>`;
 }
 
 function closeImage(element) {
