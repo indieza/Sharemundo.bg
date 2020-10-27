@@ -2,12 +2,14 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using CloudinaryDotNet;
     using Microsoft.EntityFrameworkCore;
     using SharemundoBulgaria.Areas.Administration.ViewModels.AddSectionToPage.InputModels;
     using SharemundoBulgaria.Data;
+    using SharemundoBulgaria.Models.Enums;
     using SharemundoBulgaria.Models.Page;
     using SharemundoBulgaria.Services.Cloud;
 
@@ -65,6 +67,26 @@
 
             this.db.Sections.Add(section);
             await this.db.SaveChangesAsync();
+        }
+
+        public Dictionary<string, SectionType> GetAllElements(string path)
+        {
+            var elements = new Dictionary<string, SectionType>();
+            var fileNames = new DirectoryInfo(path).GetFiles().Select(x => x.Name).ToList();
+
+            var allEnums = Enum.GetValues(typeof(SectionType));
+
+            foreach (var currentEnum in allEnums)
+            {
+                if (fileNames.Any(x => x.Contains(currentEnum.ToString())))
+                {
+                    elements.Add(
+                        fileNames.FirstOrDefault(x => x.Contains(currentEnum.ToString())).ToString(),
+                        (SectionType)Enum.Parse(typeof(SectionType), currentEnum.ToString()));
+                }
+            }
+
+            return elements;
         }
     }
 }

@@ -1,8 +1,12 @@
 ﻿namespace SharemundoBulgaria.Models.Enums
 {
+    using System.ComponentModel.DataAnnotations;
+
     public enum SectionType
     {
-        Test1 = 1,
-        Test2 = 2,
+        [Display(Name = "Section 1")]
+        Section_1 = 1,
+        [Display(Name = "Section 2")]
+        Section_2 = 2,
     }
 }

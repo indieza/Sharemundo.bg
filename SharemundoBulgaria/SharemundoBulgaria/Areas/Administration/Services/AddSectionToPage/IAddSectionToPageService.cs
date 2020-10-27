@@ -5,9 +5,12 @@
     using System.Linq;
     using System.Threading.Tasks;
     using SharemundoBulgaria.Areas.Administration.ViewModels.AddSectionToPage.InputModels;
+    using SharemundoBulgaria.Models.Enums;
 
     public interface IAddSectionToPageService
     {
         Task AddSectionToPage(AddSectionToPageInputModel model);
+
+        Dictionary<string, SectionType> GetAllElements(string path);
     }
 }
