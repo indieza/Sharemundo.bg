@@ -53,11 +53,11 @@
                 var imageUrl = await ApplicationCloudinary.UploadImage(
                 this.cloudinary,
                 model.Image,
-                $"Image-{section.Id}");
+                $"SectionImage-{section.Id}");
 
                 section.PartImage = new PartImage
                 {
-                    Name = $"Image-{section.Id}",
+                    Name = $"SectionImage-{section.Id}",
                     SectionId = section.Id,
                     Url = imageUrl,
                 };

@@ -10,6 +10,7 @@ namespace SharemundoBulgaria
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using SharemundoBulgaria.Areas.Administration.Services.AddPartToSection;
     using SharemundoBulgaria.Areas.Administration.Services.AddSectionToPage;
     using SharemundoBulgaria.Areas.Administration.Services.Dashboard;
     using SharemundoBulgaria.Constraints;
@@ -80,6 +81,7 @@ namespace SharemundoBulgaria
             // Register Administration Services
             services.AddTransient<IDashboardService, DashboardService>();
             services.AddTransient<IAddSectionToPageService, AddSectionToPageService>();
+            services.AddTransient<IAddPartToSectionService, AddPartToSectionService>();
 
             services.AddControllersWithViews();
             services.AddRazorPages();

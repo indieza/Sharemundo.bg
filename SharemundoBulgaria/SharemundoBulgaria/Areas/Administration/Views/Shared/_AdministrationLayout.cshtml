@@ -64,7 +64,7 @@
                                 <a class="nav-link" asp-area="Administration" asp-controller="AddSectionToPage" asp-action="Index">
                                     Add section to page
                                 </a>
-                                <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
+                                <a class="nav-link" asp-area="Administration" asp-controller="AddPartToSection" asp-action="Index">Add part to section</a>
                             </nav>
                         </div>
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -98,14 +98,14 @@
                                 </div>
                             </nav>
                         </div>
-                        <div class="sb-sidenav-menu-heading">Addons</div>
-                        <a class="nav-link" href="charts.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                            Charts
+                        <div class="sb-sidenav-menu-heading">Website navigation</div>
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
+                            <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
+                            Home
                         </a>
-                        <a class="nav-link" href="tables.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Tables
+                        <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index">
+                            <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                            Profile
                         </a>
                     </div>
                 </div>

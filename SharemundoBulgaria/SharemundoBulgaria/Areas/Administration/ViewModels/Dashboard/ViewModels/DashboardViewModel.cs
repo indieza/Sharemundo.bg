@@ -9,11 +9,11 @@
 
     public class DashboardViewModel
     {
-        public ICollection<ApplicationUser> AllUsers { get; set; }
+        public ICollection<ApplicationUser> AllUsers { get; set; } = new HashSet<ApplicationUser>();
 
-        public ICollection<string> AllAdminsNames { get; set; }
+        public ICollection<string> AllAdminsNames { get; set; } = new HashSet<string>();
 
-        public ICollection<string> AllNotAdminsNames { get; set; }
+        public ICollection<string> AllNotAdminsNames { get; set; } = new HashSet<string>();
 
         public int AllUsersCount { get; set; }
 

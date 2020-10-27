@@ -6,6 +6,7 @@
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
     using System.Threading.Tasks;
+    using SharemundoBulgaria.Models.Enums;
 
     public class SectionPart
     {
@@ -19,7 +20,11 @@
         public string Id { get; set; }
 
         [Required]
+        [MaxLength(120)]
         public string Name { get; set; }
+
+        [Required]
+        public PartType PartType { get; set; }
 
         [Required]
         public int PositionNumber { get; set; }

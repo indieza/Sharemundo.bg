@@ -1,4 +1,6 @@
-﻿namespace SharemundoBulgaria.Constraints
+﻿using System;
+
+namespace SharemundoBulgaria.Constraints
 {
     public class MessageConstants
     {
@@ -13,5 +15,8 @@
 
         public const string SuccessfullyAddSectionToPage =
             "Successfully add \"{0}\" section to \"{1}\" page.";
+
+        public const string SuccessfullyAddPartToSection =
+            "Successfully add \"{0}\" part to \"{1}\" section.";
     }
 }
