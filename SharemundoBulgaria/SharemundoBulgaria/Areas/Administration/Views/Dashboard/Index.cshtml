@@ -2,7 +2,7 @@
     ViewData["Title"] = "Dashboard";
 }
 
-@model DashboardViewModel
+@model DashboardBaseModel
 
 <h1 class="mt-4">Dashboard</h1>
 <hr />
@@ -10,12 +10,12 @@
 <div class="row">
     <div class="col-xl-3 col-md-6">
         <div class="card bg-primary text-white mb-4">
-            <div class="card-body">@this.Model.AllAdminsCount administrators</div>
+            <div class="card-body">@this.Model.DashboardViewModel.AllAdminsCount administrators</div>
         </div>
     </div>
     <div class="col-xl-3 col-md-6">
         <div class="card bg-warning text-white mb-4">
-            <div class="card-body">@this.Model.AllUsersCount registered users</div>
+            <div class="card-body">@this.Model.DashboardViewModel.AllUsersCount registered users</div>
             <div class="card-footer d-flex align-items-center justify-content-between">
                 <a class="small text-white stretched-link" href="#dataTable">View Details</a>
                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
@@ -46,9 +46,14 @@
 <form method="post" enctype="multipart/form-data">
     <div class="row">
         <div class="col-8">
+            <label asp-for="@Model.AddRemoveAdminInputModel.Username"></label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8">
             <select class="form-control" asp-for="@Model.AddRemoveAdminInputModel.Username">
                 <option value="">Choose user...</option>
-                @foreach (var username in this.Model.AllNotAdminsNames)
+                @foreach (var username in this.Model.DashboardViewModel.AllNotAdminsNames)
                 {
                     <option value="@username">@username</option>
                 }
@@ -60,15 +65,25 @@
             </button>
         </div>
     </div>
+    <div class="row">
+        <div class="col-8">
+            <span asp-validation-for="@Model.AddRemoveAdminInputModel.Username" class="text-danger"></span>
+        </div>
+    </div>
 </form>
 <hr />
 <h4>Remove administrator</h4>
 <form method="post" enctype="multipart/form-data">
     <div class="row">
         <div class="col-8">
+            <label asp-for="@Model.AddRemoveAdminInputModel.Username"></label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8">
             <select class="form-control" asp-for="@Model.AddRemoveAdminInputModel.Username">
                 <option value="" selected disabled>Choose user...</option>
-                @foreach (var username in this.Model.AllAdminsNames)
+                @foreach (var username in this.Model.DashboardViewModel.AllAdminsNames)
                 {
                     <option value="@username">@username</option>
                 }
@@ -78,6 +93,11 @@
             <button asp-area="Administration" asp-controller="Dashboard" asp-action="RemoveAdministrator" class="btn btn-danger">
                 Remove
             </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8">
+            <span asp-validation-for="@Model.AddRemoveAdminInputModel.Username" class="text-danger"></span>
         </div>
     </div>
 </form>
@@ -136,7 +156,7 @@
                     </tr>
                 </tfoot>
                 <tbody>
-                    @foreach (var user in this.Model.AllUsers)
+                    @foreach (var user in this.Model.DashboardViewModel.AllUsers)
                     {
                         <tr>
                             <td>@user.UserName</td>
@@ -155,3 +175,7 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

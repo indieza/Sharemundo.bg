@@ -18,7 +18,5 @@
         public int AllUsersCount { get; set; }
 
         public int AllAdminsCount { get; set; }
-
-        public AddRemoveAdminInputModel AddRemoveAdminInputModel { get; set; }
     }
 }

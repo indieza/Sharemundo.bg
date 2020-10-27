@@ -21,7 +21,7 @@
 
         public async Task<IActionResult> Index()
         {
-            var model = new DashboardViewModel
+            var viewModel = new DashboardViewModel
             {
                 AllUsers = this.dashboardService.GetAllUsers(),
                 AllAdminsCount = await this.dashboardService.GetAllAdminsCount(),
@@ -30,30 +30,36 @@
                 AllNotAdminsNames = await this.dashboardService.GetAllNotAdminsNames(),
             };
 
+            var model = new DashboardBaseModel
+            {
+                DashboardViewModel = viewModel,
+                AddRemoveAdminInputModel = new AddRemoveAdminInputModel(),
+            };
+
             return this.View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> RemoveAdministrator(DashboardViewModel model)
+        public async Task<IActionResult> RemoveAdministrator(DashboardBaseModel model)
         {
-            if (!this.ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 await this.dashboardService.RemoveAdministrator(model.AddRemoveAdminInputModel.Username);
                 this.TempData["Success"] = string.Format(
                     MessageConstants.SuccessfullyRemoveAdministrator,
                     model.AddRemoveAdminInputModel.Username.ToUpper(),
                     Constants.AdministratorRole.ToUpper());
+                return this.RedirectToAction("Index", "Dashboard");
             }
             else
             {
                 this.TempData["Error"] = MessageConstants.InvalidInputModel;
+                return this.RedirectToAction("Index", "Dashboard", model);
             }
-
-            return this.RedirectToAction("Index", "Dashboard");
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddAdministrator(DashboardViewModel model)
+        public async Task<IActionResult> AddAdministrator(DashboardBaseModel model)
         {
             if (this.ModelState.IsValid)
             {
@@ -62,13 +68,13 @@
                     MessageConstants.SuccessfullyAddAdministrator,
                     model.AddRemoveAdminInputModel.Username.ToUpper(),
                     Constants.AdministratorRole.ToUpper());
+                return this.RedirectToAction("Index", "Dashboard");
             }
             else
             {
                 this.TempData["Error"] = MessageConstants.InvalidInputModel;
+                return this.RedirectToAction("Index", "Dashboard", model);
             }
-
-            return this.RedirectToAction("Index", "Dashboard");
         }
     }
 }
