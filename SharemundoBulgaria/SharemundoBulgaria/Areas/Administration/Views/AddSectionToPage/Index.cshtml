@@ -84,7 +84,10 @@
         <div class="col-md-4">
             <img class="myImg" onclick="openImage('@element.Value.ToString()')" src="~/Website Elements/@element.Key" alt="@element.Key" style="width:100%; height: 100%">
             <div id="@element.Value.ToString()Modal" class="modal">
-                <img class="modal-content" id="@element.Key" src="~/Website Elements/@element.Key">
+                <div class="imageModalContent">
+                    <i onclick="closeImage('@element.Value.ToString()')" class="fas fa-window-close closeImage"></i>
+                </div>
+                <img class="imageModalContent" id="@element.Key" src="~/Website Elements/@element.Key">
                 <div class="myCaption" id="@element.Value.ToString()caption"></div>
             </div>
         </div>

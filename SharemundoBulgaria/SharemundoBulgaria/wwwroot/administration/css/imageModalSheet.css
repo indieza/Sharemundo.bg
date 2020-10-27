@@ -24,11 +24,12 @@
 }
 
 /* Modal Content (image) */
-.modal-content {
+.imageModalContent {
     margin: auto;
     display: block;
     width: 80%;
     max-width: 700px;
+    position: relative
 }
 
 /* Caption of Modal Image */
@@ -44,7 +45,7 @@
 }
 
 /* Add Animation */
-.modal-content, .myCaption {
+.imageModalContent, .myCaption {
     -webkit-animation-name: zoom;
     -webkit-animation-duration: 0.6s;
     animation-name: zoom;
@@ -73,10 +74,12 @@
 
 /* The Close Button */
 .closeImage {
-    /*position: absolute;*/
+    position: absolute;
     right: 10px;
+    top: 10px;
+    float: right;
     color: red;
-    font-size: 15px;
+    font-size: 20px;
     font-weight: bold;
     transition: 0.3s;
     z-index: 1;
@@ -91,7 +94,7 @@
 
 /* 100% Image Width on Smaller Screens */
 @media only screen and (max-width: 100%) {
-    .modal-content {
+    .imageModalContent {
         width: 100%;
     }
 }

@@ -2,7 +2,7 @@
     let modal = document.getElementById(`${modalElement}Modal`);
     let captionText = document.getElementById(`${modalElement}caption`);
     modal.style.display = "block";
-    captionText.innerHTML = `${modalElement} <i class="fas fa-window-close closeImage" onclick="closeImage('${modalElement}')"></i>`;
+    captionText.innerHTML = modalElement;
 }
 
 function closeImage(element) {
