@@ -28,6 +28,7 @@
             var model = new HomeViewModel
             {
                 HasAdmin = await this.homeServices.HasAdministrator(),
+                AllSections = await this.homeServices.GetAllHomeSections(),
             };
 
             return this.View(model);

@@ -10,7 +10,10 @@
     using Microsoft.EntityFrameworkCore;
     using SharemundoBulgaria.Constraints;
     using SharemundoBulgaria.Data;
+    using SharemundoBulgaria.Models.Enums;
     using SharemundoBulgaria.Models.User;
+    using SharemundoBulgaria.ViewModels.Section;
+    using SharemundoBulgaria.ViewModels.SectionPart;
 
     public class HomeServices : IHomeServices
     {
@@ -26,6 +29,48 @@
             this.db = db;
             this.roleManager = roleManager;
             this.userManager = userManager;
+        }
+
+        public async Task<ICollection<SectionViewModel>> GetAllHomeSections()
+        {
+            var allSections = this.db.Sections.Where(x => x.PageType == PageType.HOME).ToList();
+            var result = new List<SectionViewModel>();
+
+            foreach (var section in allSections)
+            {
+                var allParts = this.db.SectionParts.Where(x => x.SectionId == section.Id).ToList();
+                var sectionText = await this.db.PartTexts.FirstOrDefaultAsync(x => x.SectionId == section.Id);
+                var sectionImage = await this.db.PartImages.FirstOrDefaultAsync(x => x.SectionId == section.Id);
+                var currentSection = new SectionViewModel
+                {
+                    Name = section.Name,
+                    SectionType = section.SectionType,
+                    Heading = sectionText?.Heading,
+                    Subheading = sectionText?.Subheading,
+                    Description = sectionText?.Description,
+                    Url = sectionImage?.Url,
+                };
+
+                foreach (var part in allParts)
+                {
+                    var partText = await this.db.PartTexts.FirstOrDefaultAsync(x => x.SectionPartId == part.Id);
+                    var partImage = await this.db.PartImages.FirstOrDefaultAsync(x => x.SectionPartId == part.Id);
+
+                    currentSection.AllParts.Add(new SectionPartViewModel
+                    {
+                        Name = part.Name,
+                        PartType = part.PartType,
+                        Heading = partText?.Heading,
+                        Subheading = partText?.Subheading,
+                        Description = partText?.Description,
+                        Url = partImage?.Url,
+                    });
+                }
+
+                result.Add(currentSection);
+            }
+
+            return result;
         }
 
         public async Task<bool> HasAdministrator()
