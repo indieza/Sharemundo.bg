@@ -406,7 +406,7 @@ header {
     height: 95vh;
 }
 
-.Modern-Slider .item-1 .img-fill {
+/*.Modern-Slider .item-1 .img-fill {
     background-image: url(../images/slide_01.jpg);
 }
 
@@ -416,7 +416,7 @@ header {
 
 .Modern-Slider .item-3 .img-fill {
     background-image: url(../images/slide_03.jpg);
-}
+}*/
 
 .Modern-Slider .NextArrow {
     position: absolute;
