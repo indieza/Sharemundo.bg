@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Remove section";
+}
+
+@model RemoveSectionBaseModel
+
+<h2 class="mt-4 row">
+    <b>
+        Remove section
+    </b>
+</h2>
+<hr class="row" />
+<div class="mt-4">
+    <partial name="_TempDataPartial" />
+</div>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="form-group col-lg-12">
+            <label asp-for="@this.Model.RemoveSectionInputModel.Id"></label>
+            <select class="form-control" asp-for="@this.Model.RemoveSectionInputModel.Id">
+                <option value="" disabled selected>Select section...</option>
+                @foreach (var currentSection in Model.RemoveSectionViewModel.AllSections)
+                {
+                    <option value="@currentSection.Key">@currentSection.Value</option>
+                }
+            </select>
+            <span asp-validation-for="@this.Model.RemoveSectionInputModel.Id" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-lg-12">
+            <button class="btn btn-danger" asp-area="Administration" asp-controller="RemoveSection" asp-action="RemoveSection">
+                Remove
+            </button>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

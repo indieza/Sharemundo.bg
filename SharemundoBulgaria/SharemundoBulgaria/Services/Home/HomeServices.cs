@@ -33,12 +33,18 @@
 
         public async Task<ICollection<SectionViewModel>> GetAllHomeSections()
         {
-            var allSections = this.db.Sections.Where(x => x.PageType == PageType.HOME).ToList();
+            var allSections = this.db.Sections
+                .Where(x => x.PageType == PageType.HOME)
+                .OrderBy(x => x.PositionNumber)
+                .ToList();
             var result = new List<SectionViewModel>();
 
             foreach (var section in allSections)
             {
-                var allParts = this.db.SectionParts.Where(x => x.SectionId == section.Id).ToList();
+                var allParts = this.db.SectionParts
+                    .Where(x => x.SectionId == section.Id)
+                    .OrderBy(x => x.PositionNumber)
+                    .ToList();
                 var sectionText = await this.db.PartTexts.FirstOrDefaultAsync(x => x.SectionId == section.Id);
                 var sectionImage = await this.db.PartImages.FirstOrDefaultAsync(x => x.SectionId == section.Id);
                 var currentSection = new SectionViewModel
