@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Remove part";
+}
+
+@model RemovePartBaseModel
+
+<h2 class="mt-4 row">
+    <b>
+        Remove part
+    </b>
+</h2>
+<hr class="row" />
+<div class="mt-4">
+    <partial name="_TempDataPartial" />
+</div>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="form-group col-lg-12">
+            <label asp-for="@this.Model.RemovePartInputModel.Id"></label>
+            <select class="form-control" asp-for="@this.Model.RemovePartInputModel.Id">
+                <option value="" disabled selected>Select part...</option>
+                @foreach (var currentPart in Model.RemovePartViewModel.AllParts)
+                {
+                    <option value="@currentPart.Key">@currentPart.Value</option>
+                }
+            </select>
+            <span asp-validation-for="@this.Model.RemovePartInputModel.Id" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-lg-12">
+            <button class="btn btn-danger" asp-area="Administration" asp-controller="RemovePart" asp-action="RemovePart">
+                Remove
+            </button>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
