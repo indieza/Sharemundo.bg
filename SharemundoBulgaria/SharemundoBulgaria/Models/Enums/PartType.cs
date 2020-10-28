@@ -1,8 +1,12 @@
 ﻿namespace SharemundoBulgaria.Models.Enums
 {
+    using System.ComponentModel.DataAnnotations;
+
     public enum PartType
     {
-        Part1 = 1,
-        Part2 = 2,
+        [Display(Name = "Part 1")]
+        Part_1 = 1,
+        [Display(Name = "Part 2")]
+        Part_2 = 2,
     }
 }

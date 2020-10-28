@@ -2,9 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Formatters;
     using SharemundoBulgaria.Areas.Administration.Services.AddPartToSection;
@@ -17,18 +19,29 @@
     public class AddPartToSectionController : Controller
     {
         private readonly IAddPartToSectionService addPartToSectionService;
+        private readonly IWebHostEnvironment environment;
 
-        public AddPartToSectionController(IAddPartToSectionService addPartToSectionService)
+        public AddPartToSectionController(
+            IAddPartToSectionService addPartToSectionService,
+            IWebHostEnvironment environment)
         {
             this.addPartToSectionService = addPartToSectionService;
+            this.environment = environment;
         }
 
         public IActionResult Index()
         {
+            var path = Path.Combine(this.environment.WebRootPath, "Website Elements");
+            var viewModel = new AddPartToSectionViewModel
+            {
+                AllSections = this.addPartToSectionService.GetAllSections(),
+                AllElements = this.addPartToSectionService.GetAllElements(path),
+            };
+
             var model = new AddPartToSectionBaseModel
             {
                 AddPartToSectionInputModel = new AddPartToSectionInputModel(),
-                AddPartToSectionViewModel = this.addPartToSectionService.GetAllSections(),
+                AddPartToSectionViewModel = viewModel,
             };
 
             return this.View(model);

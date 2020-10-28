@@ -6,11 +6,14 @@
     using System.Threading.Tasks;
     using SharemundoBulgaria.Areas.Administration.ViewModels.AddPartToSection.InputModels;
     using SharemundoBulgaria.Areas.Administration.ViewModels.AddPartToSection.ViewModels;
+    using SharemundoBulgaria.Models.Enums;
 
     public interface IAddPartToSectionService
     {
-        AddPartToSectionViewModel GetAllSections();
+        Dictionary<string, string> GetAllSections();
 
         Task<string> AddPartToSection(AddPartToSectionInputModel model);
+
+        Dictionary<string, PartType> GetAllElements(string path);
     }
 }

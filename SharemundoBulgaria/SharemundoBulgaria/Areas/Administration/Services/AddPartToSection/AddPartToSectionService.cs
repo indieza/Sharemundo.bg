@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Security.Cryptography.X509Certificates;
     using System.Threading.Tasks;
@@ -10,6 +11,7 @@
     using SharemundoBulgaria.Areas.Administration.ViewModels.AddPartToSection.InputModels;
     using SharemundoBulgaria.Areas.Administration.ViewModels.AddPartToSection.ViewModels;
     using SharemundoBulgaria.Data;
+    using SharemundoBulgaria.Models.Enums;
     using SharemundoBulgaria.Models.Page;
     using SharemundoBulgaria.Services.Cloud;
 
@@ -76,17 +78,37 @@
             return sectionName;
         }
 
-        public AddPartToSectionViewModel GetAllSections()
+        public Dictionary<string, PartType> GetAllElements(string path)
+        {
+            var elements = new Dictionary<string, PartType>();
+            var fileNames = new DirectoryInfo(path).GetFiles().Select(x => x.Name).ToList();
+
+            var allEnums = Enum.GetValues(typeof(PartType));
+
+            foreach (var currentEnum in allEnums)
+            {
+                if (fileNames.Any(x => x.Contains(currentEnum.ToString())))
+                {
+                    elements.Add(
+                        fileNames.FirstOrDefault(x => x.Contains(currentEnum.ToString())).ToString(),
+                        (PartType)Enum.Parse(typeof(PartType), currentEnum.ToString()));
+                }
+            }
+
+            return elements;
+        }
+
+        public Dictionary<string, string> GetAllSections()
         {
             var sections = this.db.Sections.ToList();
-            var model = new AddPartToSectionViewModel();
+            var allSections = new Dictionary<string, string>();
 
             foreach (var section in sections)
             {
-                model.AllSections.Add(section.Id, section.Name);
+                allSections.Add(section.Id, section.Name);
             }
 
-            return model;
+            return allSections;
         }
     }
 }
