@@ -24,5 +24,8 @@ namespace SharemundoBulgaria.Constraints
 
         public const string SuccessfullyRemovePart =
             "Successfully remove \"{0}\" part.";
+
+        public const string SuccessfullyEditSection =
+            "Successfully edit \"{0}\" section.";
     }
 }
