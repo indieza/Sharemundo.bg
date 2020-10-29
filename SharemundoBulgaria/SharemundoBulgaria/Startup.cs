@@ -14,7 +14,9 @@ namespace SharemundoBulgaria
     using SharemundoBulgaria.Areas.Administration.Services.AddSectionToPage;
     using SharemundoBulgaria.Areas.Administration.Services.Dashboard;
     using SharemundoBulgaria.Areas.Administration.Services.EditPart;
+    using SharemundoBulgaria.Areas.Administration.Services.EditPartsPosition;
     using SharemundoBulgaria.Areas.Administration.Services.EditSection;
+    using SharemundoBulgaria.Areas.Administration.Services.EditSectionsPosition;
     using SharemundoBulgaria.Areas.Administration.Services.RemovePart;
     using SharemundoBulgaria.Areas.Administration.Services.RemoveSection;
     using SharemundoBulgaria.Constraints;
@@ -90,6 +92,8 @@ namespace SharemundoBulgaria
             services.AddTransient<IRemovePartService, RemovePartService>();
             services.AddTransient<IEditSectionService, EditSectionService>();
             services.AddTransient<IEditPartService, EditPartService>();
+            services.AddTransient<IEditSectionsPositionService, EditSectionsPositionService>();
+            services.AddTransient<IEditPartsPositionService, EditPartsPositionService>();
 
             services.AddControllersWithViews();
             services.AddRazorPages();

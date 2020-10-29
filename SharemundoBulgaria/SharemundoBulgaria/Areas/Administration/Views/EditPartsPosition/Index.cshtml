@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Edit parts position";
+}
+
+@model EditPartsPositionViewModel
+
+<h2 class="mt-4 row">
+    <b>
+        Edit parts position by section
+    </b>
+</h2>
+<hr class="row" />
+<div class="mt-4">
+    <partial name="_TempDataPartial" />
+</div>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="form-group col-lg-12">
+            <select class="form-control" onchange="sectionSelect(this)">
+                <option value="" disabled selected>Select section...</option>
+                @foreach (var currentSection in Model.AllSections)
+                {
+                    <option value="@currentSection.Key">@currentSection.Value</option>
+                }
+            </select>
+        </div>
+    </div>
+    <hr />
+    <div id="allParts">
+        @*Here go all Parts*@
+    </div>
+</form>
+<input type="hidden" />
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/administration/js/editPartsPositionScript.js"></script>
+}

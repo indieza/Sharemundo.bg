@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SharemundoBulgaria.Constraints
+﻿namespace SharemundoBulgaria.Constraints
 {
     public class MessageConstants
     {

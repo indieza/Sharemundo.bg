@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Edit sections position";
+}
+
+<h2 class="mt-4 row">
+    <b>
+        Edit sections position by page
+    </b>
+</h2>
+<hr class="row" />
+<div class="mt-4">
+    <partial name="_TempDataPartial" />
+</div>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="form-group col-lg-12">
+            <select class="form-control" asp-items="@Html.GetEnumSelectList<PageType>()" onchange="pageSelect(this)">
+                <option value="" disabled selected>Select Page...</option>
+            </select>
+        </div>
+    </div>
+    <hr />
+    <div id="allSections">
+        @*Here go all Sections*@
+    </div>
+</form>
+<input type="hidden" />
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/administration/js/editSectionsPositionScript.js"></script>
+}

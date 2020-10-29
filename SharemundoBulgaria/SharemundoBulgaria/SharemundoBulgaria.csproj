@@ -39,6 +39,8 @@
   <ItemGroup>
     <Folder Include="Areas\Administration\Data\" />
     <Folder Include="Areas\Administration\Models\" />
+    <Folder Include="Areas\Administration\ViewModels\EditPartsPosition\InputModels\" />
+    <Folder Include="Areas\Administration\ViewModels\EditSectionsPosition\InputModels\" />
   </ItemGroup>
 
   <ItemGroup>
