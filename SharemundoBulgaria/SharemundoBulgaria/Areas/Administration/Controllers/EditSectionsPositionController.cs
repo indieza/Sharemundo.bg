@@ -6,7 +6,9 @@
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using Newtonsoft.Json;
     using SharemundoBulgaria.Areas.Administration.Services.EditSectionsPosition;
+    using SharemundoBulgaria.Areas.Administration.ViewModels.EditSectionsPosition.InputModels;
     using SharemundoBulgaria.Areas.Administration.ViewModels.EditSectionsPosition.ViewModels;
     using SharemundoBulgaria.Constraints;
 
@@ -32,6 +34,15 @@
             ICollection<GetSectionsPositionViewModel> sectionsPosition =
                 this.editSectionsPositionService.GetSectionsPosition(pageType);
             return new JsonResult(sectionsPosition);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditSectionsPosition(string json)
+        {
+            var allSections = JsonConvert.DeserializeObject<EditSectionsPositionInputModel[]>(json);
+            await this.editSectionsPositionService.EditSectionsPosition(allSections);
+            this.TempData["Success"] = MessageConstants.SuccessfullyEditSectionsPosition;
+            return this.RedirectToAction("Index", "EditSectionsPosition");
         }
     }
 }

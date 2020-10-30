@@ -19,12 +19,12 @@
 
             for (var section of data) {
                 div.innerHTML += `
-                    <div class="row">
+                    <div class="row sectionsElements">
                         <div class="form-group col-lg-9">
-                            <input class="form-control" type="text" placeholder="Name" value="${section.name}" disabled/>
+                            <input class="form-control" type="text" placeholder="Name" value="${section.name}" readonly="true"/>
                         </div>
                         <div class="form-group col-lg-3">
-                            <input class="form-control" type="number" min="1" placeholder="0"  value="${section.positionNumber}"  onchange="positionChange(this)"/>
+                            <input id="${section.id}position" class="form-control" type="number" min="1" placeholder="0"  value="${section.positionNumber}"  onchange="positionChange(this)"/>
                         </div>
                         <input type="hidden" value="${section.id}" />
                     </div>
@@ -35,7 +35,7 @@
                 div.innerHTML += `
                     <div class="row">
                         <div class="form-group col-lg-12">
-                            <button class="btn btn-info" href="#">
+                            <button class="btn btn-info" onclick="submitData()">
                                 Edit
                             </button>
                         </div>
@@ -58,4 +58,37 @@ function positionChange(currentInput) {
         }
     }
     currentInput.defaultValue = currentInput.value;
+}
+
+function submitData() {
+    let allSections = [];
+    let data = document.querySelectorAll(".sectionsElements");
+
+    for (var currentSection of data) {
+        allSections.push({
+            "Id": currentSection.children[2].value,
+            "Name": currentSection.children[0].children[0].value,
+            "PositionNumber": document.getElementById(`${currentSection.children[2].value}position`).value
+        });
+    }
+
+    $.ajax({
+        type: "POST",
+        url: `/Administration/EditSectionsPosition/EditSectionsPosition`,
+        contentType: "application/x-www-form-urlencoded",
+        dataType: "json",
+        data: {
+            'json': JSON.stringify(allSections)
+        },
+        headers: {
+            RequestVerificationToken:
+                $('input:hidden[name="__RequestVerificationToken"]').val()
+        },
+        success: function () {
+            console.log("success");
+        },
+        error: function (msg) {
+            console.error(msg);
+        }
+    })
 }

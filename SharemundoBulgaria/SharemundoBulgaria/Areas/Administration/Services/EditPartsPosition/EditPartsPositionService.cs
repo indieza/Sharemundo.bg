@@ -3,7 +3,10 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Security.Cryptography.X509Certificates;
     using System.Threading.Tasks;
+    using Microsoft.EntityFrameworkCore;
+    using SharemundoBulgaria.Areas.Administration.ViewModels.EditPartsPosition.InputModels;
     using SharemundoBulgaria.Areas.Administration.ViewModels.EditPartsPosition.ViewModels;
     using SharemundoBulgaria.Data;
 
@@ -14,6 +17,19 @@
         public EditPartsPositionService(ApplicationDbContext db)
         {
             this.db = db;
+        }
+
+        public async Task EditPartsPosition(EditPartsPositionInputModel[] allParts)
+        {
+            foreach (var part in allParts)
+            {
+                var targetPart = await this.db.SectionParts
+                    .FirstOrDefaultAsync(x => x.Id == part.Id && x.Name == part.Name);
+                targetPart.PositionNumber = part.PositionNumber;
+                this.db.SectionParts.Update(targetPart);
+            }
+
+            await this.db.SaveChangesAsync();
         }
 
         public Dictionary<string, string> GetAllSections()

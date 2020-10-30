@@ -28,5 +28,11 @@
 
         public const string SuccessfullyEditPart =
             "Successfully edit \"{0}\" part.";
+
+        public const string SuccessfullyEditPartsPosition =
+            "Successfully edit parts position.";
+
+        public const string SuccessfullyEditSectionsPosition =
+            "Successfully edit sections position.";
     }
 }

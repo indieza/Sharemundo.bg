@@ -19,12 +19,12 @@
 
             for (var part of data) {
                 div.innerHTML += `
-                    <div class="row">
+                    <div class="row partsElements">
                         <div class="form-group col-lg-9">
-                            <input class="form-control" type="text" placeholder="Name" value="${part.name}" disabled/>
+                            <input class="form-control" type="text" placeholder="Name" value="${part.name}" readonly="true"/>
                         </div>
                         <div class="form-group col-lg-3">
-                            <input class="form-control" type="number" min="1" placeholder="0"  value="${part.positionNumber}" onchange="positionChange(this)"/>
+                            <input id="${part.id}position" class="form-control" type="number" min="1" placeholder="0"  value="${part.positionNumber}" onchange="positionChange(this)"/>
                         </div>
                         <input type="hidden" value="${part.id}" />
                     </div>
@@ -35,7 +35,7 @@
                 div.innerHTML += `
                     <div class="row">
                         <div class="form-group col-lg-12">
-                            <button class="btn btn-info" href="#">
+                            <button type="submit" class="btn btn-info" onclick="submitData()">
                                 Edit
                             </button>
                         </div>
@@ -58,4 +58,37 @@ function positionChange(currentInput) {
         }
     }
     currentInput.defaultValue = currentInput.value;
+}
+
+function submitData() {
+    let allParts = [];
+    let data = document.querySelectorAll(".partsElements");
+
+    for (var currentPart of data) {
+        allParts.push({
+            "Id": currentPart.children[2].value,
+            "Name": currentPart.children[0].children[0].value,
+            "PositionNumber": document.getElementById(`${currentPart.children[2].value}position`).value
+        });
+    }
+
+    $.ajax({
+        type: "POST",
+        url: `/Administration/EditPartsPosition/EditPartsPosition`,
+        contentType: "application/x-www-form-urlencoded",
+        dataType: "json",
+        data: {
+            'json': JSON.stringify(allParts)
+        },
+        headers: {
+            RequestVerificationToken:
+                $('input:hidden[name="__RequestVerificationToken"]').val()
+        },
+        success: function () {
+            console.log("success");
+        },
+        error: function (msg) {
+            console.error(msg);
+        }
+    })
 }

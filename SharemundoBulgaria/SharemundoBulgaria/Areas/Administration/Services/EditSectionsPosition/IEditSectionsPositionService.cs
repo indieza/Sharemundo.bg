@@ -4,10 +4,13 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using SharemundoBulgaria.Areas.Administration.ViewModels.EditSectionsPosition.InputModels;
     using SharemundoBulgaria.Areas.Administration.ViewModels.EditSectionsPosition.ViewModels;
 
     public interface IEditSectionsPositionService
     {
         ICollection<GetSectionsPositionViewModel> GetSectionsPosition(int pageType);
+
+        Task EditSectionsPosition(EditSectionsPositionInputModel[] allSections);
     }
 }
