@@ -12,19 +12,17 @@
     <partial name="_TempDataPartial" />
 </div>
 
-<form method="post" enctype="multipart/form-data">
-    <div class="row">
-        <div class="form-group col-lg-12">
-            <select class="form-control" asp-items="@Html.GetEnumSelectList<PageType>()" onchange="pageSelect(this)">
-                <option value="" disabled selected>Select Page...</option>
-            </select>
-        </div>
+<div class="row">
+    <div class="form-group col-lg-12">
+        <select class="form-control" asp-items="@Html.GetEnumSelectList<PageType>()" onchange="pageSelect(this)">
+            <option value="" disabled selected>Select Page...</option>
+        </select>
     </div>
-    <hr />
-    <div id="allSections">
-        @*Here go all Sections*@
-    </div>
-</form>
+</div>
+<hr />
+<div id="allSections">
+    @*Here go all Sections*@
+</div>
 <input type="hidden" />
 
 @section Scripts {

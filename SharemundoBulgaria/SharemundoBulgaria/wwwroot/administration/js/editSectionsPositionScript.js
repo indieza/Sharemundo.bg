@@ -84,8 +84,8 @@ function submitData() {
             RequestVerificationToken:
                 $('input:hidden[name="__RequestVerificationToken"]').val()
         },
-        success: function () {
-            console.log("success");
+        success: function (data) {
+            window.location.href = data;
         },
         error: function (msg) {
             console.error(msg);

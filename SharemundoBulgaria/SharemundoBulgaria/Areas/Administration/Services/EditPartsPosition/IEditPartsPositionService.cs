@@ -13,6 +13,6 @@
 
         Dictionary<string, string> GetAllSections();
 
-        Task EditPartsPosition(EditPartsPositionInputModel[] allParts);
+        Task<int> EditPartsPosition(EditPartsPositionInputModel[] allParts);
     }
 }

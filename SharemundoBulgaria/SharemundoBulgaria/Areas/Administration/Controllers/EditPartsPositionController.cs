@@ -45,9 +45,9 @@
         public async Task<IActionResult> EditPartsPosition(string json)
         {
             var allParts = JsonConvert.DeserializeObject<EditPartsPositionInputModel[]>(json);
-            await this.editPartsPositionService.EditPartsPosition(allParts);
-            this.TempData["Success"] = MessageConstants.SuccessfullyEditPartsPosition;
-            return this.RedirectToAction("Index", "EditPartsPosition");
+            var count = await this.editPartsPositionService.EditPartsPosition(allParts);
+            this.TempData["Success"] = string.Format(MessageConstants.SuccessfullyEditPartsPosition, count);
+            return this.Json(this.Url.Action("Index", "EditPartsPosition"));
         }
     }
 }

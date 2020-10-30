@@ -11,6 +11,6 @@
     {
         ICollection<GetSectionsPositionViewModel> GetSectionsPosition(int pageType);
 
-        Task EditSectionsPosition(EditSectionsPositionInputModel[] allSections);
+        Task<int> EditSectionsPosition(EditSectionsPositionInputModel[] allSections);
     }
 }

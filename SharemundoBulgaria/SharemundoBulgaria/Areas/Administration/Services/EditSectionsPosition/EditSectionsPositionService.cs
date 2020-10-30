@@ -19,17 +19,24 @@
             this.db = db;
         }
 
-        public async Task EditSectionsPosition(EditSectionsPositionInputModel[] allSections)
+        public async Task<int> EditSectionsPosition(EditSectionsPositionInputModel[] allSections)
         {
+            var count = 0;
             foreach (var section in allSections)
             {
                 var targetSection = await this.db.Sections
                     .FirstOrDefaultAsync(x => x.Id == section.Id && x.Name == section.Name);
+                if (targetSection.PositionNumber != section.PositionNumber)
+                {
+                    count++;
+                }
+
                 targetSection.PositionNumber = section.PositionNumber;
                 this.db.Sections.Update(targetSection);
             }
 
             await this.db.SaveChangesAsync();
+            return count;
         }
 
         public ICollection<GetSectionsPositionViewModel> GetSectionsPosition(int pageType)

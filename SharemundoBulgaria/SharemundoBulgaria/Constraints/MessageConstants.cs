@@ -30,9 +30,9 @@
             "Successfully edit \"{0}\" part.";
 
         public const string SuccessfullyEditPartsPosition =
-            "Successfully edit parts position.";
+            "Successfully edit \"{0}\" parts position.";
 
         public const string SuccessfullyEditSectionsPosition =
-            "Successfully edit sections position.";
+            "Successfully edit \"{0}\" sections position.";
     }
 }

@@ -19,17 +19,24 @@
             this.db = db;
         }
 
-        public async Task EditPartsPosition(EditPartsPositionInputModel[] allParts)
+        public async Task<int> EditPartsPosition(EditPartsPositionInputModel[] allParts)
         {
+            var count = 0;
             foreach (var part in allParts)
             {
                 var targetPart = await this.db.SectionParts
                     .FirstOrDefaultAsync(x => x.Id == part.Id && x.Name == part.Name);
+                if (targetPart.PositionNumber != part.PositionNumber)
+                {
+                    count++;
+                }
+
                 targetPart.PositionNumber = part.PositionNumber;
                 this.db.SectionParts.Update(targetPart);
             }
 
             await this.db.SaveChangesAsync();
+            return count;
         }
 
         public Dictionary<string, string> GetAllSections()

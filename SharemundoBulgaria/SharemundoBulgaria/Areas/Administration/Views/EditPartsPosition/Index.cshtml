@@ -14,23 +14,21 @@
     <partial name="_TempDataPartial" />
 </div>
 
-<form method="post" enctype="multipart/form-data">
-    <div class="row">
-        <div class="form-group col-lg-12">
-            <select class="form-control" onchange="sectionSelect(this)">
-                <option value="" disabled selected>Select section...</option>
-                @foreach (var currentSection in Model.AllSections)
-                {
-                    <option value="@currentSection.Key">@currentSection.Value</option>
-                }
-            </select>
-        </div>
+<div class="row">
+    <div class="form-group col-lg-12">
+        <select class="form-control" onchange="sectionSelect(this)">
+            <option value="" disabled selected>Select section...</option>
+            @foreach (var currentSection in Model.AllSections)
+            {
+                <option value="@currentSection.Key">@currentSection.Value</option>
+            }
+        </select>
     </div>
-    <hr />
-    <div id="allParts">
-        @*Here go all Parts*@
-    </div>
-</form>
+</div>
+<hr />
+<div id="allParts">
+    @*Here go all Parts*@
+</div>
 <input type="hidden" />
 
 @section Scripts {
