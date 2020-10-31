@@ -8,5 +8,7 @@
         Section_1 = 1,
         [Display(Name = "Section 2")]
         Section_2 = 2,
+        [Display(Name = "Section 3")]
+        Section_3 = 3,
     }
 }
