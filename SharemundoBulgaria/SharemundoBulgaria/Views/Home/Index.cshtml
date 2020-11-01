@@ -147,6 +147,32 @@
                                 </div>
                             </div>
                         }
+                        if (part.PartType == PartType.Part_4)
+                        {
+                            <div class="col-md-4">
+                                <div class="service-item">
+                                    <img src="@part.Url" alt="">
+                                    <div class="down-content">
+                                        <h4>@part.Heading</h4>
+                                        <p>@Html.Raw(part.Description)</p>
+                                        <a href="javascript:;" class="filled-button">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        if (part.PartType == PartType.Part_5)
+                        {
+                            <div class="col-md-4">
+                                <div class="team-item">
+                                    <img src="@part.Url" alt="">
+                                    <div class="down-content">
+                                        <h4>@part.Heading</h4>
+                                        <span>@part.Subheading</span>
+                                        <p>@Html.Raw(part.Description)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
                     }
                 }
             </div>
@@ -211,105 +237,133 @@
                                 </div>
                             </div>
                         }
+                        if (part.PartType == PartType.Part_4)
+                        {
+                            <div class="col-md-4">
+                                <div class="service-item">
+                                    <img src="@part.Url" alt="">
+                                    <div class="down-content">
+                                        <h4>@part.Heading</h4>
+                                        <p>@Html.Raw(part.Description)</p>
+                                        <a href="javascript:;" class="filled-button">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        if (part.PartType == PartType.Part_5)
+                        {
+                            <div class="col-md-4">
+                                <div class="team-item">
+                                    <img src="@part.Url" alt="">
+                                    <div class="down-content">
+                                        <h4>@part.Heading</h4>
+                                        <span>@part.Subheading</span>
+                                        <p>@Html.Raw(part.Description)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
                     }
                 }
             </div>
         </div>
     }
+    @if (currentSection.SectionType == SectionType.Section_4)
+    {
+        <div class="services">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-heading">
+                            <h2>@currentSection.Heading</h2>
+                            <span>@currentSection.Subheading</span>
+                        </div>
+                    </div>
+                    @if (currentSection.AllParts.All(x => x.PartType == PartType.Part_3))
+                    {
+                        <div class="row" id="tabs">
+                            <div class="col-md-4">
+                                <ul>
+                                    @for (int i = 0; i < currentSection.AllParts.Count(); i++)
+                                    {
+                                        <li>
+                                            <a href="javascript:;" style="color: @(i == 0 ? "white" : "black")" id="@currentSection.Id-@currentSection.AllParts.ElementAt(i).Id" onclick="changeTabVisibility('@currentSection.AllParts.ElementAt(i).Id', '@currentSection.Id')">
+                                                @currentSection.AllParts.ElementAt(i).Heading
+                                                <i class="fa fa-angle-right"></i>
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                            <div class="col-md-8">
+                                <section class='tabs-content' id="@currentSection.Id">
+                                    @for (int i = 0; i < currentSection.AllParts.Count(); i++)
+                                    {
+                                        <article style="display: @(i == 0 ? "block" : "none")" id='@currentSection.AllParts.ElementAt(i).Id'>
+                                            <img src="@currentSection.AllParts.ElementAt(i).Url" alt="">
+                                            <h4>@currentSection.AllParts.ElementAt(i).Subheading</h4>
+                                            <p>
+                                                @Html.Raw(currentSection.AllParts.ElementAt(i).Description)
+                                            </p>
+                                        </article>
+                                    }
+                                </section>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        @foreach (var part in currentSection.AllParts)
+                        {
+                            @if (part.PartType == PartType.Part_2)
+                            {
+                                <div class="row">
+                                    <div class="col-md-6" style="content: url(@part.Url)">
+                                        <div class="left-content">
+                                            <div class="left-image">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="right-content">
+                                            <span>@part.Subheading</span>
+                                            <h2>@part.Heading</h2>
+                                            <p>@Html.Raw(part.Description)</p>
+                                            <a href="#" class="filled-button">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            if (part.PartType == PartType.Part_4)
+                            {
+                                <div class="col-md-4">
+                                    <div class="service-item">
+                                        <img src="@part.Url" alt="">
+                                        <div class="down-content">
+                                            <h4>@part.Heading</h4>
+                                            <p>@Html.Raw(part.Description)</p>
+                                            <a href="javascript:;" class="filled-button">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            if (part.PartType == PartType.Part_5)
+                            {
+                                <div class="col-md-4">
+                                    <div class="team-item">
+                                        <img src="@part.Url" alt="">
+                                        <div class="down-content">
+                                            <h4>@part.Heading</h4>
+                                            <span>@part.Subheading</span>
+                                            <p>@Html.Raw(part.Description)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    }
 }
-
-<div class="services">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="section-heading">
-                    <h2>Financial <em>Services</em></h2>
-                    <span>Aliquam id urna imperdiet libero mollis hendrerit</span>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="service-item">
-                    <img src="assets/images/service_01.jpg" alt="">
-                    <div class="down-content">
-                        <h4>Digital Currency</h4>
-                        <p>Sed tincidunt dictum lobortis. Aenean tempus diam vel augue luctus dignissim. Nunc ornare leo tortor.</p>
-                        <a href="" class="filled-button">Read More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="service-item">
-                    <img src="assets/images/service_02.jpg" alt="">
-                    <div class="down-content">
-                        <h4>Market Analysis</h4>
-                        <p>Sed tincidunt dictum lobortis. Aenean tempus diam vel augue luctus dignissim. Nunc ornare leo tortor.</p>
-                        <a href="" class="filled-button">Read More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="service-item">
-                    <img src="assets/images/service_03.jpg" alt="">
-                    <div class="down-content">
-                        <h4>Historical Data</h4>
-                        <p>Sed tincidunt dictum lobortis. Aenean tempus diam vel augue luctus dignissim. Nunc ornare leo tortor.</p>
-                        <a href="" class="filled-button">Read More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="testimonials">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="section-heading">
-                    <h2>What they say <em>about us</em></h2>
-                    <span>testimonials from our greatest clients</span>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="owl-testimonials owl-carousel">
-
-                    <div class="testimonial-item">
-                        <div class="inner-content">
-                            <h4>George Walker</h4>
-                            <span>Chief Financial Analyst</span>
-                            <p>"Nulla ullamcorper, ipsum vel condimentum congue, mi odio vehicula tellus, sit amet malesuada justo sem sit amet quam. Pellentesque in sagittis lacus."</p>
-                        </div>
-                        <img src="http://placehold.it/60x60" alt="">
-                    </div>
-
-                    <div class="testimonial-item">
-                        <div class="inner-content">
-                            <h4>John Smith</h4>
-                            <span>Market Specialist</span>
-                            <p>"In eget leo ante. Sed nibh leo, laoreet accumsan euismod quis, scelerisque a nunc. Mauris accumsan, arcu id ornare malesuada, est nulla luctus nisi."</p>
-                        </div>
-                        <img src="http://placehold.it/60x60" alt="">
-                    </div>
-
-                    <div class="testimonial-item">
-                        <div class="inner-content">
-                            <h4>David Wood</h4>
-                            <span>Chief Accountant</span>
-                            <p>"Ut ultricies maximus turpis, in sollicitudin ligula posuere vel. Donec finibus maximus neque, vitae egestas quam imperdiet nec. Proin nec mauris eu tortor consectetur tristique."</p>
-                        </div>
-                        <img src="http://placehold.it/60x60" alt="">
-                    </div>
-
-                    <div class="testimonial-item">
-                        <div class="inner-content">
-                            <h4>Andrew Boom</h4>
-                            <span>Marketing Head</span>
-                            <p>"Curabitur sollicitudin, tortor at suscipit volutpat, nisi arcu aliquet dui, vitae semper sem turpis quis libero. Quisque vulputate lacinia nisl ac lobortis."</p>
-                        </div>
-                        <img src="http://placehold.it/60x60" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>

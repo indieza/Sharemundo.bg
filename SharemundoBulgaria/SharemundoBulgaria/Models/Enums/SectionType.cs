@@ -10,5 +10,7 @@
         Section_2 = 2,
         [Display(Name = "Section 3")]
         Section_3 = 3,
+        [Display(Name = "Section 4")]
+        Section_4 = 4,
     }
 }
