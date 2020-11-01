@@ -8,6 +8,8 @@
 
     public class SectionPartViewModel
     {
+        public string Id { get; set; }
+
         public string Name { get; set; }
 
         public PartType PartType { get; set; }

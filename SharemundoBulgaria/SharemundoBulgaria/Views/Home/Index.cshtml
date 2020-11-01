@@ -33,7 +33,7 @@
         {
             @if (!this.Model.HasAdmin)
             {
-                <div class="request-form">
+                <div class="request-form" style="margin-top: 100px">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-8">
@@ -87,31 +87,66 @@
     {
         <div class="more-info">
             <div class="container">
-                @foreach (var part in currentSection.AllParts)
+                @if (currentSection.AllParts.All(x => x.PartType == PartType.Part_3))
                 {
-                    @if (part.PartType == PartType.Part_2)
+                    <div class="row" id="tabs">
+                        <div class="col-md-4">
+                            <ul>
+                                @for (int i = 0; i < currentSection.AllParts.Count(); i++)
+                                {
+                                    <li>
+                                        <a href="javascript:;" style="color: @(i == 0 ? "white" : "black")" id="@currentSection.Id-@currentSection.AllParts.ElementAt(i).Id" onclick="changeTabVisibility('@currentSection.AllParts.ElementAt(i).Id', '@currentSection.Id')">
+                                            @currentSection.AllParts.ElementAt(i).Heading
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="col-md-8">
+                            <section class='tabs-content' id="@currentSection.Id">
+                                @for (int i = 0; i < currentSection.AllParts.Count(); i++)
+                                {
+                                    <article style="display: @(i == 0 ? "block" : "none")" id='@currentSection.AllParts.ElementAt(i).Id'>
+                                        <img src="@currentSection.AllParts.ElementAt(i).Url" alt="">
+                                        <h4>@currentSection.AllParts.ElementAt(i).Subheading</h4>
+                                        <p>
+                                            @Html.Raw(currentSection.AllParts.ElementAt(i).Description)
+                                        </p>
+                                    </article>
+                                }
+                            </section>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    @foreach (var part in currentSection.AllParts)
                     {
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="more-info-content">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="left-image">
-                                                <img src="@part.Url" alt="">
+                        @if (part.PartType == PartType.Part_2)
+                        {
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="more-info-content">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="left-image">
+                                                    <img src="@part.Url" alt="">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6 align-self-center">
-                                            <div class="right-content">
-                                                <span>@part.Subheading</span>
-                                                <h2>@part.Heading</h2>
-                                                <p>@Html.Raw(part.Description)</p>
-                                                <a href="#" class="filled-button">Read More</a>
+                                            <div class="col-md-6 align-self-center">
+                                                <div class="right-content">
+                                                    <span>@part.Subheading</span>
+                                                    <h2>@part.Heading</h2>
+                                                    <p>@Html.Raw(part.Description)</p>
+                                                    <a href="#" class="filled-button">Read More</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        }
                     }
                 }
             </div>
@@ -121,26 +156,61 @@
     {
         <div class="fun-facts" style="background-image: url(@currentSection.Url)">
             <div class="container">
-                @foreach (var part in currentSection.AllParts)
+                @if (currentSection.AllParts.All(x => x.PartType == PartType.Part_3))
                 {
-                    @if (part.PartType == PartType.Part_2)
+                    <div class="row" id="tabs">
+                        <div class="col-md-4">
+                            <ul>
+                                @for (int i = 0; i < currentSection.AllParts.Count(); i++)
+                                {
+                                    <li>
+                                        <a href="javascript:;" style="color: @(i == 0 ? "white" : "black")" id="@currentSection.Id-@currentSection.AllParts.ElementAt(i).Id" onclick="changeTabVisibility('@currentSection.AllParts.ElementAt(i).Id', '@currentSection.Id')">
+                                            @currentSection.AllParts.ElementAt(i).Heading
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="col-md-8">
+                            <section class='tabs-content' id="@currentSection.Id">
+                                @for (int i = 0; i < currentSection.AllParts.Count(); i++)
+                                {
+                                    <article style="display: @(i == 0 ? "block" : "none")" id='@currentSection.AllParts.ElementAt(i).Id'>
+                                        <img src="@currentSection.AllParts.ElementAt(i).Url" alt="">
+                                        <h4>@currentSection.AllParts.ElementAt(i).Subheading</h4>
+                                        <p>
+                                            @Html.Raw(currentSection.AllParts.ElementAt(i).Description)
+                                        </p>
+                                    </article>
+                                }
+                            </section>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    @foreach (var part in currentSection.AllParts)
                     {
-                        <div class="row">
-                            <div class="col-md-6" style="content: url(@part.Url)">
-                                <div class="left-content">
-                                    <div class="left-image">
+                        @if (part.PartType == PartType.Part_2)
+                        {
+                            <div class="row">
+                                <div class="col-md-6" style="content: url(@part.Url)">
+                                    <div class="left-content">
+                                        <div class="left-image">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="right-content">
+                                        <span>@part.Subheading</span>
+                                        <h2>@part.Heading</h2>
+                                        <p>@Html.Raw(part.Description)</p>
+                                        <a href="#" class="filled-button">Read More</a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="right-content">
-                                    <span>@part.Subheading</span>
-                                    <h2>@part.Heading</h2>
-                                    <p>@Html.Raw(part.Description)</p>
-                                    <a href="#" class="filled-button">Read More</a>
-                                </div>
-                            </div>
-                        </div>
+                        }
                     }
                 }
             </div>

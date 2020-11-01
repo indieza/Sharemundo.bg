@@ -49,6 +49,7 @@
                 var sectionImage = await this.db.PartImages.FirstOrDefaultAsync(x => x.SectionId == section.Id);
                 var currentSection = new SectionViewModel
                 {
+                    Id = section.Id,
                     Name = section.Name,
                     SectionType = section.SectionType,
                     Heading = sectionText?.Heading,
@@ -64,6 +65,7 @@
 
                     currentSection.AllParts.Add(new SectionPartViewModel
                     {
+                        Id = part.Id,
                         Name = part.Name,
                         PartType = part.PartType,
                         Heading = partText?.Heading,

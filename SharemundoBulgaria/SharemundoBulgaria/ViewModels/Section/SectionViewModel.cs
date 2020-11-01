@@ -9,6 +9,8 @@
 
     public class SectionViewModel
     {
+        public string Id { get; set; }
+
         public SectionType SectionType { get; set; }
 
         public string Name { get; set; }

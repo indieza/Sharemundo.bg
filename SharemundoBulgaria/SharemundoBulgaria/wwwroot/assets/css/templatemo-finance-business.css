@@ -1162,7 +1162,7 @@ footer {
 .team {
     background-color: #f7f7f7;
     margin-top: 140px;
-    margin-bottom: -140px;
+    /*margin-bottom: -140px;*/
     padding: 120px 0px;
 }
 
@@ -1259,6 +1259,9 @@ footer {
     .tabs-content img {
         max-width: 100%;
         overflow: hidden;
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
     }
 
     .tabs-content h4 {
