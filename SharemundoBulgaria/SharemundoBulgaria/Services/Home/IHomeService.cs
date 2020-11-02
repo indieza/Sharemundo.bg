@@ -5,7 +5,7 @@
     using SharemundoBulgaria.Models.User;
     using SharemundoBulgaria.ViewModels.Section;
 
-    public interface IHomeServices
+    public interface IHomeService
     {
         Task SubmitAllRoles();
 

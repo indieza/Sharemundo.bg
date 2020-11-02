@@ -8,10 +8,10 @@
 
     public class CompanyController : Controller
     {
-        private readonly IHomeServices homeServices;
+        private readonly IHomeService homeServices;
         private readonly ICompanyService companyService;
 
-        public CompanyController(IHomeServices homeServices, ICompanyService companyService)
+        public CompanyController(IHomeService homeServices, ICompanyService companyService)
         {
             this.homeServices = homeServices;
             this.companyService = companyService;

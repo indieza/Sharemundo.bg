@@ -26,6 +26,7 @@ namespace SharemundoBulgaria
     using SharemundoBulgaria.Services.Company;
     using SharemundoBulgaria.Services.Contact;
     using SharemundoBulgaria.Services.Home;
+    using SharemundoBulgaria.Services.Services;
 
     public class Startup
     {
@@ -83,8 +84,9 @@ namespace SharemundoBulgaria
 
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<IContactService, ContactService>();
-            services.AddTransient<IHomeServices, HomeServices>();
+            services.AddTransient<IHomeService, HomeService>();
             services.AddTransient<ICompanyService, CompanyService>();
+            services.AddTransient<IServicesService, ServicesService>();
 
             // Register Administration Services
             services.AddTransient<IDashboardService, DashboardService>();

@@ -4,4 +4,366 @@
 
 @model HomeViewModel
 
-@await Html.PartialAsync("_HomePartialView", this.Model)
+@foreach (var currentSection in Model.AllSections)
+{
+    @if (currentSection.SectionType == SectionType.Section_1)
+    {
+        <div class="main-banner header-text" id="top">
+            <div class="Modern-Slider">
+                @foreach (var part in currentSection.AllParts)
+                {
+                    @if (part.PartType == PartType.Part_1)
+                    {
+                        <div class="item item-1">
+                            <div class="img-fill" style="background-image: url(@part.Url)">
+                                <div class="text-content">
+                                    <h6>@part.Subheading</h6>
+                                    <h4>@part.Heading</h4>
+                                    <p>@Html.Raw(part.Description)</p>
+                                    <a href="contact.html" class="filled-button">contact us</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+
+        @if (this.SignInManager.IsSignedIn(this.User))
+        {
+            @if (!this.Model.HasAdmin)
+            {
+                <div class="request-form" style="margin-top: 100px">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h4>Website still don't have administrator!</h4>
+                                <span>Please, make yourself administrator.</span>
+                            </div>
+                            <div class="col-md-4">
+                                <a asp-area="" asp-controller="Home" asp-action="MakeYourselfAdmin" class="border-button">
+                                    Make Administrator
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="request-form">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h4>Request a call back right now ?</h4>
+                                <span>Mauris ut dapibus velit cras interdum nisl ac urna tempor mollis.</span>
+                            </div>
+                            <div class="col-md-4">
+                                <a asp-area="" asp-controller="ContactUs" asp-action="Index" class="border-button">Contact Us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="request-form">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h4>Request a call back right now ?</h4>
+                            <span>Mauris ut dapibus velit cras interdum nisl ac urna tempor mollis.</span>
+                        </div>
+                        <div class="col-md-4">
+                            <a asp-area="" asp-controller="ContactUs" asp-action="Index" class="border-button">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    @if (currentSection.SectionType == SectionType.Section_2)
+    {
+        <div class="more-info">
+            <div class="container">
+                @if (currentSection.AllParts.All(x => x.PartType == PartType.Part_3))
+                {
+                    <div class="row" id="tabs">
+                        <div class="col-md-4">
+                            <ul>
+                                @for (int i = 0; i < currentSection.AllParts.Count(); i++)
+                                {
+                                    <li>
+                                        <a href="javascript:;" style="color: @(i == 0 ? "white" : "black")" id="@currentSection.Id-@currentSection.AllParts.ElementAt(i).Id" onclick="changeTabVisibility('@currentSection.AllParts.ElementAt(i).Id', '@currentSection.Id')">
+                                            @currentSection.AllParts.ElementAt(i).Heading
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="col-md-8">
+                            <section class='tabs-content' id="@currentSection.Id">
+                                @for (int i = 0; i < currentSection.AllParts.Count(); i++)
+                                {
+                                    <article style="display: @(i == 0 ? "block" : "none")" id='@currentSection.AllParts.ElementAt(i).Id'>
+                                        <img src="@currentSection.AllParts.ElementAt(i).Url" alt="">
+                                        <h4>@currentSection.AllParts.ElementAt(i).Subheading</h4>
+                                        <p>
+                                            @Html.Raw(currentSection.AllParts.ElementAt(i).Description)
+                                        </p>
+                                    </article>
+                                }
+                            </section>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    @foreach (var part in currentSection.AllParts)
+                    {
+                        @if (part.PartType == PartType.Part_2)
+                        {
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="more-info-content">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="left-image">
+                                                    <img src="@part.Url" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 align-self-center">
+                                                <div class="right-content">
+                                                    <span>@part.Subheading</span>
+                                                    <h2>@part.Heading</h2>
+                                                    <p>@Html.Raw(part.Description)</p>
+                                                    <a href="#" class="filled-button">Read More</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        if (part.PartType == PartType.Part_4)
+                        {
+                            <div class="col-md-4">
+                                <div class="service-item">
+                                    <img src="@part.Url" alt="">
+                                    <div class="down-content">
+                                        <h4>@part.Heading</h4>
+                                        <p>@Html.Raw(part.Description)</p>
+                                        <a href="javascript:;" class="filled-button">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        if (part.PartType == PartType.Part_5)
+                        {
+                            <div class="col-md-4">
+                                <div class="team-item">
+                                    <img src="@part.Url" alt="">
+                                    <div class="down-content">
+                                        <h4>@part.Heading</h4>
+                                        <span>@part.Subheading</span>
+                                        <p>@Html.Raw(part.Description)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                }
+            </div>
+        </div>
+    }
+    @if (currentSection.SectionType == SectionType.Section_3)
+    {
+        <div class="fun-facts" style="background-image: url(@currentSection.Url)">
+            <div class="container">
+                @if (currentSection.AllParts.All(x => x.PartType == PartType.Part_3))
+                {
+                    <div class="row" id="tabs">
+                        <div class="col-md-4">
+                            <ul>
+                                @for (int i = 0; i < currentSection.AllParts.Count(); i++)
+                                {
+                                    <li>
+                                        <a href="javascript:;" style="color: @(i == 0 ? "white" : "black")" id="@currentSection.Id-@currentSection.AllParts.ElementAt(i).Id" onclick="changeTabVisibility('@currentSection.AllParts.ElementAt(i).Id', '@currentSection.Id')">
+                                            @currentSection.AllParts.ElementAt(i).Heading
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="col-md-8">
+                            <section class='tabs-content' id="@currentSection.Id">
+                                @for (int i = 0; i < currentSection.AllParts.Count(); i++)
+                                {
+                                    <article style="display: @(i == 0 ? "block" : "none")" id='@currentSection.AllParts.ElementAt(i).Id'>
+                                        <img src="@currentSection.AllParts.ElementAt(i).Url" alt="">
+                                        <h4>@currentSection.AllParts.ElementAt(i).Subheading</h4>
+                                        <p>
+                                            @Html.Raw(currentSection.AllParts.ElementAt(i).Description)
+                                        </p>
+                                    </article>
+                                }
+                            </section>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    @foreach (var part in currentSection.AllParts)
+                    {
+                        @if (part.PartType == PartType.Part_2)
+                        {
+                            <div class="row">
+                                <div class="col-md-6" style="content: url(@part.Url)">
+                                    <div class="left-content">
+                                        <div class="left-image">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="right-content">
+                                        <span>@part.Subheading</span>
+                                        <h2>@part.Heading</h2>
+                                        <p>@Html.Raw(part.Description)</p>
+                                        <a href="#" class="filled-button">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        if (part.PartType == PartType.Part_4)
+                        {
+                            <div class="col-md-4">
+                                <div class="service-item">
+                                    <img src="@part.Url" alt="">
+                                    <div class="down-content">
+                                        <h4>@part.Heading</h4>
+                                        <p>@Html.Raw(part.Description)</p>
+                                        <a href="javascript:;" class="filled-button">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        if (part.PartType == PartType.Part_5)
+                        {
+                            <div class="col-md-4">
+                                <div class="team-item">
+                                    <img src="@part.Url" alt="">
+                                    <div class="down-content">
+                                        <h4>@part.Heading</h4>
+                                        <span>@part.Subheading</span>
+                                        <p>@Html.Raw(part.Description)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                }
+            </div>
+        </div>
+    }
+    @if (currentSection.SectionType == SectionType.Section_4)
+    {
+        <div class="services">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-heading">
+                            <h2>@currentSection.Heading</h2>
+                            <span>@currentSection.Subheading</span>
+                        </div>
+                    </div>
+                    @if (currentSection.AllParts.All(x => x.PartType == PartType.Part_3))
+                    {
+                        <div class="row" id="tabs">
+                            <div class="col-md-4">
+                                <ul>
+                                    @for (int i = 0; i < currentSection.AllParts.Count(); i++)
+                                    {
+                                        <li>
+                                            <a href="javascript:;" style="color: @(i == 0 ? "white" : "black")" id="@currentSection.Id-@currentSection.AllParts.ElementAt(i).Id" onclick="changeTabVisibility('@currentSection.AllParts.ElementAt(i).Id', '@currentSection.Id')">
+                                                @currentSection.AllParts.ElementAt(i).Heading
+                                                <i class="fa fa-angle-right"></i>
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                            <div class="col-md-8">
+                                <section class='tabs-content' id="@currentSection.Id">
+                                    @for (int i = 0; i < currentSection.AllParts.Count(); i++)
+                                    {
+                                        <article style="display: @(i == 0 ? "block" : "none")" id='@currentSection.AllParts.ElementAt(i).Id'>
+                                            <img src="@currentSection.AllParts.ElementAt(i).Url" alt="">
+                                            <h4>@currentSection.AllParts.ElementAt(i).Subheading</h4>
+                                            <p>
+                                                @Html.Raw(currentSection.AllParts.ElementAt(i).Description)
+                                            </p>
+                                        </article>
+                                    }
+                                </section>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        @foreach (var part in currentSection.AllParts)
+                        {
+                            @if (part.PartType == PartType.Part_2)
+                            {
+                                <div class="row">
+                                    <div class="col-md-6" style="content: url(@part.Url)">
+                                        <div class="left-content">
+                                            <div class="left-image">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="right-content">
+                                            <span>@part.Subheading</span>
+                                            <h2>@part.Heading</h2>
+                                            <p>@Html.Raw(part.Description)</p>
+                                            <a href="#" class="filled-button">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            if (part.PartType == PartType.Part_4)
+                            {
+                                <div class="col-md-4">
+                                    <div class="service-item">
+                                        <img src="@part.Url" alt="">
+                                        <div class="down-content">
+                                            <h4>@part.Heading</h4>
+                                            <p>@Html.Raw(part.Description)</p>
+                                            <a href="javascript:;" class="filled-button">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            if (part.PartType == PartType.Part_5)
+                            {
+                                <div class="col-md-4">
+                                    <div class="team-item">
+                                        <img src="@part.Url" alt="">
+                                        <div class="down-content">
+                                            <h4>@part.Heading</h4>
+                                            <span>@part.Subheading</span>
+                                            <p>@Html.Raw(part.Description)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    }
+}

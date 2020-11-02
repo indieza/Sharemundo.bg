@@ -13,9 +13,9 @@
     public class HomeController : Controller
     {
         private readonly UserManager<ApplicationUser> userManager;
-        private readonly IHomeServices homeServices;
+        private readonly IHomeService homeServices;
 
-        public HomeController(UserManager<ApplicationUser> userManager, IHomeServices homeServices)
+        public HomeController(UserManager<ApplicationUser> userManager, IHomeService homeServices)
         {
             this.userManager = userManager;
             this.homeServices = homeServices;

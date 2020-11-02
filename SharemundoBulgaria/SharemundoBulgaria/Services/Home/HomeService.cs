@@ -15,13 +15,13 @@
     using SharemundoBulgaria.ViewModels.Section;
     using SharemundoBulgaria.ViewModels.SectionPart;
 
-    public class HomeServices : IHomeServices
+    public class HomeService : IHomeService
     {
         private readonly ApplicationDbContext db;
         private readonly RoleManager<ApplicationRole> roleManager;
         private readonly UserManager<ApplicationUser> userManager;
 
-        public HomeServices(
+        public HomeService(
             ApplicationDbContext db,
             RoleManager<ApplicationRole> roleManager,
             UserManager<ApplicationUser> userManager)
