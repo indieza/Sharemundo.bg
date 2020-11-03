@@ -7,7 +7,7 @@
 
 ## :pencil2: Overview
 
-**Sharemundo.bg** is a website where software engineers can share their experience, give advices one to other. The site has one on one private chat where they can discuss privately. The main idea is to improve and sort all of the information in the internet in one place, the website has Editor and Administrators, they will follow for uncorrectly information and some kind of spamming content. Users which are rude and don't respect the site rules will be blocked for some days or permenantly.
+**Sharemundo.bg** is a website which is with editable content(images, text, links etc.). The website has two type of a users - "Administrators" and "Users". Administrators have the possibility to edit the content of the site and have full control to the other users. Users has the chance only to view the site. The website has a page where administrators can paste a job postings and the users will have the chance to apply for those jobs positions.
 
 ## :hammer: Built With
 - ASP.NET [CORE 3.1](https://dotnet.microsoft.com/download/dotnet-core/3.1 "CORE 3.1") MVC
