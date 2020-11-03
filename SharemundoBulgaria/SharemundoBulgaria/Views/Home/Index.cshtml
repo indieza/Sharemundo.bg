@@ -4,6 +4,31 @@
 
 @model HomeViewModel
 
+@if (this.SignInManager.IsSignedIn(this.User))
+{
+    @if (!this.Model.HasAdmin)
+    {
+        <br />
+        <br />
+        <br />
+        <div class="request-form" style="margin-top: 100px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h4>Website still don't have administrator!</h4>
+                        <span>Please, make yourself administrator.</span>
+                    </div>
+                    <div class="col-md-4">
+                        <a asp-area="" asp-controller="Home" asp-action="MakeYourselfAdmin" class="border-button">
+                            Make Administrator
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+
 @foreach (var currentSection in Model.AllSections)
 {
     @if (currentSection.SectionType == SectionType.Section_1)
@@ -28,60 +53,19 @@
                 }
             </div>
         </div>
-
-        @if (this.SignInManager.IsSignedIn(this.User))
-        {
-            @if (!this.Model.HasAdmin)
-            {
-                <div class="request-form" style="margin-top: 100px">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <h4>Website still don't have administrator!</h4>
-                                <span>Please, make yourself administrator.</span>
-                            </div>
-                            <div class="col-md-4">
-                                <a asp-area="" asp-controller="Home" asp-action="MakeYourselfAdmin" class="border-button">
-                                    Make Administrator
-                                </a>
-                            </div>
-                        </div>
+        <div class="request-form">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h4>Request a call back right now ?</h4>
+                        <span>Mauris ut dapibus velit cras interdum nisl ac urna tempor mollis.</span>
                     </div>
-                </div>
-            }
-            else
-            {
-                <div class="request-form">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <h4>Request a call back right now ?</h4>
-                                <span>Mauris ut dapibus velit cras interdum nisl ac urna tempor mollis.</span>
-                            </div>
-                            <div class="col-md-4">
-                                <a asp-area="" asp-controller="ContactUs" asp-action="Index" class="border-button">Contact Us</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            }
-        }
-        else
-        {
-            <div class="request-form">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <h4>Request a call back right now ?</h4>
-                            <span>Mauris ut dapibus velit cras interdum nisl ac urna tempor mollis.</span>
-                        </div>
-                        <div class="col-md-4">
-                            <a asp-area="" asp-controller="ContactUs" asp-action="Index" class="border-button">Contact Us</a>
-                        </div>
+                    <div class="col-md-4">
+                        <a asp-area="" asp-controller="ContactUs" asp-action="Index" class="border-button">Contact Us</a>
                     </div>
                 </div>
             </div>
-        }
+        </div>
     }
     @if (currentSection.SectionType == SectionType.Section_2)
     {

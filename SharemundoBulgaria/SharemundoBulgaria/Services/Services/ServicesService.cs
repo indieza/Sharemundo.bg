@@ -48,8 +48,10 @@
 
                 foreach (var part in allParts)
                 {
-                    var partText = await this.db.PartTexts.FirstOrDefaultAsync(x => x.SectionPartId == part.Id);
-                    var partImage = await this.db.PartImages.FirstOrDefaultAsync(x => x.SectionPartId == part.Id);
+                    var partText = await this.db.PartTexts
+                        .FirstOrDefaultAsync(x => x.SectionPartId == part.Id);
+                    var partImage = await this.db.PartImages
+                        .FirstOrDefaultAsync(x => x.SectionPartId == part.Id);
 
                     currentSection.AllParts.Add(new SectionPartViewModel
                     {
