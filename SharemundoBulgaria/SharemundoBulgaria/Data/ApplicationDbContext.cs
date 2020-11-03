@@ -2,8 +2,10 @@
 {
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
+    using SharemundoBulgaria.Models.Job;
     using SharemundoBulgaria.Models.Page;
     using SharemundoBulgaria.Models.User;
+    using System.Security.Cryptography.X509Certificates;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
@@ -19,6 +21,10 @@
         public DbSet<PartText> PartTexts { get; set; }
 
         public DbSet<PartImage> PartImages { get; set; }
+
+        public DbSet<JobPosition> JobPositions { get; set; }
+
+        public DbSet<JobCandidate> JobCandidates { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -76,6 +82,11 @@
                 .HasOne(x => x.Section)
                 .WithMany(x => x.SectionParts)
                 .HasForeignKey(x => x.SectionId);
+
+            builder.Entity<JobPosition>()
+                .HasMany(x => x.JobCandidates)
+                .WithOne(x => x.JobPosition)
+                .HasForeignKey(x => x.JobPositionId);
 
             base.OnModelCreating(builder);
         }
