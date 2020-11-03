@@ -34,5 +34,8 @@
 
         public const string SuccessfullyEditSectionsPosition =
             "Successfully edit \"{0}\" sections position.";
+
+        public const string SuccessfullyAddJobPosition =
+            "Successfully add a new job position.";
     }
 }

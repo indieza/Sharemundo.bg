@@ -10,6 +10,7 @@ namespace SharemundoBulgaria
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using SharemundoBulgaria.Areas.Administration.Services.AddJobPosition;
     using SharemundoBulgaria.Areas.Administration.Services.AddPartToSection;
     using SharemundoBulgaria.Areas.Administration.Services.AddSectionToPage;
     using SharemundoBulgaria.Areas.Administration.Services.Dashboard;
@@ -98,6 +99,7 @@ namespace SharemundoBulgaria
             services.AddTransient<IEditPartService, EditPartService>();
             services.AddTransient<IEditSectionsPositionService, EditSectionsPositionService>();
             services.AddTransient<IEditPartsPositionService, EditPartsPositionService>();
+            services.AddTransient<IAddJobPositionService, AddJobPositionService>();
 
             services.AddControllersWithViews();
             services.AddRazorPages();
