@@ -310,14 +310,14 @@ header {
 }
 
 .navbar .navbar-nav .nav-item {
-    margin: 0px 15px;
+    margin: 0px 2px;
 }
 
 .navbar .navbar-nav a.nav-link {
     text-transform: capitalize;
     font-size: 15px;
     font-weight: 300;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.2px;
     color: #fff;
     transition: all 0.5s;
     margin-top: 5px;
