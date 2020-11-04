@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Job";
+}
+
+@model JobPositionViewModel
+
+<div class="page-heading header-text">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>@this.Model.Title</h1>
+                <span>@this.Model.CreatedOn.ToLocalTime().ToString("dd-MMMM-yyyy hh:mm:ss tt")</span>
+            </div>
+        </div>
+    </div>
+</div>
+<br />

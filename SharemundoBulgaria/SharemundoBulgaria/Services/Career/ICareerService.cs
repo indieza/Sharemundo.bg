@@ -9,5 +9,7 @@
     public interface ICareerService
     {
         ICollection<JobPositionViewModel> GetAllJobsPositions();
+
+        Task<JobPositionViewModel> GetJobById(string id);
     }
 }

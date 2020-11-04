@@ -7,6 +7,7 @@
     using Microsoft.AspNetCore.Mvc;
     using SharemundoBulgaria.Services.Career;
     using SharemundoBulgaria.ViewModels.Career.ViewModels;
+    using SharemundoBulgaria.ViewModels.JobPosition.ViewModels;
 
     public class CareerController : Controller
     {
@@ -24,6 +25,14 @@
                 JobPositionViewModels = this.careerService.GetAllJobsPositions(),
             };
 
+            return this.View(model);
+        }
+
+        [HttpGet]
+        [Route("/Career/JobPosition/{id}")]
+        public async Task<IActionResult> JobPosition(string id)
+        {
+            JobPositionViewModel model = await this.careerService.GetJobById(id);
             return this.View(model);
         }
     }

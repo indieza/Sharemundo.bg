@@ -46,7 +46,9 @@
         <br />
         <div class="row">
             <div class="col-md-12">
-                <button class="btn btn-success"><i class="far fa-bookmark"></i> Read more</button>
+                <button class="btn btn-success" asp-area="" asp-controller="Career" asp-action="JobPosition" asp-route-id="@position.Id">
+                    <i class="far fa-bookmark"></i> Read more
+                </button>
             </div>
         </div>
         <hr />

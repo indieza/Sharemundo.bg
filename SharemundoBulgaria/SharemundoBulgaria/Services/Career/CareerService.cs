@@ -3,8 +3,10 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Security.Cryptography.X509Certificates;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
+    using Microsoft.EntityFrameworkCore;
     using SharemundoBulgaria.Data;
     using SharemundoBulgaria.ViewModels.JobPosition.ViewModels;
 
@@ -27,6 +29,7 @@
                 var contentWithoutTags = Regex.Replace(position.Description, "<.*?>", string.Empty);
                 result.Add(new JobPositionViewModel
                 {
+                    Id = position.Id,
                     Title = position.Title,
                     Location = position.Location,
                     CreatedOn = position.CreatedOn,
@@ -37,6 +40,19 @@
             }
 
             return result;
+        }
+
+        public async Task<JobPositionViewModel> GetJobById(string id)
+        {
+            var job = await this.db.JobPositions.FirstOrDefaultAsync(x => x.Id == id);
+            return new JobPositionViewModel
+            {
+                Id = job.Id,
+                Title = job.Title,
+                CreatedOn = job.CreatedOn,
+                Description = job.Description,
+                Location = job.Location,
+            };
         }
     }
 }

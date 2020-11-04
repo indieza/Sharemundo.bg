@@ -1,11 +1,11 @@
 ﻿namespace SharemundoBulgaria.Data
 {
+    using System.Security.Cryptography.X509Certificates;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
     using SharemundoBulgaria.Models.Job;
     using SharemundoBulgaria.Models.Page;
     using SharemundoBulgaria.Models.User;
-    using System.Security.Cryptography.X509Certificates;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {

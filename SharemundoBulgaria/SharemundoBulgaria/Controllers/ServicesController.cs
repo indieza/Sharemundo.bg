@@ -1,10 +1,10 @@
 ﻿namespace SharemundoBulgaria.Controllers
 {
+    using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
     using SharemundoBulgaria.Services.Home;
     using SharemundoBulgaria.Services.Services;
     using SharemundoBulgaria.ViewModels.Services;
-    using System.Threading.Tasks;
 
     public class ServicesController : Controller
     {
