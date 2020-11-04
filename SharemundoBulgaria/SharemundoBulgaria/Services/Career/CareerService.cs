@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using SharemundoBulgaria.Data;
     using SharemundoBulgaria.ViewModels.JobPosition.ViewModels;
@@ -23,12 +24,15 @@
 
             foreach (var position in allPositions)
             {
+                var contentWithoutTags = Regex.Replace(position.Description, "<.*?>", string.Empty);
                 result.Add(new JobPositionViewModel
                 {
                     Title = position.Title,
                     Location = position.Location,
                     CreatedOn = position.CreatedOn,
-                    Description = position.Description,
+                    Description = contentWithoutTags.Length <= 600 ?
+                    contentWithoutTags :
+                    $"{contentWithoutTags.Substring(0, 600)}...",
                 });
             }
 

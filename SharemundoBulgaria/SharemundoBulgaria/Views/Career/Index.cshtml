@@ -19,16 +19,37 @@
     @foreach (var position in this.Model.JobPositionViewModels)
     {
         <div class="row">
-            <h3>@position.Title</h3>
+            <div class="col-md-12">
+                <h3>
+                    <i class="fas fa-check" style="color: green"></i> @position.Title
+                </h3>
+                <hr />
+            </div>
         </div>
         <div class="row">
-            <h6>@position.CreatedOn.ToLocalTime().ToString("dd-MMMM-yyyy hh:mm:ss tt")</h6>
+            <div class="col-md-6">
+                <p>
+                    <i class="fas fa-calendar-alt" style="color: green"></i> Created On: @position.CreatedOn.ToLocalTime().ToString("dd-MMMM-yyyy hh:mm:ss tt")
+                </p>
+            </div>
+            <div class="col-md-6">
+                <p>
+                    <i class="fas fa-map-marker-alt" style="color: green"></i> Location: @position.Location
+                </p>
+            </div>
         </div>
         <div class="row">
-            <p>@position.Location</p>
+            <div class="col-md-12">
+                @Html.Raw(position.Description)
+            </div>
         </div>
+        <br />
         <div class="row">
-            @Html.Raw(position.Description)
+            <div class="col-md-12">
+                <button class="btn btn-success"><i class="far fa-bookmark"></i> Read more</button>
+            </div>
         </div>
+        <hr />
     }
 </div>
+<br />
