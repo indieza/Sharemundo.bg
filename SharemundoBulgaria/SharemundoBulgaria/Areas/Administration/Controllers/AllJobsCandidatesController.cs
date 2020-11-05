@@ -26,5 +26,20 @@
             ICollection<JobCandidateViewModel> model = this.allJobsCandidatesService.GetAllCandidates();
             return this.View(model);
         }
+
+        public async Task<IActionResult> DeleteCandidate(string id)
+        {
+            if (id != null)
+            {
+                await this.allJobsCandidatesService.DeleteCandidate(id);
+                this.TempData["Success"] = MessageConstants.SuccessfullyDeleteJobCandidate;
+                return this.RedirectToAction("Index", "AllJobsCandidates");
+            }
+            else
+            {
+                this.TempData["Error"] = MessageConstants.InvalidInputModel;
+                return this.RedirectToAction("Index", "AllJobsCandidates");
+            }
+        }
     }
 }

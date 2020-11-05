@@ -40,5 +40,8 @@
 
         public const string SuccessfullyApplyFoJob =
             "Successfully apply for a job position.";
+
+        public const string SuccessfullyDeleteJobCandidate =
+            "Successfully delete job candidate.";
     }
 }

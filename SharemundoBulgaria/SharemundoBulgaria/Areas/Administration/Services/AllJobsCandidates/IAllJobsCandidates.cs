@@ -9,5 +9,7 @@
     public interface IAllJobsCandidates
     {
         ICollection<JobCandidateViewModel> GetAllCandidates();
+
+        Task DeleteCandidate(string id);
     }
 }

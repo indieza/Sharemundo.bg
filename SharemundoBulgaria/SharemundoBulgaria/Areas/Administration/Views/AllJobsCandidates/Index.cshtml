@@ -55,7 +55,11 @@
                             <td>@candidate.Email</td>
                             <td>@candidate.Phonenumber</td>
                             <td><a href="@candidate.CvUrl" target="_blank">CV Link</a></td>
-                            <td><a>Delete</a></td>
+                            <td>
+                                <a asp-area="Administration" asp-controller="AllJobsCandidates" asp-action="DeleteCandidate" asp-route-id="@candidate.JobCandidateId">
+                                    Delete
+                                </a>
+                            </td>
                         </tr>
                     }
                 </tbody>
