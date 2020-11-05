@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Remove Job Position";
+}
+
+@model RemoveJobPositionBaseModel
+
+<h2 class="mt-4 row">
+    <b>
+        Remove job position
+    </b>
+</h2>
+<hr class="row" />
+<div class="mt-4">
+    <partial name="_TempDataPartial" />
+</div>
+
+<form method="post">
+    <div class="row">
+        <div class="form-group col-lg-12">
+            <label asp-for="@this.Model.RemoveJobPositionInputModel.Id"></label>
+            <select class="form-control" asp-for="@this.Model.RemoveJobPositionInputModel.Id">
+                <option value="" disabled selected>Select title...</option>
+                @foreach (var position in Model.AllJobsPositions)
+                {
+                    <option value="@position.Id">@position.Title</option>
+                }
+            </select>
+            <span asp-validation-for="@this.Model.RemoveJobPositionInputModel.Id" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-lg-12">
+            <button class="btn btn-danger" asp-area="Administration" asp-controller="RemoveJobPosition" asp-action="RemoveJobPosition">
+                Remove
+            </button>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

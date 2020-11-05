@@ -43,5 +43,8 @@
 
         public const string SuccessfullyDeleteJobCandidate =
             "Successfully delete job candidate.";
+
+        public const string SuccessfullyDeleteJobPosition =
+            "Successfully delete a job position.";
     }
 }
