@@ -13,6 +13,7 @@ namespace SharemundoBulgaria
     using SharemundoBulgaria.Areas.Administration.Services.AddJobPosition;
     using SharemundoBulgaria.Areas.Administration.Services.AddPartToSection;
     using SharemundoBulgaria.Areas.Administration.Services.AddSectionToPage;
+    using SharemundoBulgaria.Areas.Administration.Services.AllJobsCandidates;
     using SharemundoBulgaria.Areas.Administration.Services.Dashboard;
     using SharemundoBulgaria.Areas.Administration.Services.EditPart;
     using SharemundoBulgaria.Areas.Administration.Services.EditPartsPosition;
@@ -102,6 +103,7 @@ namespace SharemundoBulgaria
             services.AddTransient<IEditSectionsPositionService, EditSectionsPositionService>();
             services.AddTransient<IEditPartsPositionService, EditPartsPositionService>();
             services.AddTransient<IAddJobPositionService, AddJobPositionService>();
+            services.AddTransient<IAllJobsCandidates, AllJobsCandidates>();
 
             services.AddControllersWithViews();
             services.AddRazorPages();

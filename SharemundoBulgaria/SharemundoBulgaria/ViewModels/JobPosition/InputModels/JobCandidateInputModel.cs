@@ -31,5 +31,8 @@
 
         [Required]
         public IFormFile CV { get; set; }
+
+        [Required]
+        public string JobPositionId { get; set; }
     }
 }

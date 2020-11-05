@@ -6,17 +6,64 @@
     using System.Security.Cryptography.X509Certificates;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
+    using CloudinaryDotNet;
     using Microsoft.EntityFrameworkCore;
     using SharemundoBulgaria.Data;
+    using SharemundoBulgaria.Models.Job;
+    using SharemundoBulgaria.Services.Cloud;
+    using SharemundoBulgaria.ViewModels.JobPosition.InputModels;
     using SharemundoBulgaria.ViewModels.JobPosition.ViewModels;
 
     public class CareerService : ICareerService
     {
         private readonly ApplicationDbContext db;
+        private readonly Cloudinary cloudinary;
 
-        public CareerService(ApplicationDbContext db)
+        public CareerService(ApplicationDbContext db, Cloudinary cloudinary)
         {
             this.db = db;
+            this.cloudinary = cloudinary;
+        }
+
+        public async Task ApplyForJob(JobCandidateInputModel model)
+        {
+            var isExist = await this.db.JobCandidates
+                .FirstOrDefaultAsync(x => x.Phonenumber == model.Phonenumber && x.Email == model.Email);
+
+            if (isExist == null)
+            {
+                isExist = new JobCandidate
+                {
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Email = model.Email,
+                    Phonenumber = model.Phonenumber,
+                    JobPositionId = model.JobPositionId,
+                };
+
+                var cvUrl = await ApplicationCloudinary.UploadImage(
+                       this.cloudinary,
+                       model.CV,
+                       $"{isExist.Id}-{model.CV.FileName}");
+                isExist.CvUrl = cvUrl;
+                isExist.CvName = $"{isExist.Id}-{model.CV.FileName}";
+                this.db.JobCandidates.Add(isExist);
+            }
+            else
+            {
+                isExist.FirstName = model.FirstName;
+                isExist.LastName = model.LastName;
+                ApplicationCloudinary.DeleteImage(this.cloudinary, isExist.CvName);
+                var cvUrl = await ApplicationCloudinary.UploadImage(
+                       this.cloudinary,
+                       model.CV,
+                       $"{isExist.Id}-{model.CV.FileName}");
+                isExist.CvUrl = cvUrl;
+                isExist.CvName = $"{isExist.Id}-{model.CV.FileName}";
+                this.db.JobCandidates.Update(isExist);
+            }
+
+            await this.db.SaveChangesAsync();
         }
 
         public ICollection<JobPositionViewModel> GetAllJobsPositions()

@@ -38,6 +38,9 @@
         [Required]
         public string CvUrl { get; set; }
 
+        [Required]
+        public string CvName { get; set; }
+
         [ForeignKey(nameof(JobPosition))]
         [Required]
         public string JobPositionId { get; set; }

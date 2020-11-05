@@ -32,7 +32,7 @@
                     name = name.Replace(">", "greater");
                     name = name.Replace("<", "lower");
 
-                    var uploadParams = new ImageUploadParams()
+                    var uploadParams = new RawUploadParams()
                     {
                         File = new FileDescription(name, ms),
                         PublicId = name,
@@ -52,6 +52,7 @@
             {
                 PublicIds = new List<string>() { name },
                 Invalidate = true,
+                ResourceType = ResourceType.Raw,
             };
 
             cloudinary.DeleteResources(delParams);

@@ -37,5 +37,8 @@
 
         public const string SuccessfullyAddJobPosition =
             "Successfully add a new job position.";
+
+        public const string SuccessfullyApplyFoJob =
+            "Successfully apply for a job position.";
     }
 }

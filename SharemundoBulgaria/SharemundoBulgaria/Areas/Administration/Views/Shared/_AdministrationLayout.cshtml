@@ -105,6 +105,24 @@
                                 </a>
                             </nav>
                         </div>
+                        <div class="sb-sidenav-menu-heading">Job actions</div>
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#career" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon"><i class="fas fa-handshake"></i></div>
+                            Career
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="career" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" asp-area="Administration" asp-controller="AddJobPosition" asp-action="Index">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-briefcase"></i></div>
+                                    Add job position
+                                </a>
+                                <a class="nav-link" asp-area="Administration" asp-controller="AllJobsCandidates" asp-action="Index">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-user-tie"></i></div>
+                                    All candidates
+                                </a>
+                            </nav>
+                        </div>
                         <div class="sb-sidenav-menu-heading">Website navigation</div>
                         <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
                             <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
@@ -113,11 +131,6 @@
                         <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index">
                             <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
                             Profile
-                        </a>
-                        <div class="sb-sidenav-menu-heading">Job actions</div>
-                        <a class="nav-link" asp-area="Administration" asp-controller="AddJobPosition" asp-action="Index">
-                            <div class="sb-nav-link-icon"><i class="fas fa-briefcase"></i></div>
-                            Add job position
                         </a>
                     </div>
                 </div>

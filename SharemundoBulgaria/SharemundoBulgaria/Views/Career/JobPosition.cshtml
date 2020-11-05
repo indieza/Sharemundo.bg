@@ -15,6 +15,15 @@
     </div>
 </div>
 <br />
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="mt-4">
+                <partial name="_TempDataPartial" />
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="container">
     <div class="row">
@@ -81,6 +90,7 @@
                 <span class="text-danger" asp-validation-for="@this.Model.JobCandidateInputModel.CV"></span>
             </div>
             <br />
+            <input type="hidden" asp-for="@this.Model.JobCandidateInputModel.JobPositionId" value="@this.Model.JobPositionViewModel.Id" />
             <div class="row">
                 <button class="btn btn-success" asp-area="" asp-controller="Career" asp-action="ApplyForJob">
                     <i class="fas fa-check"></i> Apply
@@ -89,5 +99,8 @@
         </div>
     </form>
 </div>
-
 <br />
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

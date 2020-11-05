@@ -40,6 +40,7 @@
     <Folder Include="Areas\Administration\Data\" />
     <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Administration\ViewModels\AddJobPosition\ViewModels\" />
+    <Folder Include="Areas\Administration\ViewModels\AllJobsCandidates\InputModels\" />
     <Folder Include="ViewModels\Career\InputModels\" />
   </ItemGroup>
 

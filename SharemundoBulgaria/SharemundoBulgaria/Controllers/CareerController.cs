@@ -50,12 +50,14 @@
         {
             if (this.ModelState.IsValid)
             {
-                return this.RedirectToAction("JobPosition", "Career", new { id = model.JobPositionViewModel.Id });
+                await this.careerService.ApplyForJob(model.JobCandidateInputModel);
+                this.TempData["Success"] = MessageConstants.SuccessfullyApplyFoJob;
+                return this.RedirectToAction("JobPosition", "Career", new { Id = model.JobCandidateInputModel.JobPositionId });
             }
             else
             {
                 this.TempData["Error"] = MessageConstants.InvalidInputModel;
-                return this.RedirectToAction("JobPosition", "Career");
+                return this.RedirectToAction("JobPosition", "Career", new { Id = model.JobCandidateInputModel.JobPositionId });
             }
         }
     }
