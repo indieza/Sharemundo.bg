@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace SharemundoBulgaria.Areas.Administration.ViewModels.AllJobsCandidates.ViewModels
+﻿namespace SharemundoBulgaria.Areas.Administration.ViewModels.AllJobsCandidates.ViewModels
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
     public class JobCandidateViewModel
     {
         public string JobCandidateId { get; set; }

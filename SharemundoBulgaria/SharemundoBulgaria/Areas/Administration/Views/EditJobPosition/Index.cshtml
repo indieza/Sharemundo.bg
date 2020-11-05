@@ -1,0 +1,70 @@
+﻿@{
+    ViewData["Title"] = "Edit job position";
+}
+
+@model EditJobPositionBaseModel
+
+<h2 class="mt-4 row">
+    <b>
+        Edit job position
+    </b>
+</h2>
+<hr class="row" />
+<div class="mt-4">
+    <partial name="_TempDataPartial" />
+</div>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="form-group col-lg-12">
+            <label asp-for="@this.Model.EditJobPositionInputModel.Id"></label>
+            <select class="form-control" asp-for="@this.Model.EditJobPositionInputModel.Id" onchange="selectedName(this)">
+                <option value="" disabled selected>Select section...</option>
+                @foreach (var position in Model.EditJobPositionViewModels)
+                {
+                    <option value="@position.Id">@position.Title</option>
+                }
+            </select>
+            <span asp-validation-for="@this.Model.EditJobPositionInputModel.Id" class="text-danger"></span>
+        </div>
+    </div>
+    <hr />
+    <div id="editPositionInputForm" style="display: none">
+        <div class="row">
+            <div class="form-group col-lg-12">
+                <label asp-for="@this.Model.EditJobPositionInputModel.Title"></label>
+                <input id="positionTitle" type="text" asp-for="@this.Model.EditJobPositionInputModel.Title" class="form-control" autocomplete="off" />
+                <span asp-validation-for="@this.Model.EditJobPositionInputModel.Title" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-lg-12">
+                <label asp-for="@this.Model.EditJobPositionInputModel.Location"></label>
+                <input id="positionLocation" class="form-control" type="text" asp-for="@this.Model.EditJobPositionInputModel.Location" autocomplete="off" />
+                <span asp-validation-for="@this.Model.EditJobPositionInputModel.Location" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-lg-12">
+                <label asp-for="@this.Model.EditJobPositionInputModel.Description"></label>
+                <textarea id="positionDescription" asp-for="@Model.EditJobPositionInputModel.Description" class="form-control edit-with-tinymce" style="resize: vertical" rows="30"></textarea>
+                <span asp-validation-for="@Model.EditJobPositionInputModel.Description" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-lg-12">
+                <button class="btn btn-info" asp-area="Administration" asp-controller="EditJobPosition" asp-action="EditJobPosition">
+                    Edit
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
+<input type="hidden" />
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/lib/tinymce/tinymce.min.js" type="text/javascript"></script>
+    <script src="~/lib/tinymce/visualizer.js" type="text/javascript"></script>
+    <script src="~/administration/js/editJobPositionScript.js"></script>
+}
