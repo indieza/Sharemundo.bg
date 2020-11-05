@@ -41,7 +41,6 @@
     <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Administration\ViewModels\AddJobPosition\ViewModels\" />
     <Folder Include="ViewModels\Career\InputModels\" />
-    <Folder Include="ViewModels\JobPosition\InputModels\" />
   </ItemGroup>
 
   <ItemGroup>

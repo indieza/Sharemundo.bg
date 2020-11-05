@@ -2,16 +2,92 @@
     ViewData["Title"] = "Job";
 }
 
-@model JobPositionViewModel
+@model JobPositionBaseModel
 
 <div class="page-heading header-text">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>@this.Model.Title</h1>
-                <span>@this.Model.CreatedOn.ToLocalTime().ToString("dd-MMMM-yyyy hh:mm:ss tt")</span>
+                <h1>@this.Model.JobPositionViewModel.Title</h1>
+                <span>@this.Model.JobPositionViewModel.CreatedOn.ToLocalTime().ToString("dd-MMMM-yyyy hh:mm:ss tt")</span>
             </div>
         </div>
     </div>
 </div>
+<br />
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>
+                <i class="fas fa-check" style="color: green"></i> @this.Model.JobPositionViewModel.Title
+            </h3>
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <p>
+                <i class="fas fa-calendar-alt" style="color: green"></i> Created On: @this.Model.JobPositionViewModel.CreatedOn.ToLocalTime().ToString("dd-MMMM-yyyy hh:mm:ss tt")
+            </p>
+        </div>
+        <div class="col-md-6">
+            <p>
+                <i class="fas fa-map-marker-alt" style="color: green"></i> Location: @this.Model.JobPositionViewModel.Location
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            @Html.Raw(this.Model.JobPositionViewModel.Description)
+        </div>
+    </div>
+    <br />
+    <hr />
+    <br />
+    <h2>
+        <i class="fas fa-bell" style="color: green"></i> Apply for the position
+    </h2>
+    <br />
+    <form method="post" enctype="multipart/form-data">
+        <div class="col-md-12">
+            <div class="row">
+                <label asp-for="@this.Model.JobCandidateInputModel.FirstName"></label>
+                <input type="text" class="form-control" asp-for="@this.Model.JobCandidateInputModel.FirstName" />
+                <span class="text-danger" asp-validation-for="@this.Model.JobCandidateInputModel.FirstName"></span>
+            </div>
+            <br />
+            <div class="row">
+                <label asp-for="@this.Model.JobCandidateInputModel.LastName"></label>
+                <input type="text" class="form-control" asp-for="@this.Model.JobCandidateInputModel.LastName" />
+                <span class="text-danger" asp-validation-for="@this.Model.JobCandidateInputModel.LastName"></span>
+            </div>
+            <br />
+            <div class="row">
+                <label asp-for="@this.Model.JobCandidateInputModel.Phonenumber"></label>
+                <input type="tel" class="form-control" asp-for="@this.Model.JobCandidateInputModel.Phonenumber" />
+                <span class="text-danger" asp-validation-for="@this.Model.JobCandidateInputModel.Phonenumber"></span>
+            </div>
+            <br />
+            <div class="row">
+                <label asp-for="@this.Model.JobCandidateInputModel.Email"></label>
+                <input type="email" class="form-control" asp-for="@this.Model.JobCandidateInputModel.Email" />
+                <span class="text-danger" asp-validation-for="@this.Model.JobCandidateInputModel.Email"></span>
+            </div>
+            <br />
+            <div class="row">
+                <label asp-for="@this.Model.JobCandidateInputModel.CV"></label>
+                <input type="file" class="form-control-file" asp-for="@this.Model.JobCandidateInputModel.CV" />
+                <span class="text-danger" asp-validation-for="@this.Model.JobCandidateInputModel.CV"></span>
+            </div>
+            <br />
+            <div class="row">
+                <button class="btn btn-success" asp-area="" asp-controller="Career" asp-action="ApplyForJob">
+                    <i class="fas fa-check"></i> Apply
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
 <br />
