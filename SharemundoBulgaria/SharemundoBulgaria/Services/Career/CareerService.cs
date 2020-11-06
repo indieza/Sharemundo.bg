@@ -28,7 +28,9 @@
         public async Task ApplyForJob(JobCandidateInputModel model)
         {
             var isExist = await this.db.JobCandidates
-                .FirstOrDefaultAsync(x => x.Phonenumber == model.Phonenumber && x.Email == model.Email);
+                .FirstOrDefaultAsync(x => x.Phonenumber == model.Phonenumber &&
+                x.Email == model.Email &&
+                x.JobPositionId == model.JobPositionId);
 
             if (isExist == null)
             {

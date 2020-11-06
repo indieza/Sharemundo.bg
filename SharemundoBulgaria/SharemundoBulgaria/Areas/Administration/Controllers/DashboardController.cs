@@ -28,6 +28,8 @@
                 AllUsersCount = await this.dashboardService.GetAllUsersCount(),
                 AllAdminsNames = await this.dashboardService.GetAllAdminsNames(),
                 AllNotAdminsNames = await this.dashboardService.GetAllNotAdminsNames(),
+                AllJobPositions = await this.dashboardService.GetAllJobPositionsCount(),
+                AllJobCandidates = await this.dashboardService.GetAllJobCandidatesCount(),
             };
 
             var model = new DashboardBaseModel

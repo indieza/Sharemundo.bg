@@ -21,5 +21,7 @@
         Task RemoveAdministrator(string username);
 
         Task AddAdministrator(string username);
+        Task<int> GetAllJobPositionsCount();
+        Task<int> GetAllJobCandidatesCount();
     }
 }

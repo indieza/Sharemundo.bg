@@ -57,6 +57,18 @@
             return adminsNames;
         }
 
+        public async Task<int> GetAllJobCandidatesCount()
+        {
+            var count = await this.db.JobCandidates.CountAsync();
+            return count;
+        }
+
+        public async Task<int> GetAllJobPositionsCount()
+        {
+            var count = await this.db.JobPositions.CountAsync();
+            return count;
+        }
+
         public async Task<ICollection<string>> GetAllNotAdminsNames()
         {
             var role = await this.db.Roles.FirstOrDefaultAsync(x => x.Name == Constants.AdministratorRole);

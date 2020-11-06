@@ -18,5 +18,9 @@
         public int AllUsersCount { get; set; }
 
         public int AllAdminsCount { get; set; }
+
+        public int AllJobPositions { get; set; }
+
+        public int AllJobCandidates { get; set; }
     }
 }
