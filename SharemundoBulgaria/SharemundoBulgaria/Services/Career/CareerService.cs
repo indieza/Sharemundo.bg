@@ -85,6 +85,7 @@
                     Description = contentWithoutTags.Length <= 600 ?
                     contentWithoutTags :
                     $"{contentWithoutTags.Substring(0, 600)}...",
+                    JobCandidatesCount = this.db.JobCandidates.Count(x => x.JobPositionId == position.Id),
                 });
             }
 
@@ -101,6 +102,7 @@
                 CreatedOn = job.CreatedOn,
                 Description = job.Description,
                 Location = job.Location,
+                JobCandidatesCount = await this.db.JobCandidates.CountAsync(x => x.JobPositionId == id),
             };
         }
     }
