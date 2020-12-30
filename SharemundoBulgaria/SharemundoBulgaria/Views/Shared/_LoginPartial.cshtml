@@ -2,28 +2,41 @@
 @using SharemundoBulgaria.Models.User
 
 <ul class="navbar-nav">
+    <li class="nav-item">
+        @await Html.PartialAsync("_CulturePartial")
+    </li>
     @if (this.SignInManager.IsSignedIn(User))
     {
         <li class="nav-item">
-            <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Profile</a>
+            <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+                @this.Localizer["Profile"]
+            </a>
         </li>
         @if (this.User.IsInRole(Constants.AdministratorRole))
         {
             <li class="nav-item">
-                <a class="nav-link" asp-area="Administration" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
+                <a class="nav-link" asp-area="Administration" asp-controller="Dashboard" asp-action="Index">
+                    @this.Localizer["Dashboard"]
+                </a>
             </li>
         }
         <li class="nav-item">
-            <a class="nav-link" asp-area="Identity" asp-page="/Account/Logout">Logout</a>
+            <a class="nav-link" asp-area="Identity" asp-page="/Account/Logout">
+                @this.Localizer["Logout"]
+            </a>
         </li>
     }
     else
     {
         <li class="nav-item">
-            <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Register</a>
+            <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">
+                @this.Localizer["Register"]
+            </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Login</a>
+            <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">
+                @this.Localizer["Login"]
+            </a>
         </li>
     }
 </ul>

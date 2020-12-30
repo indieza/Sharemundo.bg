@@ -12,6 +12,7 @@ namespace SharemundoBulgaria
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using Microsoft.Extensions.Options;
     using SharemundoBulgaria.Areas.Administration.Services.AddJobPosition;
     using SharemundoBulgaria.Areas.Administration.Services.AddPartToSection;
     using SharemundoBulgaria.Areas.Administration.Services.AddSectionToPage;
@@ -81,6 +82,18 @@ namespace SharemundoBulgaria
                 options.ValidationInterval = TimeSpan.FromMinutes(0);
             });
 
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                var cultures = new List<CultureInfo>
+                {
+                    new CultureInfo("en"),
+                    new CultureInfo("bg"),
+                };
+                options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("en");
+                options.SupportedCultures = cultures;
+                options.SupportedUICultures = cultures;
+            });
+
             services.AddLocalization(options => options.ResourcesPath = "Resources");
             services.AddMvc()
                 .AddViewLocalization(Microsoft.AspNetCore.Mvc.Razor.LanguageViewLocationExpanderFormat.Suffix)
@@ -146,17 +159,7 @@ namespace SharemundoBulgaria
             app.UseAuthentication();
             app.UseAuthorization();
 
-            var cultures = new List<CultureInfo>
-            {
-                new CultureInfo("en"),
-                new CultureInfo("bg"),
-            };
-            app.UseRequestLocalization(options =>
-            {
-                options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("en");
-                options.SupportedCultures = cultures;
-                options.SupportedUICultures = cultures;
-            });
+            app.UseRequestLocalization(app.ApplicationServices.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
 
             app.UseEndpoints(endpoints =>
             {

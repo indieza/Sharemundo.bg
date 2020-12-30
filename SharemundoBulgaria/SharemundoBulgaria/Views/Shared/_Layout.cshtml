@@ -39,21 +39,29 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
-                                Home
+                                @this.Localizer["Home"]
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Company" asp-action="Index">Company</a>
+                            <a class="nav-link" asp-area="" asp-controller="Company" asp-action="Index">
+                                @this.Localizer["Company"]
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Services" asp-action="Index">Services</a>
+                            <a class="nav-link" asp-area="" asp-controller="Services" asp-action="Index">
+                                @this.Localizer["Services"]
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Career" asp-action="Index">Career</a>
+                            <a class="nav-link" asp-area="" asp-controller="Career" asp-action="Index">
+                                @this.Localizer["Career"]
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="ContactUs" asp-action="Index">Contact Us</a>
+                            <a class="nav-link" asp-area="" asp-controller="ContactUs" asp-action="Index">
+                                @this.Localizer["Contact Us"]
+                            </a>
                         </li>
 
                         <partial name="_LoginPartial" />
