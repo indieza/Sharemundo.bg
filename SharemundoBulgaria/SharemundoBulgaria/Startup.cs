@@ -1,6 +1,8 @@
 namespace SharemundoBulgaria
 {
     using System;
+    using System.Collections.Generic;
+    using System.Globalization;
     using CloudinaryDotNet;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -79,6 +81,11 @@ namespace SharemundoBulgaria
                 options.ValidationInterval = TimeSpan.FromMinutes(0);
             });
 
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
+            services.AddMvc()
+                .AddViewLocalization(Microsoft.AspNetCore.Mvc.Razor.LanguageViewLocationExpanderFormat.Suffix)
+                .AddDataAnnotationsLocalization();
+
             // Cloudinary Authentication
             var cloudinaryAccount = new Account(
                 this.Configuration["Cloudinary:CloudName"],
@@ -138,6 +145,18 @@ namespace SharemundoBulgaria
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            var cultures = new List<CultureInfo>
+            {
+                new CultureInfo("en"),
+                new CultureInfo("bg"),
+            };
+            app.UseRequestLocalization(options =>
+            {
+                options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("en");
+                options.SupportedCultures = cultures;
+                options.SupportedUICultures = cultures;
+            });
 
             app.UseEndpoints(endpoints =>
             {
