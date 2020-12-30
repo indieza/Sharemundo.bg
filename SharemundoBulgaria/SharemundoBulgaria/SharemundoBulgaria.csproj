@@ -41,7 +41,6 @@
     <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Administration\ViewModels\AddJobPosition\ViewModels\" />
     <Folder Include="Areas\Administration\ViewModels\AllJobsCandidates\InputModels\" />
-    <Folder Include="Resources\Controllers\" />
     <Folder Include="Resources\Views\Career\" />
     <Folder Include="Resources\Views\Company\" />
     <Folder Include="Resources\Views\ContactUs\" />
@@ -104,6 +103,12 @@
     <None Include="wwwroot\lib\tinymce\themes\silver\theme.min.js" />
     <None Include="wwwroot\lib\tinymce\tinymce.min.js" />
     <None Include="wwwroot\lib\tinymce\visualizer.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Views\Shared\_CulturePartial.bg.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
