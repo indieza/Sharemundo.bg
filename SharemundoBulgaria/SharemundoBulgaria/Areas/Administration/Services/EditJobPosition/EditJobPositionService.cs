@@ -23,9 +23,12 @@
         {
             var targetPosition = await this.db.JobPositions.FirstOrDefaultAsync(x => x.Id == model.Id);
             targetPosition.Title = model.Title;
+            targetPosition.TitleBg = model.TitleBg;
             targetPosition.CreatedOn = DateTime.UtcNow;
             targetPosition.Location = model.Location;
+            targetPosition.Location = model.LocationBg;
             targetPosition.Description = model.SanitizeDescription;
+            targetPosition.DescriptionBg = model.SanitizeDescriptionBg;
             this.db.JobPositions.Update(targetPosition);
             await this.db.SaveChangesAsync();
         }
@@ -53,8 +56,11 @@
             return new GetJobPositionDataViewModel
             {
                 Title = position.Title,
+                TitleBg = position.TitleBg,
                 Location = position.Location,
+                LocationBg = position.LocationBg,
                 Description = position.Description,
+                DescriptionBg = position.DescriptionBg,
             };
         }
     }

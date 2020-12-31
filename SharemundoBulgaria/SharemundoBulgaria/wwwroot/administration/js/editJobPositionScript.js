@@ -18,6 +18,10 @@
             $("#positionTitle").val(data.title);
             $("#positionLocation").val(data.location);
             tinyMCE.get("positionDescription").setContent(data.description == null ? "" : data.description);
+
+            $("#positionTitleBg").val(data.titleBg);
+            $("#positionLocationBg").val(data.locationBg);
+            tinyMCE.get("positionDescriptionBg").setContent(data.descriptionBg == null ? "" : data.descriptionBg);
         },
         error: function (msg) {
             console.error(msg);

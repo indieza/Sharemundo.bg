@@ -31,24 +31,39 @@
     <hr />
     <div id="editPositionInputForm" style="display: none">
         <div class="row">
-            <div class="form-group col-lg-12">
+            <div class="form-group col-lg-6">
                 <label asp-for="@this.Model.EditJobPositionInputModel.Title"></label>
                 <input id="positionTitle" type="text" asp-for="@this.Model.EditJobPositionInputModel.Title" class="form-control" autocomplete="off" />
                 <span asp-validation-for="@this.Model.EditJobPositionInputModel.Title" class="text-danger"></span>
             </div>
+            <div class="form-group col-lg-6">
+                <label asp-for="@this.Model.EditJobPositionInputModel.TitleBg"></label>
+                <input id="positionTitleBg" type="text" asp-for="@this.Model.EditJobPositionInputModel.TitleBg" class="form-control" autocomplete="off" />
+                <span asp-validation-for="@this.Model.EditJobPositionInputModel.TitleBg" class="text-danger"></span>
+            </div>
         </div>
         <div class="row">
-            <div class="form-group col-lg-12">
+            <div class="form-group col-lg-6">
                 <label asp-for="@this.Model.EditJobPositionInputModel.Location"></label>
                 <input id="positionLocation" class="form-control" type="text" asp-for="@this.Model.EditJobPositionInputModel.Location" autocomplete="off" />
                 <span asp-validation-for="@this.Model.EditJobPositionInputModel.Location" class="text-danger"></span>
             </div>
+            <div class="form-group col-lg-6">
+                <label asp-for="@this.Model.EditJobPositionInputModel.LocationBg"></label>
+                <input id="positionLocationBg" class="form-control" type="text" asp-for="@this.Model.EditJobPositionInputModel.LocationBg" autocomplete="off" />
+                <span asp-validation-for="@this.Model.EditJobPositionInputModel.LocationBg" class="text-danger"></span>
+            </div>
         </div>
         <div class="row">
-            <div class="form-group col-lg-12">
+            <div class="form-group col-lg-6">
                 <label asp-for="@this.Model.EditJobPositionInputModel.Description"></label>
                 <textarea id="positionDescription" asp-for="@Model.EditJobPositionInputModel.Description" class="form-control edit-with-tinymce" style="resize: vertical" rows="30"></textarea>
                 <span asp-validation-for="@Model.EditJobPositionInputModel.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group col-lg-6">
+                <label asp-for="@this.Model.EditJobPositionInputModel.DescriptionBg"></label>
+                <textarea id="positionDescriptionBg" asp-for="@Model.EditJobPositionInputModel.DescriptionBg" class="form-control edit-with-tinymce" style="resize: vertical" rows="30"></textarea>
+                <span asp-validation-for="@Model.EditJobPositionInputModel.DescriptionBg" class="text-danger"></span>
             </div>
         </div>
         <div class="row">
