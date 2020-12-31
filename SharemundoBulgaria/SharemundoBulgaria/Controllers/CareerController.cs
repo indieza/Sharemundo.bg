@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Localization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
     using SharemundoBulgaria.Constraints;
@@ -23,9 +24,18 @@
 
         public IActionResult Index()
         {
+            IRequestCultureFeature requestCulture = this.Request
+                .HttpContext
+                .Features
+                .Get<IRequestCultureFeature>();
+            var culture = requestCulture
+                .RequestCulture
+                .Culture
+                .Name;
+
             var model = new CareerViewModel
             {
-                JobPositionViewModels = this.careerService.GetAllJobsPositions(),
+                JobPositionViewModels = this.careerService.GetAllJobsPositions(culture),
             };
 
             return this.View(model);
@@ -35,7 +45,16 @@
         [Route("/Career/JobPosition/{id}")]
         public async Task<IActionResult> JobPosition(string id)
         {
-            JobPositionViewModel viewModel = await this.careerService.GetJobById(id);
+            IRequestCultureFeature requestCulture = this.Request
+                .HttpContext
+                .Features
+                .Get<IRequestCultureFeature>();
+            var culture = requestCulture
+                .RequestCulture
+                .Culture
+                .Name;
+
+            JobPositionViewModel viewModel = await this.careerService.GetJobById(id, culture);
             var model = new JobPositionBaseModel
             {
                 JobPositionViewModel = viewModel,

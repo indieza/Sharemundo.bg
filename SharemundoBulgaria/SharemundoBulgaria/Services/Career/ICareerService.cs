@@ -9,9 +9,9 @@
 
     public interface ICareerService
     {
-        ICollection<JobPositionViewModel> GetAllJobsPositions();
+        ICollection<JobPositionViewModel> GetAllJobsPositions(string culture);
 
-        Task<JobPositionViewModel> GetJobById(string id);
+        Task<JobPositionViewModel> GetJobById(string id, string culture);
 
         Task ApplyForJob(JobCandidateInputModel model);
     }

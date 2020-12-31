@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Localization;
     using Microsoft.AspNetCore.Mvc;
     using SharemundoBulgaria.Areas.Administration.Services.AddJobPosition;
     using SharemundoBulgaria.Areas.Administration.ViewModels.AddJobPosition.InputModels;

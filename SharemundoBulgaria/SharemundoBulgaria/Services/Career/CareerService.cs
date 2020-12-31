@@ -68,19 +68,23 @@
             await this.db.SaveChangesAsync();
         }
 
-        public ICollection<JobPositionViewModel> GetAllJobsPositions()
+        public ICollection<JobPositionViewModel> GetAllJobsPositions(string culture)
         {
             var allPositions = this.db.JobPositions.ToList();
             var result = new List<JobPositionViewModel>();
 
             foreach (var position in allPositions)
             {
-                var contentWithoutTags = Regex.Replace(position.Description, "<.*?>", string.Empty);
+                var contentWithoutTags = Regex
+                    .Replace(
+                    culture.ToUpper() == "BG" ? position.DescriptionBg : position.Description,
+                    "<.*?>",
+                    string.Empty);
                 result.Add(new JobPositionViewModel
                 {
                     Id = position.Id,
-                    Title = position.Title,
-                    Location = position.Location,
+                    Title = culture.ToUpper() == "BG" ? position.TitleBg : position.Title,
+                    Location = culture.ToUpper() == "BG" ? position.LocationBg : position.Location,
                     CreatedOn = position.CreatedOn,
                     Description = contentWithoutTags.Length <= 600 ?
                     contentWithoutTags :
@@ -92,16 +96,16 @@
             return result;
         }
 
-        public async Task<JobPositionViewModel> GetJobById(string id)
+        public async Task<JobPositionViewModel> GetJobById(string id, string culture)
         {
             var job = await this.db.JobPositions.FirstOrDefaultAsync(x => x.Id == id);
             return new JobPositionViewModel
             {
                 Id = job.Id,
-                Title = job.Title,
+                Title = culture.ToUpper() == "BG" ? job.TitleBg : job.Title,
                 CreatedOn = job.CreatedOn,
-                Description = job.Description,
-                Location = job.Location,
+                Description = culture.ToUpper() == "BG" ? job.DescriptionBg : job.Description,
+                Location = culture.ToUpper() == "BG" ? job.LocationBg : job.Location,
                 JobCandidatesCount = await this.db.JobCandidates.CountAsync(x => x.JobPositionId == id),
             };
         }
