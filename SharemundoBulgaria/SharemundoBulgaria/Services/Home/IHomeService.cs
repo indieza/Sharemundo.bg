@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using SharemundoBulgaria.Models.User;
+    using SharemundoBulgaria.ViewModels.Home;
     using SharemundoBulgaria.ViewModels.Section;
 
     public interface IHomeService
@@ -14,5 +15,7 @@
         Task MakeYourselfAdmin(ApplicationUser currentUser);
 
         Task<ICollection<SectionViewModel>> GetAllHomeSections(string culture);
+
+        ICollection<LatestJobPositionsViewModel> GetTopOpenJobPositions(string culture);
     }
 }

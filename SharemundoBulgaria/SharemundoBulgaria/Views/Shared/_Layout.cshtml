@@ -77,19 +77,9 @@
     <footer>
         <div class="container">
             <div class="row">
-                <div class="col-md-3 footer-item">
-                    <h4>Finance Business</h4>
-                    <p>Vivamus tellus mi. Nulla ne cursus elit,vulputate. Sed ne cursus augue hasellus lacinia sapien vitae.</p>
-                    <ul class="social-icons">
-                        <li><a rel="nofollow" href="https://fb.com/templatemo" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                        <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3 footer-item">
-                    <h4>Useful Links</h4>
-                    <ul class="menu-list">
+                <div class="col-md-6 footer-item">
+                    <h4>@this.Localizer["Open Job Positions"]</h4>
+                    <ul class="menu-list" id="openJobPositions">
                         <li><a href="#">Vivamus ut tellus mi</a></li>
                         <li><a href="#">Nulla nec cursus elit</a></li>
                         <li><a href="#">Vulputate sed nec</a></li>
@@ -98,13 +88,35 @@
                     </ul>
                 </div>
                 <div class="col-md-3 footer-item">
-                    <h4>Additional Pages</h4>
+                    <h4>@this.Localizer["Site Map"]</h4>
                     <ul class="menu-list">
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">How We Work</a></li>
-                        <li><a href="#">Quick Support</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
+                        <li>
+                            <a asp-area="" asp-controller="Home" asp-action="Index">
+                                @this.Localizer["Home"]
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-controller="Company" asp-action="Index">
+                                @this.Localizer["Company"]
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-controller="Services" asp-action="Index">
+                                @this.Localizer["Services"]
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-controller="Career" asp-action="Index">
+                                @this.Localizer["Career"]
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-controller="ContactUs" asp-action="Index">
+                                @this.Localizer["Contact Us"]
+                            </a>
+                        </li>
+
+                        <partial name="_LoginFooterPartial" />
                     </ul>
                 </div>
             </div>
@@ -116,10 +128,10 @@
             <div class="row">
                 <div class="col-md-12">
                     <p>
-                        Copyright &copy; 2020 Sharemundo Bulgaria, Ltd.
+                        @this.Localizer["Copyright"] &copy; @DateTime.UtcNow.Year @this.Localizer["Sharemundo Bulgaria, Ltd"].
                     </p>
                     <p>
-                        Design and Development:
+                        @this.Localizer["Design and Development"]:
                         <a style="color: dodgerblue" href="https://github.com/indieza" target="_blank">
                             Simeon Valev(indieza)
                         </a>
@@ -137,6 +149,7 @@
     <script src="~/assets/js/owl.js"></script>
     <script src="~/assets/js/slick.js"></script>
     <script src="~/js/tabsScript.js"></script>
+    <script src="~/js/site.js"></script>
     @*<script src="~/assets/js/accordions.js"></script>*@
 
     <script language="text/Javascript">

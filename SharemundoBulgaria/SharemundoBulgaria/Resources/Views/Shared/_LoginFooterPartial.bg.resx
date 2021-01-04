@@ -117,37 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Career" xml:space="preserve">
-    <value>Кариера</value>
+  <data name="Dashboard" xml:space="preserve">
+    <value>Админ Панел</value>
   </data>
-  <data name="Company" xml:space="preserve">
-    <value>Компанията</value>
+  <data name="Login" xml:space="preserve">
+    <value>Вход</value>
   </data>
-  <data name="Company Overview" xml:space="preserve">
-    <value>За компанията</value>
+  <data name="Logout" xml:space="preserve">
+    <value>Изход</value>
   </data>
-  <data name="Contact Us" xml:space="preserve">
-    <value>Контакти</value>
+  <data name="Profile" xml:space="preserve">
+    <value>Профил</value>
   </data>
-  <data name="Copyright" xml:space="preserve">
-    <value>Авторско право</value>
-  </data>
-  <data name="Design and Development" xml:space="preserve">
-    <value>Дизайн и разработка</value>
-  </data>
-  <data name="Home" xml:space="preserve">
-    <value>Начало</value>
-  </data>
-  <data name="Open Job Positions" xml:space="preserve">
-    <value>Отворени позиции</value>
-  </data>
-  <data name="Services" xml:space="preserve">
-    <value>Услуги</value>
-  </data>
-  <data name="Sharemundo Bulgaria, Ltd" xml:space="preserve">
-    <value>Шеърмундо България, ООД</value>
-  </data>
-  <data name="Site Map" xml:space="preserve">
-    <value>Карта на сайта</value>
+  <data name="Register" xml:space="preserve">
+    <value>Регистрация</value>
   </data>
 </root>

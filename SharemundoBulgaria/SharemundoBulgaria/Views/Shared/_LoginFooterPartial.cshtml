@@ -1,0 +1,39 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using SharemundoBulgaria.Models.User
+
+<ul class="navbar-nav">
+    @if (this.SignInManager.IsSignedIn(User))
+    {
+        <li>
+            <a asp-area="Identity" asp-page="/Account/Manage/Index">
+                @this.Localizer["Profile"]
+            </a>
+        </li>
+        @if (this.User.IsInRole(Constants.AdministratorRole))
+        {
+            <li>
+                <a asp-area="Administration" asp-controller="Dashboard" asp-action="Index">
+                    @this.Localizer["Dashboard"]
+                </a>
+            </li>
+        }
+        <li>
+            <a asp-area="Identity" asp-page="/Account/Logout">
+                @this.Localizer["Logout"]
+            </a>
+        </li>
+    }
+    else
+    {
+        <li>
+            <a asp-area="Identity" asp-page="/Account/Register">
+                @this.Localizer["Register"]
+            </a>
+        </li>
+        <li>
+            <a asp-area="Identity" asp-page="/Account/Login">
+                @this.Localizer["Login"]
+            </a>
+        </li>
+    }
+</ul>

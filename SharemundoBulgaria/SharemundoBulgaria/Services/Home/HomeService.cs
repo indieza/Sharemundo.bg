@@ -12,6 +12,7 @@
     using SharemundoBulgaria.Data;
     using SharemundoBulgaria.Models.Enums;
     using SharemundoBulgaria.Models.User;
+    using SharemundoBulgaria.ViewModels.Home;
     using SharemundoBulgaria.ViewModels.Section;
     using SharemundoBulgaria.ViewModels.SectionPart;
 
@@ -76,6 +77,23 @@
                 }
 
                 result.Add(currentSection);
+            }
+
+            return result;
+        }
+
+        public ICollection<LatestJobPositionsViewModel> GetTopOpenJobPositions(string culture)
+        {
+            var allPositions = this.db.JobPositions.Take(8).ToList();
+            List<LatestJobPositionsViewModel> result = new List<LatestJobPositionsViewModel>();
+
+            foreach (var position in allPositions)
+            {
+                result.Add(new LatestJobPositionsViewModel
+                {
+                    Id = position.Id,
+                    Title = culture.ToUpper() == "BG" ? position.TitleBg : position.Title,
+                });
             }
 
             return result;

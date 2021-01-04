@@ -117,37 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Career" xml:space="preserve">
-    <value>Кариера</value>
-  </data>
-  <data name="Company" xml:space="preserve">
-    <value>Компанията</value>
-  </data>
-  <data name="Company Overview" xml:space="preserve">
-    <value>За компанията</value>
-  </data>
   <data name="Contact Us" xml:space="preserve">
-    <value>Контакти</value>
+    <value>Contact Us</value>
   </data>
-  <data name="Copyright" xml:space="preserve">
-    <value>Авторско право</value>
+  <data name="Make Administrator" xml:space="preserve">
+    <value>Make Administrator</value>
   </data>
-  <data name="Design and Development" xml:space="preserve">
-    <value>Дизайн и разработка</value>
+  <data name="Please, make yourself administrator." xml:space="preserve">
+    <value>Please, make yourself administrator.</value>
   </data>
-  <data name="Home" xml:space="preserve">
-    <value>Начало</value>
+  <data name="Request a call back right now ?" xml:space="preserve">
+    <value>Request a call back right now ?</value>
   </data>
-  <data name="Open Job Positions" xml:space="preserve">
-    <value>Отворени позиции</value>
+  <data name="We are here to help you, to make your ideas reality" xml:space="preserve">
+    <value>We are here to help you, to make your ideas reality</value>
   </data>
-  <data name="Services" xml:space="preserve">
-    <value>Услуги</value>
-  </data>
-  <data name="Sharemundo Bulgaria, Ltd" xml:space="preserve">
-    <value>Шеърмундо България, ООД</value>
-  </data>
-  <data name="Site Map" xml:space="preserve">
-    <value>Карта на сайта</value>
+  <data name="Website still don't have administrator!" xml:space="preserve">
+    <value>Website still don't have administrator!</value>
   </data>
 </root>

@@ -1,5 +1,6 @@
 ﻿namespace SharemundoBulgaria.Controllers
 {
+    using System.Collections.Generic;
     using System.Diagnostics;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
@@ -57,6 +58,23 @@
             var currentUser = await this.userManager.GetUserAsync(this.User);
             await this.homeServices.MakeYourselfAdmin(currentUser);
             return this.RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public IActionResult GetOpenPositions()
+        {
+            IRequestCultureFeature requestCulture = this.Request
+                .HttpContext
+                .Features
+                .Get<IRequestCultureFeature>();
+            var culture = requestCulture
+                .RequestCulture
+                .Culture
+                .Name;
+
+            ICollection<LatestJobPositionsViewModel> positions =
+                this.homeServices.GetTopOpenJobPositions(culture);
+            return new JsonResult(positions);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
