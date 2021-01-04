@@ -84,7 +84,7 @@
 
         public ICollection<LatestJobPositionsViewModel> GetTopOpenJobPositions(string culture)
         {
-            var allPositions = this.db.JobPositions.Take(8).ToList();
+            var allPositions = this.db.JobPositions.OrderBy(x => x.CreatedOn).Take(8).ToList();
             List<LatestJobPositionsViewModel> result = new List<LatestJobPositionsViewModel>();
 
             foreach (var position in allPositions)
