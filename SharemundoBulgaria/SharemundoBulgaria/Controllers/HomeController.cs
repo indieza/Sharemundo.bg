@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Localization;
     using Microsoft.AspNetCore.Mvc;
     using SharemundoBulgaria.Models;
     using SharemundoBulgaria.Models.User;
@@ -25,10 +26,19 @@
         {
             await this.homeServices.SubmitAllRoles();
 
+            IRequestCultureFeature requestCulture = this.Request
+                .HttpContext
+                .Features
+                .Get<IRequestCultureFeature>();
+            var culture = requestCulture
+                .RequestCulture
+                .Culture
+                .Name;
+
             var model = new HomeViewModel
             {
                 HasAdmin = await this.homeServices.HasAdministrator(),
-                AllSections = await this.homeServices.GetAllHomeSections(),
+                AllSections = await this.homeServices.GetAllHomeSections(culture),
             };
 
             return this.View(model);

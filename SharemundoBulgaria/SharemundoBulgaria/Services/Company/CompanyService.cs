@@ -19,7 +19,7 @@
             this.db = db;
         }
 
-        public async Task<ICollection<SectionViewModel>> GetAllCompanySections()
+        public async Task<ICollection<SectionViewModel>> GetAllCompanySections(string culture)
         {
             var allSections = this.db.Sections
                 .Where(x => x.PageType == PageType.COMPANY)
@@ -40,9 +40,9 @@
                     Id = section.Id,
                     Name = section.Name,
                     SectionType = section.SectionType,
-                    Heading = sectionText?.Heading,
-                    Subheading = sectionText?.Subheading,
-                    Description = sectionText?.Description,
+                    Heading = culture.ToUpper() == "BG" ? sectionText?.HeadingBg : sectionText?.Heading,
+                    Subheading = culture.ToUpper() == "BG" ? sectionText?.SubheadingBg : sectionText?.Subheading,
+                    Description = culture.ToUpper() == "BG" ? sectionText?.DescriptionBg : sectionText?.Description,
                     Url = sectionImage?.Url,
                 };
 
@@ -56,9 +56,9 @@
                         Id = part.Id,
                         Name = part.Name,
                         PartType = part.PartType,
-                        Heading = partText?.Heading,
-                        Subheading = partText?.Subheading,
-                        Description = partText?.Description,
+                        Heading = culture.ToUpper() == "BG" ? partText?.HeadingBg : partText?.Heading,
+                        Subheading = culture.ToUpper() == "BG" ? partText?.SubheadingBg : partText?.Subheading,
+                        Description = culture.ToUpper() == "BG" ? partText?.DescriptionBg : partText?.Description,
                         Url = partImage?.Url,
                     });
                 }

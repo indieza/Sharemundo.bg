@@ -8,6 +8,6 @@
 
     public interface IServicesService
     {
-        Task<ICollection<SectionViewModel>> GetAllServicesSections();
+        Task<ICollection<SectionViewModel>> GetAllServicesSections(string culture);
     }
 }

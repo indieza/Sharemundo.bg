@@ -13,6 +13,6 @@
 
         Task MakeYourselfAdmin(ApplicationUser currentUser);
 
-        Task<ICollection<SectionViewModel>> GetAllHomeSections();
+        Task<ICollection<SectionViewModel>> GetAllHomeSections(string culture);
     }
 }
