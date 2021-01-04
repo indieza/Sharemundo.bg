@@ -21,6 +21,9 @@
             $("#heading").val(data.heading);
             $("#subheading").val(data.subheading);
             tinyMCE.get("description").setContent(data.description == null ? "" : data.description);
+            $("#headingBg").val(data.headingBg);
+            $("#subheadingBg").val(data.subheadingBg);
+            tinyMCE.get("descriptionBg").setContent(data.descriptionBg == null ? "" : data.descriptionBg);
         },
         error: function (msg) {
             console.error(msg);

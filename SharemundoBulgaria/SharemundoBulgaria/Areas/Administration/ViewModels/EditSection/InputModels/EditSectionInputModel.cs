@@ -33,15 +33,26 @@
         [Display(Name = "Section Heading")]
         public string Heading { get; set; }
 
+        [Display(Name = "Section Heading in Bulgarian")]
+        public string HeadingBg { get; set; }
+
         [Display(Name = "Section Subheading")]
         public string Subheading { get; set; }
 
+        [Display(Name = "Section Subheading In Bulgarian")]
+        public string SubheadingBg { get; set; }
+
         [Display(Name = "Section Description")]
         public string Description { get; set; }
+
+        [Display(Name = "Section Description In Bulgarian")]
+        public string DescriptionBg { get; set; }
 
         [Display(Name = "Section Image")]
         public IFormFile Image { get; set; }
 
         public string SanitizeDescription => new HtmlSanitizer().Sanitize(this.Description);
+
+        public string SanitizeDescriptionBg => new HtmlSanitizer().Sanitize(this.DescriptionBg);
     }
 }

@@ -15,7 +15,7 @@
 
         [Required]
         [MaxLength(120)]
-        [Display(Name = "Title on Bulgarian")]
+        [Display(Name = "Title In Bulgarian")]
         public string TitleBg { get; set; }
 
         [Required]
@@ -24,7 +24,7 @@
 
         [Required]
         [MaxLength(70)]
-        [Display(Name = "Location on Bulgarian")]
+        [Display(Name = "Location In Bulgarian")]
         public string LocationBg { get; set; }
 
         [Required]
@@ -34,7 +34,7 @@
         public string Description { get; set; }
 
         [Required]
-        [Display(Name = "Description on Bulgarian")]
+        [Display(Name = "Description In Bulgarian")]
         public string DescriptionBg { get; set; }
 
         public string SanitizedDescription => new HtmlSanitizer().Sanitize(this.Description);

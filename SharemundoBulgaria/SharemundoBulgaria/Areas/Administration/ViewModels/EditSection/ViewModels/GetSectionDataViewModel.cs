@@ -16,8 +16,14 @@
 
         public string Heading { get; set; }
 
+        public string HeadingBg { get; set; }
+
         public string Subheading { get; set; }
 
+        public string SubheadingBg { get; set; }
+
         public string Description { get; set; }
+
+        public string DescriptionBg { get; set; }
     }
 }

@@ -44,8 +44,11 @@
                 section.PartText = new PartText
                 {
                     Heading = model.Heading,
+                    HeadingBg = model.HeadingBg,
                     Subheading = model.Subheading,
+                    SubheadingBg = model.SubheadingBg,
                     Description = model.SanitizeDescription,
+                    DescriptionBg = model.SanitizeDescriptionBg,
                     SectionId = section.Id,
                 };
             }

@@ -56,24 +56,39 @@
             </div>
         </div>
         <div class="row">
-            <div class="form-group col-lg-12">
+            <div class="form-group col-lg-6">
                 <label asp-for="@this.Model.EditSectionInputModel.Heading"></label>
                 <input id="heading" class="form-control" type="text" asp-for="@this.Model.EditSectionInputModel.Heading" autocomplete="off" />
                 <span asp-validation-for="@this.Model.EditSectionInputModel.Heading" class="text-danger"></span>
             </div>
+            <div class="form-group col-lg-6">
+                <label asp-for="@this.Model.EditSectionInputModel.HeadingBg"></label>
+                <input id="headingBg" class="form-control" type="text" asp-for="@this.Model.EditSectionInputModel.HeadingBg" autocomplete="off" />
+                <span asp-validation-for="@this.Model.EditSectionInputModel.HeadingBg" class="text-danger"></span>
+            </div>
         </div>
         <div class="row">
-            <div class="form-group col-lg-12">
+            <div class="form-group col-lg-6">
                 <label asp-for="@this.Model.EditSectionInputModel.Subheading"></label>
                 <input id="subheading" class="form-control" type="text" asp-for="@this.Model.EditSectionInputModel.Subheading" autocomplete="off" />
                 <span asp-validation-for="@Model.EditSectionInputModel.Subheading" class="text-danger"></span>
             </div>
+            <div class="form-group col-lg-6">
+                <label asp-for="@this.Model.EditSectionInputModel.SubheadingBg"></label>
+                <input id="subheadingBg" class="form-control" type="text" asp-for="@this.Model.EditSectionInputModel.SubheadingBg" autocomplete="off" />
+                <span asp-validation-for="@Model.EditSectionInputModel.SubheadingBg" class="text-danger"></span>
+            </div>
         </div>
         <div class="row">
-            <div class="form-group col-lg-12">
+            <div class="form-group col-lg-6">
                 <label asp-for="@this.Model.EditSectionInputModel.Description"></label>
                 <textarea id="description" asp-for="@Model.EditSectionInputModel.Description" class="form-control edit-with-tinymce" style="resize: vertical" rows="30"></textarea>
                 <span asp-validation-for="@Model.EditSectionInputModel.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group col-lg-6">
+                <label asp-for="@this.Model.EditSectionInputModel.DescriptionBg"></label>
+                <textarea id="descriptionBg" asp-for="@Model.EditSectionInputModel.DescriptionBg" class="form-control edit-with-tinymce" style="resize: vertical" rows="30"></textarea>
+                <span asp-validation-for="@Model.EditSectionInputModel.DescriptionBg" class="text-danger"></span>
             </div>
         </div>
         <div class="row">

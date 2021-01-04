@@ -32,15 +32,26 @@
         [Display(Name = "Part Heading")]
         public string Heading { get; set; }
 
+        [Display(Name = "Part Heading In Bulgarian")]
+        public string HeadingBg { get; set; }
+
         [Display(Name = "Part Subheading")]
         public string Subheading { get; set; }
 
+        [Display(Name = "Part Subheading In Bulgarian")]
+        public string SubheadingBg { get; set; }
+
         [Display(Name = "Part Description")]
         public string Description { get; set; }
+
+        [Display(Name = "Part Description In Bulgarian")]
+        public string DescriptionBg { get; set; }
 
         [Display(Name = "Part Image")]
         public IFormFile Image { get; set; }
 
         public string SanitizeDescription => new HtmlSanitizer().Sanitize(this.Description);
+
+        public string SanitizeDescriptionBg => new HtmlSanitizer().Sanitize(this.DescriptionBg);
     }
 }

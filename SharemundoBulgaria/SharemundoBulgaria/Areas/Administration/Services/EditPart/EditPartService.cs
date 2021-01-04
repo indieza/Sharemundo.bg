@@ -38,16 +38,22 @@
                 {
                     SectionPartId = part.Id,
                     Heading = model.Heading,
+                    HeadingBg = model.HeadingBg,
                     Subheading = model.Subheading,
+                    SubheadingBg = model.SubheadingBg,
                     Description = model.SanitizeDescription,
+                    DescriptionBg = model.DescriptionBg,
                 });
             }
 
             if (partText != null)
             {
                 partText.Heading = model.Heading;
+                partText.HeadingBg = model.HeadingBg;
                 partText.Subheading = model.Subheading;
+                partText.SubheadingBg = model.SubheadingBg;
                 partText.Description = model.SanitizeDescription;
+                partText.DescriptionBg = model.SanitizeDescriptionBg;
                 this.db.PartTexts.Update(partText);
             }
 
@@ -116,8 +122,11 @@
                 PartType = part.PartType,
                 SectionId = part.SectionId,
                 Heading = partText?.Heading,
+                HeadingBg = partText?.HeadingBg,
                 Subheading = partText?.Subheading,
+                SubheadingBg = partText?.SubheadingBg,
                 Description = partText?.Description,
+                DescriptionBg = partText?.DescriptionBg,
             };
         }
     }

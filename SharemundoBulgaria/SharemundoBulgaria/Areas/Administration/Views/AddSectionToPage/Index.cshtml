@@ -42,24 +42,39 @@
         </div>
     </div>
     <div class="row">
-        <div class="form-group col-lg-12">
+        <div class="form-group col-lg-6">
             <label asp-for="@this.Model.AddSectionToPageInputModel.Heading"></label>
             <input class="form-control" type="text" asp-for="@this.Model.AddSectionToPageInputModel.Heading" autocomplete="off" />
             <span asp-validation-for="@this.Model.AddSectionToPageInputModel.Heading" class="text-danger"></span>
         </div>
+        <div class="form-group col-lg-6">
+            <label asp-for="@this.Model.AddSectionToPageInputModel.HeadingBg"></label>
+            <input class="form-control" type="text" asp-for="@this.Model.AddSectionToPageInputModel.HeadingBg" autocomplete="off" />
+            <span asp-validation-for="@this.Model.AddSectionToPageInputModel.HeadingBg" class="text-danger"></span>
+        </div>
     </div>
     <div class="row">
-        <div class="form-group col-lg-12">
+        <div class="form-group col-lg-6">
             <label asp-for="@this.Model.AddSectionToPageInputModel.Subheading"></label>
             <input class="form-control" type="text" asp-for="@this.Model.AddSectionToPageInputModel.Subheading" autocomplete="off" />
             <span asp-validation-for="@Model.AddSectionToPageInputModel.Subheading" class="text-danger"></span>
         </div>
+        <div class="form-group col-lg-6">
+            <label asp-for="@this.Model.AddSectionToPageInputModel.SubheadingBg"></label>
+            <input class="form-control" type="text" asp-for="@this.Model.AddSectionToPageInputModel.SubheadingBg" autocomplete="off" />
+            <span asp-validation-for="@Model.AddSectionToPageInputModel.SubheadingBg" class="text-danger"></span>
+        </div>
     </div>
     <div class="row">
-        <div class="form-group col-lg-12">
+        <div class="form-group col-lg-6">
             <label asp-for="@this.Model.AddSectionToPageInputModel.Description"></label>
             <textarea asp-for="@Model.AddSectionToPageInputModel.Description" class="form-control edit-with-tinymce" style="resize: vertical" rows="30"></textarea>
             <span asp-validation-for="@Model.AddSectionToPageInputModel.Description" class="text-danger"></span>
+        </div>
+        <div class="form-group col-lg-6">
+            <label asp-for="@this.Model.AddSectionToPageInputModel.DescriptionBg"></label>
+            <textarea asp-for="@Model.AddSectionToPageInputModel.DescriptionBg" class="form-control edit-with-tinymce" style="resize: vertical" rows="30"></textarea>
+            <span asp-validation-for="@Model.AddSectionToPageInputModel.DescriptionBg" class="text-danger"></span>
         </div>
     </div>
     <div class="row">

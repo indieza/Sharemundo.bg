@@ -26,7 +26,7 @@
             targetPosition.TitleBg = model.TitleBg;
             targetPosition.CreatedOn = DateTime.UtcNow;
             targetPosition.Location = model.Location;
-            targetPosition.Location = model.LocationBg;
+            targetPosition.LocationBg = model.LocationBg;
             targetPosition.Description = model.SanitizeDescription;
             targetPosition.DescriptionBg = model.SanitizeDescriptionBg;
             this.db.JobPositions.Update(targetPosition);

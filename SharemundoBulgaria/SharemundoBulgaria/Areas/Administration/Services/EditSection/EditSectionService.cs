@@ -40,16 +40,22 @@
                 {
                     SectionId = section.Id,
                     Heading = model.Heading,
+                    HeadingBg = model.HeadingBg,
                     Subheading = model.Subheading,
+                    SubheadingBg = model.SubheadingBg,
                     Description = model.SanitizeDescription,
+                    DescriptionBg = model.SanitizeDescriptionBg,
                 });
             }
 
             if (sectionText != null)
             {
                 sectionText.Heading = model.Heading;
+                sectionText.HeadingBg = model.HeadingBg;
                 sectionText.Subheading = model.Subheading;
+                sectionText.SubheadingBg = model.SubheadingBg;
                 sectionText.Description = model.SanitizeDescription;
+                sectionText.DescriptionBg = model.DescriptionBg;
                 this.db.PartTexts.Update(sectionText);
             }
 
@@ -104,8 +110,11 @@
                 PageType = section.PageType,
                 SectionType = section.SectionType,
                 Heading = sectionText?.Heading,
+                HeadingBg = sectionText?.HeadingBg,
                 Subheading = sectionText?.Subheading,
+                SubheadingBg = sectionText?.SubheadingBg,
                 Description = sectionText?.Description,
+                DescriptionBg = sectionText?.DescriptionBg,
             };
         }
     }
