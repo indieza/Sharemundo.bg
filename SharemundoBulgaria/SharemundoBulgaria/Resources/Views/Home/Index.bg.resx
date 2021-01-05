@@ -120,6 +120,9 @@
   <data name="Contact Us" xml:space="preserve">
     <value>Контакти</value>
   </data>
+  <data name="Home" xml:space="preserve">
+    <value>Начало</value>
+  </data>
   <data name="Make Administrator" xml:space="preserve">
     <value>Стани администратор</value>
   </data>

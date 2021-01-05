@@ -130,9 +130,12 @@
     <value>Candidates</value>
   </data>
   <data name="Created On" xml:space="preserve">
-    <value>Създадена на</value>
+    <value>Created On</value>
+  </data>
+  <data name="Job" xml:space="preserve">
+    <value>Job</value>
   </data>
   <data name="Location" xml:space="preserve">
-    <value>Локация</value>
+    <value>Location</value>
   </data>
 </root>

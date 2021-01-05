@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Services";
+    ViewData["Title"] = this.Localizer["Services"];
 }
 
 @model ServicesViewModel
@@ -8,8 +8,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Services</h1>
-                <span>We are over 20 years of experience</span>
+                <h1>@this.Localizer["Services"]</h1>
+                <span>@this.Localizer["We have over 5 years of experience"]</span>
             </div>
         </div>
     </div>
@@ -31,7 +31,6 @@
                                     <h6>@part.Subheading</h6>
                                     <h4>@part.Heading</h4>
                                     <p>@Html.Raw(part.Description)</p>
-                                    <a href="contact.html" class="filled-button">contact us</a>
                                 </div>
                             </div>
                         </div>
@@ -48,12 +47,12 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-8">
-                                <h4>Website still don't have administrator!</h4>
-                                <span>Please, make yourself administrator.</span>
+                                <h4>@this.Localizer["Website still don't have administrator!"]</h4>
+                                <span>@this.Localizer["Please, make yourself administrator."]</span>
                             </div>
                             <div class="col-md-4">
                                 <a asp-area="" asp-controller="Home" asp-action="MakeYourselfAdmin" class="border-button">
-                                    Make Administrator
+                                    @this.Localizer["Make Administrator"]
                                 </a>
                             </div>
                         </div>
@@ -66,11 +65,13 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-8">
-                                <h4>Request a call back right now ?</h4>
-                                <span>Mauris ut dapibus velit cras interdum nisl ac urna tempor mollis.</span>
+                                <h4>@this.Localizer["Request a call back right now ?"]</h4>
+                                <span>@this.Localizer["We are here to help you, to make your ideas reality"]</span>
                             </div>
                             <div class="col-md-4">
-                                <a asp-area="" asp-controller="ContactUs" asp-action="Index" class="border-button">Contact Us</a>
+                                <a asp-area="" asp-controller="ContactUs" asp-action="Index" class="border-button">
+                                    @this.Localizer["Contact Us"]
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -83,11 +84,13 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-8">
-                            <h4>Request a call back right now ?</h4>
-                            <span>Mauris ut dapibus velit cras interdum nisl ac urna tempor mollis.</span>
+                            <h4>@this.Localizer["Request a call back right now ?"]</h4>
+                            <span>@this.Localizer["We are here to help you, to make your ideas reality"]</span>
                         </div>
                         <div class="col-md-4">
-                            <a asp-area="" asp-controller="ContactUs" asp-action="Index" class="border-button">Contact Us</a>
+                            <a asp-area="" asp-controller="ContactUs" asp-action="Index" class="border-button">
+                                @this.Localizer["Contact Us"]
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -150,7 +153,6 @@
                                                     <span>@part.Subheading</span>
                                                     <h2>@part.Heading</h2>
                                                     <p>@Html.Raw(part.Description)</p>
-                                                    <a href="#" class="filled-button">Read More</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -166,7 +168,6 @@
                                     <div class="down-content">
                                         <h4>@part.Heading</h4>
                                         <p>@Html.Raw(part.Description)</p>
-                                        <a href="javascript:;" class="filled-button">Read More</a>
                                     </div>
                                 </div>
                             </div>
@@ -243,7 +244,6 @@
                                         <span>@part.Subheading</span>
                                         <h2>@part.Heading</h2>
                                         <p>@Html.Raw(part.Description)</p>
-                                        <a href="#" class="filled-button">Read More</a>
                                     </div>
                                 </div>
                             </div>
@@ -256,7 +256,6 @@
                                     <div class="down-content">
                                         <h4>@part.Heading</h4>
                                         <p>@Html.Raw(part.Description)</p>
-                                        <a href="javascript:;" class="filled-button">Read More</a>
                                     </div>
                                 </div>
                             </div>
@@ -340,7 +339,6 @@
                                             <span>@part.Subheading</span>
                                             <h2>@part.Heading</h2>
                                             <p>@Html.Raw(part.Description)</p>
-                                            <a href="#" class="filled-button">Read More</a>
                                         </div>
                                     </div>
                                 </div>
@@ -353,7 +351,6 @@
                                         <div class="down-content">
                                             <h4>@part.Heading</h4>
                                             <p>@Html.Raw(part.Description)</p>
-                                            <a href="javascript:;" class="filled-button">Read More</a>
                                         </div>
                                     </div>
                                 </div>

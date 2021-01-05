@@ -118,24 +118,27 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Contact Us" xml:space="preserve">
-    <value>Contact Us</value>
-  </data>
-  <data name="Home" xml:space="preserve">
-    <value>Home</value>
+    <value>Контакти</value>
   </data>
   <data name="Make Administrator" xml:space="preserve">
-    <value>Make Administrator</value>
+    <value>Стани администратор</value>
   </data>
   <data name="Please, make yourself administrator." xml:space="preserve">
-    <value>Please, make yourself administrator.</value>
+    <value>Моля, направи себе си администратор</value>
   </data>
   <data name="Request a call back right now ?" xml:space="preserve">
-    <value>Request a call back right now ?</value>
+    <value>Исакте да се свържете с нас сега?</value>
+  </data>
+  <data name="Services" xml:space="preserve">
+    <value>Услуги</value>
   </data>
   <data name="We are here to help you, to make your ideas reality" xml:space="preserve">
-    <value>We are here to help you, to make your ideas reality</value>
+    <value>Ние сме тук, за да ви помогнем, да реализираме вашите идеи</value>
+  </data>
+  <data name="We have over 5 years of experience" xml:space="preserve">
+    <value>Ние имаме опит над 5 години</value>
   </data>
   <data name="Website still don't have administrator!" xml:space="preserve">
-    <value>Website still don't have administrator!</value>
+    <value>Сайта все още няма администратор, стани първия</value>
   </data>
 </root>

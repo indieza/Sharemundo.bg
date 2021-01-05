@@ -132,6 +132,9 @@
   <data name="Created On" xml:space="preserve">
     <value>Създадена на</value>
   </data>
+  <data name="Job" xml:space="preserve">
+    <value>Работа</value>
+  </data>
   <data name="Location" xml:space="preserve">
     <value>Локация</value>
   </data>
