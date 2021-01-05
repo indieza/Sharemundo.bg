@@ -123,14 +123,20 @@
   <data name="E-Mail Address" xml:space="preserve">
     <value>E-Mail Address</value>
   </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
   <data name="Feel free to send us a message now!" xml:space="preserve">
     <value>Feel free to send us a message now!</value>
   </data>
   <data name="Full Name" xml:space="preserve">
     <value>Full Name</value>
   </data>
-  <data name="message" xml:space="preserve">
-    <value>message</value>
+  <data name="Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
   </data>
   <data name="Send Message" xml:space="preserve">
     <value>Send Message</value>

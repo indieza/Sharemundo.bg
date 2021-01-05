@@ -72,25 +72,25 @@
     <form method="post" enctype="multipart/form-data">
         <div class="col-md-12">
             <div class="row">
-                <label asp-for="@this.Model.JobCandidateInputModel.FirstName"></label>
+                <label>@this.Localizer[nameof(this.Model.JobCandidateInputModel.FirstName)]</label>
                 <input type="text" class="form-control" asp-for="@this.Model.JobCandidateInputModel.FirstName" />
                 <span class="text-danger" asp-validation-for="@this.Model.JobCandidateInputModel.FirstName"></span>
             </div>
             <br />
             <div class="row">
-                <label asp-for="@this.Model.JobCandidateInputModel.LastName"></label>
+                <label>@this.Localizer[nameof(this.Model.JobCandidateInputModel.LastName)]</label>
                 <input type="text" class="form-control" asp-for="@this.Model.JobCandidateInputModel.LastName" />
                 <span class="text-danger" asp-validation-for="@this.Model.JobCandidateInputModel.LastName"></span>
             </div>
             <br />
             <div class="row">
-                <label asp-for="@this.Model.JobCandidateInputModel.Phonenumber"></label>
+                <label>@this.Localizer[nameof(this.Model.JobCandidateInputModel.Phonenumber)]</label>
                 <input type="tel" class="form-control" asp-for="@this.Model.JobCandidateInputModel.Phonenumber" />
                 <span class="text-danger" asp-validation-for="@this.Model.JobCandidateInputModel.Phonenumber"></span>
             </div>
             <br />
             <div class="row">
-                <label asp-for="@this.Model.JobCandidateInputModel.Email"></label>
+                <label>@this.Localizer[nameof(this.Model.JobCandidateInputModel.Email)]</label>
                 <input type="email" class="form-control" asp-for="@this.Model.JobCandidateInputModel.Email" />
                 <span class="text-danger" asp-validation-for="@this.Model.JobCandidateInputModel.Email"></span>
             </div>
