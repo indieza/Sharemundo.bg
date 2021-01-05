@@ -2,9 +2,6 @@
 @using SharemundoBulgaria.Models.User
 
 <ul class="navbar-nav">
-    <li class="nav-item">
-        @await Html.PartialAsync("_CulturePartial")
-    </li>
     @if (this.SignInManager.IsSignedIn(User))
     {
         <li class="nav-item">

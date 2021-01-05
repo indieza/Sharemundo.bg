@@ -138,6 +138,9 @@
   <data name="Home" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
   <data name="Open Job Positions" xml:space="preserve">
     <value>Open Job Positions</value>
   </data>

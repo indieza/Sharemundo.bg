@@ -114,6 +114,14 @@
                     <ul class="menu-list" id="openJobPositions">
                     </ul>
                 </div>
+                <div class="col-md-2 footer-item">
+                    <h4>@this.Localizer["Language"]</h4>
+                    <ul class="menu-list">
+                        <li>
+                            @await Html.PartialAsync("_CulturePartial")
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </footer>
