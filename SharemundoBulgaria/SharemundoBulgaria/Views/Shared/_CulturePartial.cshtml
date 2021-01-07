@@ -7,6 +7,7 @@
 }
 <div title="@this.Localizer["Request culture provider:"] @requestCulture?.Provider?.GetType().Name">
     <form id="selectLanguage"
+          asp-area=""
           asp-controller="Culture"
           asp-action="SetCulture"
           asp-route-returnUrl="@returnUrl"
