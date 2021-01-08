@@ -70,7 +70,7 @@
 
         public ICollection<JobPositionViewModel> GetAllJobsPositions(string culture)
         {
-            var allPositions = this.db.JobPositions.ToList();
+            var allPositions = this.db.JobPositions.OrderByDescending(x => x.CreatedOn).ToList();
             var result = new List<JobPositionViewModel>();
 
             foreach (var position in allPositions)
