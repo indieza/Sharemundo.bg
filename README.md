@@ -1,6 +1,6 @@
 ## :eyeglasses: Project Introduction
 
-**Sharemundo.bg** is a Bulgarian website version for the **Sharemundo** company [Link](https://www.sharemundo.com/ "Sharemundo"). The idea of the website is to promote the company.
+**Sharemundo.bg** is a [Bulgarian website](http://sharemundo-bg.com/) version for the **Sharemundo** company - [Link](https://www.sharemundo.com/ "Sharemundo"). The idea of the website is to promote the company.
 
 ## &copy; Sharemundo&trade; Logo
 ![](https://res.cloudinary.com/dk6bgyhey/image/upload/v1604408107/Logo_i2jzwk.png)
